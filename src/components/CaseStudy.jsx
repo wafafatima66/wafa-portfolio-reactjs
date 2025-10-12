@@ -31,13 +31,19 @@ if (loading) return <Loading />;
           className="w-full max-w-6xl mx-auto rounded-2xl overflow-hidden shadow-2xl"
         >
           <img
-            src={getProjectImageUrl(project.image)}
+            src={getProjectImageUrl(project.image, { width: 1600, quality: 75, format: "webp" })}
             alt={project.company}
             loading="lazy"
             decoding="async"
             onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = `/images/projects/${project.image}`;
+              const img = e.currentTarget;
+              if (!img.dataset.fallback1) {
+                img.dataset.fallback1 = "true";
+                img.src = getProjectImageUrl(project.image);
+                return;
+              }
+              img.onerror = null;
+              img.src = `/images/projects/${project.image}`;
             }}
             className="w-full object-cover rounded-xl shadow-lg"
           />

@@ -200,13 +200,19 @@ const AcademicProjects = () => {
                             className="relative overflow-hidden rounded-2xl shadow-lg group"
                           >
                             <img
-                              src={getProjectImageUrl(img)}
+                              src={getProjectImageUrl(img, { width: 800, quality: 70, format: "webp" })}
                               alt={`${project.company}-gallery-${i}`}
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
-                                e.currentTarget.onerror = null;
-                                e.currentTarget.src = `/images/projects/${img}`;
+                                const imgEl = e.currentTarget;
+                                if (!imgEl.dataset.fallback1) {
+                                  imgEl.dataset.fallback1 = "true";
+                                  imgEl.src = getProjectImageUrl(img);
+                                  return;
+                                }
+                                imgEl.onerror = null;
+                                imgEl.src = `/images/projects/${img}`;
                               }}
                               className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                             />

@@ -12,15 +12,26 @@ const FeaturedProject = () => {
   // safely extract projects
   const projects = data?.projects || [];
 
-  // only show featured projects
+  // only show featured projects and sort newest-first by createdAt (fallback to date)
   const featuredProjects = projects.filter((proj) => proj.featured);
+  const sortedFeaturedProjects = React.useMemo(() => {
+    const toTime = (val) => {
+      const t = new Date(val).getTime();
+      return Number.isFinite(t) ? t : -Infinity; // invalid/missing go last
+    };
+    return [...featuredProjects].sort((a, b) => {
+      const aTime = a.createdAt ? toTime(a.createdAt) : toTime(a.date);
+      const bTime = b.createdAt ? toTime(b.createdAt) : toTime(b.date);
+      return bTime - aTime;
+    });
+  }, [featuredProjects]);
 
   // auto-select first project on load
   useEffect(() => {
-    if (featuredProjects.length > 0 && !selectedProject) {
-      setSelectedProject(featuredProjects[0]);
+    if (sortedFeaturedProjects.length > 0 && !selectedProject) {
+      setSelectedProject(sortedFeaturedProjects[0]);
     }
-  }, [featuredProjects, selectedProject]);
+  }, [sortedFeaturedProjects, selectedProject]);
 
   if (loading)
     return (
@@ -173,9 +184,9 @@ const FeaturedProject = () => {
 
               {/* Projects List - improved scrolling */}
               <div className="max-h-[500px] overflow-y-auto pr-4 pb-4 custom-scrollbar">
-                {featuredProjects.length > 0 ? (
+                {sortedFeaturedProjects.length > 0 ? (
                   <div className="space-y-6 px-2 py-2">
-                    {featuredProjects.map((proj, index) => (
+                    {sortedFeaturedProjects.map((proj, index) => (
                       <motion.div
                         key={proj.id}
                         variants={cardVariants}
@@ -345,13 +356,19 @@ const FeaturedProject = () => {
                       <div className="relative bg-gray-800/50 rounded-2xl p-4 h-full min-h-[400px]">
                         {selectedProject.image ? (
                           <img
-                            src={getProjectImageUrl(selectedProject.image)}
+                            src={getProjectImageUrl(selectedProject.image, { width: 1600, quality: 75, format: "webp" })}
                             alt={selectedProject.company}
                             loading="lazy"
                             decoding="async"
                             onError={(e) => {
-                              e.currentTarget.onerror = null;
-                              e.currentTarget.src = `/images/projects/${selectedProject.image}`;
+                              const img = e.currentTarget;
+                              if (!img.dataset.fallback1) {
+                                img.dataset.fallback1 = "true";
+                                img.src = getProjectImageUrl(selectedProject.image);
+                                return;
+                              }
+                              img.onerror = null;
+                              img.src = `/images/projects/${selectedProject.image}`;
                             }}
                             className="w-full h-full object-cover rounded-xl shadow-2xl"
                           />

@@ -2,35 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaRocket, FaProjectDiagram, FaExternalLinkAlt, FaClock } from "react-icons/fa";
 import { SiOpenai } from "react-icons/si";
+import { usePortfolioData } from "../supabase/usePortfolioData";
+
+const ICON_MAP = {
+  github: FaGithub,
+  openai: SiOpenai,
+  rocket: FaRocket,
+  project: FaProjectDiagram,
+  external: FaExternalLinkAlt,
+};
 
 const OngoingTasks = () => {
-  // Sample data - this will be replaced with Supabase data later
-  const ongoingTasks = [
-    {
-      id: 1,
-      title: "Open Source Contribution",
-      description: "Contributing to open source projects, collaborating with developers worldwide to build impactful solutions.",
-      category: "Development",
-      status: "Active",
-      icon: FaGithub,
-      color: "from-purple-500 to-pink-500",
-      link: "#", // Will be replaced with actual link
-      progress: 75,
-      startDate: "2024-01-15"
-    },
-    {
-      id: 2,
-      title: "AI Integration Projects",
-      description: "Building innovative applications with AI integration, exploring machine learning and artificial intelligence capabilities.",
-      category: "AI/ML",
-      status: "Active",
-      icon: SiOpenai,
-      color: "from-blue-500 to-cyan-500",
-      link: "#",
-      progress: 60,
-      startDate: "2024-02-01"
-    },
-  ];
+  const { data, loading, error } = usePortfolioData();
+  const ongoingTasks = data?.ongoingTasks || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -64,6 +48,14 @@ const OngoingTasks = () => {
 
   return (
     <section className="min-h-screen py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      {loading && (
+        <div className="flex justify-center items-center min-h-[200px]">
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
+        </div>
+      )}
+      {error && (
+        <p className="text-center text-red-400 mb-6">Error loading ongoing tasks.</p>
+      )}
       {/* Section Title */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -89,7 +81,7 @@ const OngoingTasks = () => {
         className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
       >
         {ongoingTasks.map((task) => {
-          const IconComponent = task.icon;
+          const IconComponent = ICON_MAP[task.icon] || FaProjectDiagram;
           
           return (
             <motion.div
@@ -152,7 +144,7 @@ const OngoingTasks = () => {
                   {/* Start Date */}
                   <div className="flex items-center text-xs text-stone-500 mb-4">
                     <FaClock className="w-3 h-3 mr-2" />
-                    Started {formatDate(task.startDate)}
+                    Started {task.startDate ? formatDate(task.startDate) : "Unknown"}
                   </div>
 
                   {/* Action Button */}

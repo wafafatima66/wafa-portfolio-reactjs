@@ -22,17 +22,19 @@ export function usePortfolioData() {
           { data: academicBackground, error: academicBackgroundError },
           { data: timelineData, error: timelineDataError },
           { data: technologies, error: technologiesError },
-          { data: courses, error: coursesError }
+          { data: courses, error: coursesError },
+          { data: ongoingTasks, error: ongoingTasksError }
         ] = await Promise.all([
           supabase.from('about_me').select('*').single(),
           supabase.from('academic_projects').select('*').order('id'),
-          supabase.from('projects').select('*').order('id'),
+          supabase.from('projects').select('*').order('created_at', { ascending: false }),
           supabase.from('testimonials').select('*').order('id'),
           supabase.from('stats').select('*').order('id'),
           supabase.from('academic_background').select('*').order('created_at', { ascending: false }),
           supabase.from('timeline_data').select('*').order('sequence_order', { ascending: false }),
           supabase.from('technologies').select('*').order('id'),
-          supabase.from('courses').select('*').order('id')
+          supabase.from('courses').select('*').order('id'),
+          supabase.from('ongoing_tasks').select('*').order('created_at', { ascending: false })
         ]);
 
         // Check for errors
@@ -45,6 +47,7 @@ export function usePortfolioData() {
         if (timelineDataError) throw timelineDataError;
         if (technologiesError) throw technologiesError;
         if (coursesError) throw coursesError;
+        if (ongoingTasksError) throw ongoingTasksError;
 
         // Transform data to match expected structure
         const portfolioData = {
@@ -82,7 +85,8 @@ export function usePortfolioData() {
             technologies: proj.technologies,
             featured: proj.featured,
             theme: proj.theme,
-            casestudyImages: proj.casestudy_images
+            casestudyImages: proj.casestudy_images,
+            createdAt: proj.created_at
           })) || [],
           
           testimonials: testimonials?.map((test, index) => ({
@@ -135,6 +139,20 @@ export function usePortfolioData() {
             year: course.year,
             description: course.description,
             skills: course.skills
+          })) || [],
+
+          ongoingTasks: ongoingTasks?.map((task, index) => ({
+            id: index,
+            title: task.title,
+            description: task.description,
+            category: task.category,
+            status: task.status,
+            icon: task.icon,
+            color: task.color,
+            link: task.link,
+            progress: task.progress,
+            startDate: task.start_date,
+            createdAt: task.created_at
           })) || []
         };
 

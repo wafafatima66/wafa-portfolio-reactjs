@@ -3,7 +3,7 @@ import { supabase } from "../supabase/supabase";
 // Returns a Supabase public URL for a project image.
 // Accepts either a raw filename (e.g., "app.webp") or a storage path (e.g., "projects/app.webp").
 // For HTTP URLs, it returns the value directly.
-export function getProjectImageUrl(imageNameOrPath) {
+export function getProjectImageUrl(imageNameOrPath, transform = {}) {
   if (!imageNameOrPath) return "";
 
   const value = String(imageNameOrPath);
@@ -19,14 +19,16 @@ export function getProjectImageUrl(imageNameOrPath) {
   const { data } = supabase
     .storage
     .from("portfolio-images")
-    .getPublicUrl(path);
+    .getPublicUrl(path, Object.keys(transform).length ? { transform } : undefined);
 
   return data?.publicUrl || "";
 }
 
 // Generic helper for any bucket path
-export function getPublicImageUrl(path) {
+export function getPublicImageUrl(path, transform = {}) {
   if (!path) return "";
-  const { data } = supabase.storage.from("portfolio-images").getPublicUrl(path);
+  const { data } = supabase.storage
+    .from("portfolio-images")
+    .getPublicUrl(path, Object.keys(transform).length ? { transform } : undefined);
   return data?.publicUrl || "";
 }

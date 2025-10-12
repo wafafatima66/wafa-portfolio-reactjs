@@ -92,13 +92,19 @@ const Projects = () => {
               >
                 {proj.image && (
                   <motion.img
-                    src={getProjectImageUrl(proj.image)}
+                    src={getProjectImageUrl(proj.image, { width: 600, quality: 70, format: "webp" })}
                     alt={proj.company}
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = `/images/projects/${proj.image}`;
+                      const img = e.currentTarget;
+                      if (!img.dataset.fallback1) {
+                        img.dataset.fallback1 = "true";
+                        img.src = getProjectImageUrl(proj.image);
+                        return;
+                      }
+                      img.onerror = null;
+                      img.src = `/images/projects/${proj.image}`;
                     }}
                     className="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-lg shadow-md"
                     whileHover={{ scale: 1.05 }}

@@ -96,6 +96,21 @@ CREATE TABLE technologies (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Ongoing Tasks Table
+CREATE TABLE ongoing_tasks (
+    id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    category TEXT,
+    status TEXT,
+    icon TEXT, -- e.g., 'github', 'openai', 'rocket'
+    color TEXT, -- tailwind gradient classes e.g., 'from-purple-500 to-pink-500'
+    link TEXT,
+    progress INTEGER CHECK (progress >= 0 AND progress <= 100),
+    start_date TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Add Courses Table (new table based on current data)
 CREATE TABLE courses (
     id SERIAL PRIMARY KEY,
@@ -117,6 +132,7 @@ ALTER TABLE academic_background ENABLE ROW LEVEL SECURITY;
 ALTER TABLE timeline_data ENABLE ROW LEVEL SECURITY;
 ALTER TABLE technologies ENABLE ROW LEVEL SECURITY;
 ALTER TABLE courses ENABLE ROW LEVEL SECURITY;
+ALTER TABLE ongoing_tasks ENABLE ROW LEVEL SECURITY;
 
 -- Create policies to allow public read access (since this is a portfolio site)
 CREATE POLICY "Allow public read access" ON academic_projects FOR SELECT USING (true);
@@ -128,3 +144,4 @@ CREATE POLICY "Allow public read access" ON academic_background FOR SELECT USING
 CREATE POLICY "Allow public read access" ON timeline_data FOR SELECT USING (true);
 CREATE POLICY "Allow public read access" ON technologies FOR SELECT USING (true);
 CREATE POLICY "Allow public read access" ON courses FOR SELECT USING (true);
+CREATE POLICY "Allow public read access" ON ongoing_tasks FOR SELECT USING (true);

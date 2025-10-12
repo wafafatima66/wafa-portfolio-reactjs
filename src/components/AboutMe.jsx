@@ -148,14 +148,20 @@ const AboutMe = () => {
                 {/* Image Container */}
                 <div className="relative bg-gray-900/80 backdrop-blur-sm rounded-full p-2">
                   <img
-                    src={getPublicImageUrl("profile/profile-4.png")}
+                    src={getPublicImageUrl("profile/profile-4.png", { width: 400, quality: 70, format: "webp" })}
                     alt="Profile"
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
-                    fetchpriority="high"
+                    fetchpriority="low"
                     onError={(e) => {
-                      e.currentTarget.onerror = null;
-                      e.currentTarget.src = "/profile-4.png";
+                      const img = e.currentTarget;
+                      if (!img.dataset.fallback1) {
+                        img.dataset.fallback1 = "true";
+                        img.src = getPublicImageUrl("profile/profile-4.png");
+                        return;
+                      }
+                      img.onerror = null;
+                      img.src = "/profile-4.png";
                     }}
                     className="w-64 h-64 sm:w-80 sm:h-80 rounded-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
