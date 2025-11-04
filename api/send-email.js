@@ -10,8 +10,19 @@ export default async function handler(req, res) {
       res.status(500).json({ error: 'Missing RESEND_API_KEY' });
       return;
     }
-
-    const { subject, message, from, name } = req.body || {};
+    let bodyData = req.body;
+    if (!bodyData) {
+      let raw = '';
+      for await (const chunk of req) {
+        raw += chunk;
+      }
+      try {
+        bodyData = JSON.parse(raw || '{}');
+      } catch {
+        bodyData = {};
+      }
+    }
+    const { subject, message, from, name } = bodyData;
     const payload = {
       from: 'Fatima Portfolio <onboarding@resend.dev>',
       to: 'fatima.amir.dev@gmail.com',
