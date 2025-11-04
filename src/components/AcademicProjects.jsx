@@ -16,7 +16,10 @@ const AcademicProjects = () => {
       </p>
     );
 
-  const projects = data.academicProjects || [];
+  // Show only projects with Active status
+  const projects = (data.academicProjects || []).filter(
+    (p) => (p.status || '').toLowerCase() === 'active'
+  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,7 +111,6 @@ const AcademicProjects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
               whileHover={{ 
                 y: -5, 
                 boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)",
@@ -133,14 +135,14 @@ const AcademicProjects = () => {
                         <FaCode className="text-2xl text-blue-400" />
                       </motion.div>
                       <div className="flex-1">
-                        <h3 className="text-xl lg:text-2xl font-semibold text-white mb-2 leading-tight">{project.company}</h3>
-                        {project.year && (
+                        <h3 className="text-xl lg:text-2xl font-semibold mb-2 leading-tight text-fuchsia-400">{project.title}</h3>
+                        {/* {project.year && (
                           <div className="flex items-center gap-2 mb-3">
                             <FaStar className="text-blue-400 text-sm" />
                             <p className="text-blue-300 font-medium">{project.year}</p>
                           </div>
-                        )}
-                        <p className="text-gray-300 text-base leading-relaxed">
+                        )} */}
+                        <p className="text-gray-300  leading-relaxed text-sm mt-5 justify-center">
                           {project.description}
                         </p>
                       </div>
@@ -177,8 +179,8 @@ const AcademicProjects = () => {
                           whileHover={{ scale: 1.02 }}
                           className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500/10 border border-blue-400/30 rounded-lg text-blue-300 font-medium hover:text-white hover:bg-blue-500/20 transition-all duration-300"
                         >
-                          <FaGithub className="text-lg" />
-                          View Repository
+                          <FaEye className="text-lg" />
+                          View Paper
                           <FaExternalLinkAlt className="text-xs" />
                         </motion.a>
                       </motion.div>
@@ -186,7 +188,7 @@ const AcademicProjects = () => {
                   </div>
 
                   {/* Right Content - Images */}
-                  {((project.casestudyImages && project.casestudyImages.length > 0) || (project.casestudyimages && project.casestudyimages.length > 0)) && (
+                  {/* {((project.casestudyImages && project.casestudyImages.length > 0) || (project.casestudyimages && project.casestudyimages.length > 0)) && (
                     <div className="lg:w-80 flex-shrink-0">
                       <h4 className="text-sm font-semibold text-purple-300 flex items-center gap-2 mb-4">
                         <FaEye className="text-xs" />
@@ -201,7 +203,7 @@ const AcademicProjects = () => {
                           >
                             <img
                               src={getProjectImageUrl(img, { width: 800, quality: 70, format: "webp" })}
-                              alt={`${project.company}-gallery-${i}`}
+                              alt={`${project.title}-gallery-${i}`}
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
@@ -221,7 +223,7 @@ const AcademicProjects = () => {
                         ))}
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </motion.div>

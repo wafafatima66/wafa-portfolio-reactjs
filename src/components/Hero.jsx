@@ -53,8 +53,9 @@ const Hero = () => {
               className="pb-2 text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl tracking-tighter text-left leading-tight"
             >
               Hi, I'm <span className="text-stone-400">Fatima Amir!</span> I'm a{" "}
+               <span className="text-purple-500">Researcher </span> ,{" "}
               <span className="text-purple-800">Project Manager </span> &{" "}
-              <span className="text-fuchsia-800">Software Developer</span>
+              <span className="text-fuchsia-500">Software Developer</span>
             </motion.h2>
 
             <motion.span

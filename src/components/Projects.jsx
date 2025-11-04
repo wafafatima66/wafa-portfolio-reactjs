@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { usePortfolioData } from "../supabase/usePortfolioData";
 import Loading from "./Loading";
 import { getProjectImageUrl } from "../utils/supabaseImages";
@@ -82,52 +83,53 @@ const Projects = () => {
         >
           {filteredProjects.length > 0 ? (
             filteredProjects.map((proj, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-                whileHover={{ scale: 1.03, y: -5 }}
-                className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg border border-purple-700/40 p-3 sm:p-4 cursor-pointer hover:shadow-purple-900/40 w-full"
-              >
-                {proj.image && (
-                  <motion.img
-                    src={getProjectImageUrl(proj.image, { width: 600, quality: 70, format: "webp" })}
-                    alt={proj.company}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      const img = e.currentTarget;
-                      if (!img.dataset.fallback1) {
-                        img.dataset.fallback1 = "true";
-                        img.src = getProjectImageUrl(proj.image);
-                        return;
-                      }
-                      img.onerror = null;
-                      img.src = `/images/projects/${proj.image}`;
-                    }}
-                    className="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-lg shadow-md"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                  />
-                )}
-                <h2 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-white line-clamp-2">
-                  {proj.company}
-                </h2>
-                <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
-                  {proj.technologies.map((tech, idx) => (
-                    <motion.span
-                      key={idx}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: idx * 0.1 }}
-                      className="bg-gray-800/50 text-gray-200 px-2 py-1 rounded-md text-xs shadow-sm"
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
+              <Link key={index} to={`/casestudy/${proj.id}`} className="block">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 }}
+                  whileHover={{ scale: 1.03, y: -5 }}
+                  className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-lg border border-purple-700/40 p-3 sm:p-4 cursor-pointer hover:shadow-purple-900/40 w-full"
+                >
+                  {proj.image && (
+                    <motion.img
+                      src={getProjectImageUrl(proj.image, { width: 600, quality: 70, format: "webp" })}
+                      alt={proj.company}
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.dataset.fallback1) {
+                          img.dataset.fallback1 = "true";
+                          img.src = getProjectImageUrl(proj.image);
+                          return;
+                        }
+                        img.onerror = null;
+                        img.src = `/images/projects/${proj.image}`;
+                      }}
+                      className="w-full h-32 sm:h-40 lg:h-48 object-cover rounded-lg shadow-md"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.4 }}
+                    />
+                  )}
+                  <h2 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-white line-clamp-2">
+                    {proj.company}
+                  </h2>
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mt-2">
+                    {proj.technologies.map((tech, idx) => (
+                      <motion.span
+                        key={idx}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: idx * 0.1 }}
+                        className="bg-gray-800/50 text-gray-200 px-2 py-1 rounded-md text-xs shadow-sm"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              </Link>
             ))
           ) : (
             <p className="text-gray-400 col-span-full text-center text-sm sm:text-base">

@@ -26,7 +26,7 @@ export function usePortfolioData() {
           { data: ongoingTasks, error: ongoingTasksError }
         ] = await Promise.all([
           supabase.from('about_me').select('*').single(),
-          supabase.from('academic_projects').select('*').order('id'),
+          supabase.from('academic_projects').select('*').eq('status', 'Active').order('id'),
           supabase.from('projects').select('*').order('created_at', { ascending: false }),
           supabase.from('testimonials').select('*').order('id'),
           supabase.from('stats').select('*').order('id'),
@@ -64,12 +64,15 @@ export function usePortfolioData() {
           academicProjects: academicProjects?.map((proj, index) => ({
             id: index,
             role: proj.role,
-            company: proj.company,
+            // Support new column name `title`; fallback to `company` for legacy rows
+            title: proj.title ?? proj.company ?? null,
+            company: proj.company ?? null,
             date: proj.date,
             description: proj.description,
             link: proj.link,
             image: proj.image,
-            technologies: proj.technologies
+            technologies: proj.technologies,
+            status: proj.status
           })) || [],
           
           projects: projects?.map((proj, index) => ({

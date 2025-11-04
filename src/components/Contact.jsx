@@ -14,25 +14,50 @@ const Contact = () => {
   };
 
   const [status, setStatus] = useState({ ok: false, error: null });
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ ok: false, error: null });
+    setSending(true);
 
     const formData = new FormData(e.currentTarget);
-    const to = CONTACT.email || "fatima.amir@example.com";
-    const subject = encodeURIComponent(formData.get("subject") || "New inquiry from portfolio");
+    const subject = formData.get("subject") || "New inquiry from portfolio";
     const name = formData.get("name") || "";
     const email = formData.get("email") || "";
     const message = formData.get("message") || "";
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
 
     try {
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject, name, from: email, message })
+      });
+      const contentType = res.headers.get('content-type') || '';
+      let data = null;
+      if (contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        // Handle non-JSON responses (e.g., dev server returns HTML)
+        const text = await res.text();
+        if (!res.ok) throw new Error('Failed to send');
+        // If OK but no JSON, still treat as success
+      }
+      if (!res.ok) throw new Error(data?.error || 'Failed to send');
       setStatus({ ok: true, error: null });
       e.currentTarget.reset();
     } catch (err) {
-      setStatus({ ok: false, error: "Could not open email client." });
+      // Fallback for local dev: open mail client if API is unavailable
+      try {
+        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+        const mailto = `mailto:f\n\nFatima.amir.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailto;
+        setStatus({ ok: true, error: null });
+      } catch (fallbackErr) {
+        setStatus({ ok: false, error: err.message || 'Could not send email.' });
+      }
+    } finally {
+      setSending(false);
     }
   };
 
@@ -117,9 +142,10 @@ const Contact = () => {
           <div className="flex flex-wrap gap-3">
             <button
               type="submit"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium px-6 py-3 rounded-md hover:brightness-110 transition-colors"
+              disabled={sending}
+              className={`bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium px-6 py-3 rounded-md transition-colors ${sending ? 'opacity-70 cursor-not-allowed' : 'hover:brightness-110'}`}
             >
-              Chat About Your Issue
+              {sending ? 'Sending...' : 'Chat About Your Issue'}
             </button>
             <a href={`mailto:${CONTACT.email}`} className="bg-white text-black font-medium px-6 py-3 rounded-md border border-purple-800 hover:brightness-110 transition-colors">
               Or Email Directly
@@ -127,7 +153,7 @@ const Contact = () => {
           </div>
 
           {status.ok && (
-            <p className="mt-3 text-green-400">Opening your email app to send.</p>
+            <p className="mt-3 text-green-400">Your message has been sent. I’ll get back to you soon.</p>
           )}
           {status.error && (
             <p className="mt-3 text-red-400">{status.error}</p>
