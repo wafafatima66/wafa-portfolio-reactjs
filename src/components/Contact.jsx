@@ -47,14 +47,18 @@ const Contact = () => {
       setStatus({ ok: true, error: null });
       e.currentTarget.reset();
     } catch (err) {
-      // Fallback for local dev: open mail client if API is unavailable
-      try {
-        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-        const mailto = `mailto:f\n\nFatima.amir.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
-        setStatus({ ok: true, error: null });
-      } catch (fallbackErr) {
-        setStatus({ ok: false, error: err.message || 'Could not send email.' });
+      // In development, fallback to opening mail client; in production, do NOT open inbox.
+      if (import.meta.env.DEV) {
+        try {
+          const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+          const mailto = `mailto:fatima.amir.dev@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          window.location.href = mailto;
+          setStatus({ ok: true, error: null });
+        } catch (fallbackErr) {
+          setStatus({ ok: false, error: err.message || 'Could not send email.' });
+        }
+      } else {
+        setStatus({ ok: false, error: 'Could not send email. Please try again or email directly.' });
       }
     } finally {
       setSending(false);
