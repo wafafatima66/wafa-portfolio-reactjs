@@ -20,8 +20,8 @@ const Contact = () => {
     e.preventDefault();
     setStatus({ ok: false, error: null });
     setSending(true);
-
-    const formData = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const formData = new FormData(formEl);
     const subject = formData.get("subject") || "New inquiry from portfolio";
     const name = formData.get("name") || "";
     const email = formData.get("email") || "";
@@ -33,19 +33,19 @@ const Contact = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject, name, from: email, message })
       });
-      const contentType = res.headers.get('content-type') || '';
-      let data = null;
-      if (contentType.includes('application/json')) {
-        data = await res.json();
-      } else {
-        // Handle non-JSON responses (e.g., dev server returns HTML)
-        const text = await res.text();
-        if (!res.ok) throw new Error('Failed to send');
-        // If OK but no JSON, still treat as success
+      let json = null;
+      try {
+        json = await res.json();
+      } catch (_) {
+        // If response is not JSON, continue based on status code
       }
-      if (!res.ok) throw new Error(data?.error || 'Failed to send');
-      setStatus({ ok: true, error: null });
-      e.currentTarget.reset();
+      if (res.ok) {
+        setStatus({ ok: true, error: null });
+        formEl?.reset();
+      } else {
+        const msg = (json && (json.error || json.message)) || 'Could not send email.';
+        setStatus({ ok: false, error: msg });
+      }
     } catch (err) {
       setStatus({ ok: false, error: err.message || 'Could not send email. Please try again or email directly.' });
     } finally {
