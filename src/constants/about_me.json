@@ -1,0 +1,20 @@
+{
+  "biography": "I am a software engineer with experience as a developer, project manager, and researcher. As a developer, I have built full-stack web applications, machine learning models, and e-commerce platforms using tools like Laravel, React.js, TensorFlow, and WordPress. My project management work includes leading cross-functional teams to deliver high-performing websites and resolving complex technical issues to optimize performance and user experience. As a researcher, I have explored federated learning, edge computing, and human activity recognition, drafting IEEE-format papers and presenting innovative frameworks. This blend of skills allows me to bridge technical execution, strategic planning, and innovative problem-solving.",
+  "services": [
+    "Software Development",
+    "Machine Learning & Data Analysis",
+    "Project Management",
+    "WordPress & E-commerce Solutions",
+    "Research & Technical Writing"
+  ],
+  "contact": {
+    "email": "fatima.amir.dev@gmail.com"
+  },
+  "profile_image": "/profile/profile.png",
+  "stats": [
+    { "heading": "Experience", "value": "5+ Years" },
+    { "heading": "Projects", "value": "30+" },
+    { "heading": "Clients", "value": "20+" },
+    { "heading": "Research Papers", "value": "3+" }
+  ]
+}

@@ -1,138 +1,156 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { usePortfolioData } from "../supabase/usePortfolioData";
 import ReactMarkdown from "react-markdown";
-import Loading from "./Loading";
-import { getProjectImageUrl } from "../utils/supabaseImages";
-
+import { FaGithub, FaArrowLeft, FaRocket } from "react-icons/fa";
+// Import local JSON
+import projectsData from "../constants/work_projects.json";
 
 const CaseStudy = () => {
   const { id } = useParams();
-  const { data, loading, error } = usePortfolioData();
 
-if (loading) return <Loading />;
-  if (error) return <p className="text-center mt-20 text-red-500">Error loading data.</p>;
+  // Find project from local JSON
+  const project = projectsData.find((p) => p.id === Number(id));
+  
+  // Fallback theme color if none provided in JSON
+  const themeColor = project?.theme || "#a855f7"; 
 
-  const projects = data?.projects || [];
-  const project = projects.find((p) => p.id === Number(id));
-  const themeColor = project?.theme || "#7c3aed";
-  if (!project) return <p className="text-center mt-20 text-gray-400">Project not found</p>;
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white">
+        <h2 className="text-2xl font-bold mb-4">Project Not Found</h2>
+        <Link to="/projects" className="text-purple-400 hover:underline">Back to Portfolio</Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-gray-900 to-slate-950 px-4 md:px-12 py-12 text-white antialiased">
+    <div className="min-h-screen bg-black text-white antialiased pb-20">
+      {/* Background Glow */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div 
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] opacity-20 blur-[120px]"
+          style={{ background: `radial-gradient(circle, ${themeColor} 0%, transparent 70%)` }}
+        />
+      </div>
 
-      {/* Hero Image */}
-      {project.image && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full max-w-6xl mx-auto rounded-2xl overflow-hidden shadow-2xl"
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-32">
+        {/* Navigation */}
+        <Link 
+          to="/projects" 
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-12 group"
         >
-          <img
-            src={getProjectImageUrl(project.image, { width: 1600, quality: 75, format: "webp" })}
-            alt={project.company}
-            loading="lazy"
-            decoding="async"
-            onError={(e) => {
-              const img = e.currentTarget;
-              if (!img.dataset.fallback1) {
-                img.dataset.fallback1 = "true";
-                img.src = getProjectImageUrl(project.image);
-                return;
-              }
-              img.onerror = null;
-              img.src = `/images/projects/${project.image}`;
-            }}
-            className="w-full object-cover rounded-xl shadow-lg"
-          />
-        </motion.div>
-      )}
+          <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-xs font-bold uppercase tracking-widest">Back to Projects</span>
+        </Link>
 
-      <div className="w-full max-w-6xl mx-auto mt-12 space-y-8">
-
-        {/* Title */}
-        <motion.h1
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold"
-          style={{ color: themeColor }}
-        >
-          {project.company}
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-300 font-semibold"
-        >
-            <ReactMarkdown>{project.basicInfo}</ReactMarkdown>
-        </motion.p>
-
-        {/* Description */}
-        {project.longDescription && (
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="text-gray-200 leading-relaxed"
-          >
-            <ReactMarkdown>{project.longDescription}</ReactMarkdown>
-          </motion.p>
-        )}
-
-        {/* Technologies */}
-        {project.technologies?.length > 0 && (
+        {/* Hero Image */}
+        {project.image && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-3 mt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl mb-16"
           >
-            {project.technologies.map((tech, idx) => (
-              <motion.span
-                key={idx}
-                whileHover={{ scale: 1.1 }}
-                className="bg-fuchsia-800 font-semibold text-white px-3 py-1 rounded-md shadow-md text-sm"
-                style={{ backgroundColor: themeColor}}
-              >
-                {tech}
-              </motion.span>
-            ))}
+            <img
+              src={`/projects/${project.image}`}
+              alt={project.company}
+              className="w-full h-auto object-cover"
+            />
           </motion.div>
         )}
 
-        {/* GitHub Link */}
-        {project.link && (
-          <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="inline-block mt-4  font-semibold hover:underline"
-            style={{ color: themeColor }}
-          >
-            Github →
-          </motion.a>
-        )}
+        {/* Content Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-6">
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-5xl md:text-7xl font-bold tracking-tighter"
+            >
+              {project.company}
+            </motion.h1>
 
-        {/* Gallery Images */}
-        {project.casestudyimages?.length > 0 && (
-          <div className="mt-8 space-y-6">
-            {project.casestudyimages.map((img, i) => (
-              <motion.img
-                key={i}
-                src={`/images/projects/${img}`}
-                alt={`${project.company}-gallery-${i}`}
-                className="w-full rounded-xl shadow-2xl"
-                whileHover={{ scale: 1.05 }}
-              />
-            ))}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="prose prose-invert max-w-none text-gray-300 text-lg leading-relaxed"
+            >
+              <ReactMarkdown>
+                {project.long_description || project.description}
+              </ReactMarkdown>
+            </motion.div>
+          </div>
+
+          {/* Sidebar Info */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-8 bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md h-fit"
+          >
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-3">Role</h4>
+              <p className="text-white font-medium">{project.role}</p>
+            </div>
+
+            {project.basic_info && (
+              <div>
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-3">Project Info</h4>
+                <div className="text-gray-300 text-sm leading-loose">
+                  <ReactMarkdown>{project.basic_info}</ReactMarkdown>
+                </div>
+              </div>
+            )}
+
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-purple-400 mb-3">Stack</h4>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies?.map((tech, idx) => (
+                  <span 
+                    key={idx} 
+                    className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-bold text-gray-400"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full py-4 bg-white text-black rounded-2xl font-bold text-sm hover:bg-purple-500 hover:text-white transition-all duration-300"
+              >
+                <FaGithub /> View Source Code
+              </a>
+            )}
+          </motion.div>
+        </div>
+
+        {/* Project Gallery */}
+        {project.casestudy_images && project.casestudy_images.length > 0 && (
+          <div className="mt-24 space-y-12">
+            <h3 className="text-3xl font-bold text-center mb-12">Project <span className="text-purple-500">Snapshots</span></h3>
+            <div className="grid grid-cols-1 gap-12">
+              {project.casestudy_images.map((img, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl"
+                >
+                  <img
+                    src={`/projects/${img}`}
+                    alt={`${project.company} Gallery ${i + 1}`}
+                    className="w-full h-auto"
+                  />
+                </motion.div>
+              ))}
+            </div>
           </div>
         )}
       </div>

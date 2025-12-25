@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "James Carter",
+    "title": "CTO at TechWave",
+    "text": "Fatima delivered high-quality solutions on time and demonstrated strong problem-solving skills throughout the project.",
+    "image": "https://i.pravatar.cc/150?img=12"
+  },
+  {
+    "id": 2,
+    "name": "Alicia Gomez",
+    "title": "Project Manager at Docua",
+    "text": "Her expertise in software development and teamwork made a huge difference in the successful launch of our product.",
+    "image": "https://i.pravatar.cc/150?img=36"
+  },
+  {
+    "id": 3,
+    "name": "Robert Wilson",
+    "title": "Business Owner",
+    "text": "The e-commerce website she developed boosted our sales by improving user experience and system efficiency.",
+    "image": "https://i.pravatar.cc/150?img=18"
+  },
+  {
+    "id": 4,
+    "name": "Sophia Lee",
+    "title": "Research Collaborator",
+    "text": "Her work on machine learning models showed exceptional technical depth and attention to detail.",
+    "image": "https://i.pravatar.cc/150?img=52"
+  }
+]

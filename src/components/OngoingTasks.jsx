@@ -1,194 +1,279 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaRocket, FaProjectDiagram, FaExternalLinkAlt, FaClock } from "react-icons/fa";
+import { 
+  FaGithub, 
+  FaRocket, 
+  FaDiagramProject, 
+  FaClock, 
+  FaTerminal, 
+  FaMicrochip,
+  FaSquarePlus
+} from "react-icons/fa6";
 import { SiOpenai } from "react-icons/si";
-import { usePortfolioData } from "../supabase/usePortfolioData";
+import ongoingTasksData from "../constants/ongoing_tasks.json";
 
 const ICON_MAP = {
   github: FaGithub,
   openai: SiOpenai,
   rocket: FaRocket,
-  project: FaProjectDiagram,
-  external: FaExternalLinkAlt,
+  project: FaDiagramProject,
 };
 
 const OngoingTasks = () => {
-  const { data, loading, error } = usePortfolioData();
-  const ongoingTasks = data?.ongoingTasks || [];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long' 
-    });
-  };
+  const ongoingTasks = ongoingTasksData || [];
 
   return (
-    <section className="min-h-screen py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
-      {loading && (
-        <div className="flex justify-center items-center min-h-[200px]">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
+    <section className="relative py-28 px-6 lg:px-12 bg-transparent overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        
+{/* Cyber-Industrial Header */}
+        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between border-b-2 border-fuchsia-500/10 pb-10 gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 bg-fuchsia-500 rounded-full animate-pulse shadow-[0_0_8px_#d946ef]" />
+              <span className="text-fuchsia-500 font-mono text-xs font-black uppercase tracking-[0.4em]">
+                Active_Processes // V.02
+              </span>
+            </div>
+            <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-none">
+              Current <span className="text-fuchsia-500 italic">Tasks.</span>
+            </h2>
+          </motion.div>
+          <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest text-right">
+            [ STATUS: PROCESSING ] <br />
+            [ NODES: {ongoingTasks.length} ]
+          </div>
         </div>
-      )}
-      {error && (
-        <p className="text-center text-red-400 mb-6">Error loading ongoing tasks.</p>
-      )}
-      {/* Section Title */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center mb-12 lg:mb-16"
-      >
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mb-4">
-          Current Endeavors
-        </h2>
-        <p className="text-lg sm:text-xl text-stone-400 max-w-3xl mx-auto">
-          Exploring new frontiers in technology and innovation through ongoing projects and collaborations
-        </p>
-      </motion.div>
 
-      {/* Tasks Grid */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-      >
-        {ongoingTasks.map((task) => {
-          const IconComponent = ICON_MAP[task.icon] || FaProjectDiagram;
-          
-          return (
-            <motion.div
-              key={task.id}
-              variants={cardVariants}
-              whileHover={{ 
-                scale: 1.02,
-                transition: { duration: 0.2 }
-              }}
-              className="group relative"
-            >
-              {/* Card Container */}
-              <div className="relative bg-gradient-to-br from-stone-900/50 to-stone-800/30 backdrop-blur-sm border border-stone-700/50 rounded-2xl p-6 h-full overflow-hidden">
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${task.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                
-                {/* Status Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                    {task.status}
-                  </span>
-                  <span className="text-xs text-stone-500 bg-stone-800/50 px-2 py-1 rounded-lg">
-                    {task.category}
-                  </span>
+        {/* Industrial Blueprint List */}
+        <div className="space-y-4">
+          {ongoingTasks.map((task, index) => {
+            const IconComponent = ICON_MAP[task.icon] || FaMicrochip;
+            
+            return (
+              <motion.div
+                key={task.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative flex flex-col md:flex-row gap-6 items-start md:items-center bg-white/[0.02] border border-white/10 p-6 md:p-8 hover:bg-fuchsia-500/[0.03] hover:border-fuchsia-500/40 transition-all duration-300"
+              >
+                {/* ID Counter */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="h-12 w-1 bg-fuchsia-500 shadow-[0_0_10px_#d946ef]" />
                 </div>
 
-                {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${task.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <IconComponent className="w-6 h-6 text-white" />
+                {/* Status Icon */}
+                <div className="flex-shrink-0 w-16 h-16 rounded-sm bg-black border border-white/10 flex items-center justify-center group-hover:border-fuchsia-500/50 transition-colors">
+                  <IconComponent className="text-2xl text-gray-500 group-hover:text-fuchsia-500 group-hover:scale-110 transition-all duration-500" />
                 </div>
 
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-500 group-hover:bg-clip-text transition-all duration-300">
+                {/* Main Content Info */}
+                <div className="flex-grow space-y-2 max-w-2xl">
+                  <div className="flex items-center gap-3">
+                    <span className="text-fuchsia-500 font-mono text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border border-fuchsia-500/20">
+                      {task.category}
+                    </span>
+                    <span className="text-gray-600 font-mono text-[9px]">ID_00{task.id}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white tracking-tight uppercase group-hover:text-fuchsia-400 transition-colors">
                     {task.title}
                   </h3>
-                  
-                  <p className="text-stone-400 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-400 text-sm font-medium leading-relaxed line-clamp-2 italic">
                     {task.description}
                   </p>
-
-                  {/* Progress Bar */}
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs text-stone-500">Progress</span>
-                      <span className="text-xs text-stone-400 font-medium">{task.progress}%</span>
-                    </div>
-                    <div className="w-full bg-stone-700/50 rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${task.progress}%` }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        viewport={{ once: true }}
-                        className={`h-2 rounded-full bg-gradient-to-r ${task.color}`}
-                      ></motion.div>
-                    </div>
-                  </div>
-
-                  {/* Start Date */}
-                  <div className="flex items-center text-xs text-stone-500 mb-4">
-                    <FaClock className="w-3 h-3 mr-2" />
-                    Started {task.startDate ? formatDate(task.startDate) : "Unknown"}
-                  </div>
-
-                  {/* Action Button */}
-                  {/* <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-full bg-gradient-to-r ${task.color} text-white py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300 opacity-80 hover:opacity-100`}
-                  >
-                    <span>Learn More</span>
-                    <FaExternalLinkAlt className="w-3 h-3" />
-                  </motion.button> */}
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-white/5 to-transparent rounded-full -translate-y-10 translate-x-10"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-white/3 to-transparent rounded-full translate-y-8 -translate-x-8"></div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+                {/* Progress Visualizer (Vertical HUD Style) */}
+                <div className="w-full md:w-48 flex flex-col justify-end pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/5 md:pl-8 space-y-3">
+                   <div className="flex items-center justify-between font-mono">
+                      <span className="text-[9px] text-gray-500 font-bold">PROG_DATA</span>
+                      <span className="text-xs text-white font-black tracking-tighter">{task.progress}%</span>
+                   </div>
+                   <div className="h-1 w-full bg-white/5 relative">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${task.progress}%` }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="absolute h-full bg-fuchsia-500 shadow-[0_0_8px_#d946ef]"
+                      />
+                   </div>
+                   <div className="flex items-center justify-between text-[9px] text-gray-600 font-mono">
+                      <div className="flex items-center gap-1">
+                        <FaClock className="text-fuchsia-500/40" />
+                        <span>{new Date(task.start_date).getFullYear()}</span>
+                      </div>
+                      <span className="text-green-500 font-bold group-hover:animate-pulse tracking-widest">{task.status.toUpperCase()}</span>
+                   </div>
+                </div>
 
-      {/* Call to Action */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="text-center mt-12 lg:mt-16"
-      >
-        <p className="text-stone-400 mb-6">
-          Interested in collaborating or learning more about these projects?
-        </p>
-        {/* <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300"
-        >
-          <span>Get In Touch</span>
-          <FaRocket className="ml-2 w-4 h-4" />
-        </motion.button> */}
-      </motion.div>
+                {/* Absolute Decoration Brackets */}
+                <FaSquarePlus className="absolute top-2 right-2 text-white/5 group-hover:text-fuchsia-500 transition-colors text-xs" />
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 };
 
 export default OngoingTasks;
+
+// import React from "react";
+// import { motion } from "framer-motion";
+// import { FaGithub, FaRocket, FaProjectDiagram, FaClock, FaCertificate } from "react-icons/fa";
+// import { SiOpenai } from "react-icons/si";
+// import ongoingTasksData from "../constants/ongoing_tasks.json";
+
+// const ICON_MAP = {
+//   github: FaGithub,
+//   openai: SiOpenai,
+//   rocket: FaRocket,
+//   project: FaProjectDiagram,
+// };
+
+// const OngoingTasks = () => {
+//   const ongoingTasks = ongoingTasksData || [];
+
+//   const containerVariants = {
+//     hidden: { opacity: 0 },
+//     visible: {
+//       opacity: 1,
+//       transition: { staggerChildren: 0.2 }
+//     }
+//   };
+
+//   const cardVariants = {
+//     hidden: { opacity: 0, y: 30, scale: 0.95 },
+//     visible: {
+//       opacity: 1,
+//       y: 0,
+//       scale: 1,
+//       transition: { duration: 0.5, ease: "easeOut" }
+//     }
+//   };
+
+//   const formatDate = (dateString) => {
+//     if (!dateString) return "Unknown";
+//     const date = new Date(dateString);
+//     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+//   };
+
+//   return (
+//     <section className="min-h-screen relative overflow-hidden bg-black py-24 px-4 sm:px-6 lg:px-8">
+//       {/* Background Glows - Matching Courses Design */}
+//       <div className="absolute inset-0 pointer-events-none">
+//         <motion.div 
+//           animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+//           transition={{ duration: 8, repeat: Infinity }}
+//           className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px]"
+//         />
+//         <motion.div 
+//           animate={{ scale: [1.2, 1, 1.2], opacity: [0.1, 0.15, 0.1] }}
+//           transition={{ duration: 10, repeat: Infinity }}
+//           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-fuchsia-600/20 rounded-full blur-[120px]"
+//         />
+//       </div>
+
+//       <div className="relative z-10 max-w-7xl mx-auto">
+//         {/* Section Header */}
+//         <div className="text-center mb-20">
+//           <motion.div 
+//             initial={{ opacity: 0, y: -20 }}
+//             whileInView={{ opacity: 1, y: 0 }}
+//             className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6"
+//           >
+//             <FaRocket className="text-purple-400 text-sm" />
+//             <span className="text-purple-400 text-xs font-bold uppercase tracking-widest">In Progress</span>
+//           </motion.div>
+//           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+//             Current <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-500">Endeavors</span>
+//           </h2>
+//           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+//             Exploring new frontiers in technology and innovation through ongoing research and development.
+//           </p>
+//         </div>
+
+//         {/* Tasks Grid */}
+//         <motion.div
+//           variants={containerVariants}
+//           initial="hidden"
+//           whileInView="visible"
+//           viewport={{ once: true }}
+//           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto"
+//         >
+//           {ongoingTasks.map((task) => {
+//             const IconComponent = ICON_MAP[task.icon] || FaProjectDiagram;
+            
+//             return (
+//               <motion.div
+//                 key={task.id}
+//                 variants={cardVariants}
+//                 className="relative bg-gradient-to-b from-gray-900/40 to-black border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl group"
+//               >
+//                 {/* Visual Accent Icon (Transparent in corner) */}
+//                 <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+//                   <IconComponent className="text-7xl text-white" />
+//                 </div>
+
+//                 <div className="relative z-10 flex flex-col h-full">
+//                   <div className="flex items-center justify-between mb-6">
+//                     <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-purple-500 to-fuchsia-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+//                       <IconComponent className="text-white text-xl" />
+//                     </div>
+//                     <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-purple-300 text-[10px] font-bold uppercase tracking-tighter">
+//                       {task.category}
+//                     </span>
+//                   </div>
+
+//                   <h3 className="text-2xl font-bold text-white mb-4 tracking-tight group-hover:text-purple-400 transition-colors">
+//                     {task.title}
+//                   </h3>
+                  
+//                   <p className="text-gray-400 text-sm leading-relaxed mb-6 border-l-2 border-purple-500/30 pl-4">
+//                     {task.description}
+//                   </p>
+
+//                   {/* Progress Section */}
+//                   <div className="mt-auto">
+//                     <div className="flex items-center justify-between mb-2">
+//                       <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Milestone</span>
+//                       <span className="text-xs text-purple-300 font-mono">{task.progress}%</span>
+//                     </div>
+//                     <div className="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+//                       <motion.div
+//                         initial={{ width: 0 }}
+//                         whileInView={{ width: `${task.progress}%` }}
+//                         transition={{ duration: 1.5, ease: "circOut" }}
+//                         className="h-full bg-gradient-to-r from-purple-500 to-fuchsia-500"
+//                       />
+//                     </div>
+
+//                     <div className="flex items-center justify-between mt-6">
+//                       <div className="flex items-center text-[11px] text-gray-500 font-medium">
+//                         <FaClock className="mr-2 opacity-50" />
+//                         Started {formatDate(task.start_date)}
+//                       </div>
+//                       <div className="flex items-center gap-1.5">
+//                         <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+//                         <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest">{task.status}</span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </motion.div>
+//             );
+//           })}
+//         </motion.div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default OngoingTasks;

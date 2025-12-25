@@ -1,234 +1,122 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { usePortfolioData } from "../supabase/usePortfolioData";
-import Loading from "./Loading";
-import { FaGithub, FaExternalLinkAlt, FaCode, FaStar, FaEye, FaRocket, FaLightbulb, FaCog } from "react-icons/fa";
-import { getProjectImageUrl } from "../utils/supabaseImages";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import academicProjectsData from "../constants/academic_projects.json";
+import { FaExternalLinkAlt, FaFileAlt, FaMicroscope, FaCheckCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const AcademicProjects = () => {
-  const { data, loading, error } = usePortfolioData();
+  // Track which project IDs are expanded
+  const [expandedId, setExpandedId] = useState(null);
 
-  if (loading) return <Loading />;
-  if (error)
-    return (
-      <p className="text-center mt-20 text-red-500 text-lg">
-        Error loading data.
-      </p>
-    );
-
-  // Show only projects with Active status
-  const projects = (data.academicProjects || []).filter(
-    (p) => (p.status || '').toLowerCase() === 'active'
-  );
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+  const projects = academicProjectsData
+    .filter((p) => (p.status || "").toLowerCase() === "active")
+    .sort((a, b) => {
+      const aPub = String(a.Published).toLowerCase() === "true";
+      const bPub = String(b.Published).toLowerCase() === "true";
+      if (aPub === bPub) return new Date(b.createdAt) - new Date(a.createdAt);
+      return aPub ? -1 : 1;
+    });
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Subtle Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ 
-            opacity: [0.1, 0.2, 0.1]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl"
-        />
-        <motion.div
-          animate={{ 
-            opacity: [0.1, 0.15, 0.1]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-32 right-20 w-48 h-48 bg-gray-500/5 rounded-full blur-2xl"
-        />
-      </div>
+    <section className="relative py-24 px-6 bg-white overflow-hidden">
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="mb-20">
+          <h2 className="text-sm font-black tracking-[0.25em] text-blue-600 uppercase mb-3">Research & Publications</h2>
+          <h3 className="text-4xl md:text-5xl font-light text-gray-900">Academic <span className="italic font-serif">Contributions</span></h3>
+          <div className="h-px w-24 bg-blue-600 mt-6" />
+        </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-center mb-16"
-        >
-          <motion.h2 
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white"
-          >
-            Research & Academic Projects
-          </motion.h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: "80px" }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="h-0.5 bg-blue-500 mx-auto rounded-full mb-6"
-          />
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Research projects and academic contributions demonstrating technical expertise and innovation
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+          {projects.map((project, idx) => {
+            const isPublished = String(project.Published).toLowerCase() === "true";
+            const isExpanded = expandedId === project.id;
 
-        {/* Projects Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          className="max-w-4xl mx-auto space-y-8"
-        >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ 
-                y: -5, 
-                boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)",
-                scale: 1.01
-              }}
-              className="relative p-8 bg-gray-900/60 backdrop-blur-sm rounded-xl border border-gray-700 shadow-lg group overflow-hidden"
-            >
-              {/* Card Background Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-gray-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              
-              <div className="relative z-10">
-                <div className="flex flex-col lg:flex-row gap-8">
-                  {/* Left Content */}
-                  <div className="flex-1">
-                    {/* Project Header */}
-                    <div className="flex items-start gap-4 mb-6">
-                      <motion.div 
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg shadow-lg flex-shrink-0"
-                      >
-                        <FaCode className="text-2xl text-blue-400" />
-                      </motion.div>
-                      <div className="flex-1">
-                        <h3 className="text-xl lg:text-2xl font-semibold mb-2 leading-tight text-fuchsia-400">{project.title}</h3>
-                        {/* {project.year && (
-                          <div className="flex items-center gap-2 mb-3">
-                            <FaStar className="text-blue-400 text-sm" />
-                            <p className="text-blue-300 font-medium">{project.year}</p>
-                          </div>
-                        )} */}
-                        <p className="text-gray-300  leading-relaxed text-sm mt-5 justify-center">
-                          {project.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Technologies */}
-                    {project.technologies?.length > 0 && (
-                      <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-blue-300 mb-3 flex items-center gap-2">
-                          <FaCog className="text-xs" />
-                          Technologies Used
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech, i) => (
-                            <motion.span
-                              key={i}
-                              whileHover={{ scale: 1.02 }}
-                              className="px-3 py-1 bg-gray-800/60 border border-gray-600 rounded-lg text-xs font-medium text-gray-300 shadow-sm"
-                            >
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Links */}
-                    {project.link && (
-                      <motion.div className="mb-6">
-                        <motion.a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.02 }}
-                          className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500/10 border border-blue-400/30 rounded-lg text-blue-300 font-medium hover:text-white hover:bg-blue-500/20 transition-all duration-300"
-                        >
-                          <FaEye className="text-lg" />
-                          View Paper
-                          <FaExternalLinkAlt className="text-xs" />
-                        </motion.a>
-                      </motion.div>
-                    )}
+            return (
+              <motion.div
+                key={project.id}
+                layout // This makes the card growth smooth
+                className={`group relative flex flex-col rounded-2xl p-8 transition-all duration-500 
+                  ${isPublished 
+                    ? "bg-gradient-to-br from-white to-blue-50/40 border-2 border-blue-400 shadow-[0_20px_50px_rgba(37,99,235,0.15)]" 
+                    : "bg-white border border-gray-100 shadow-sm"
+                  }`}
+              >
+                {isPublished && (
+                  <div className="absolute -top-3 left-6 px-3 py-1 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
+                    <FaCheckCircle /> Published Research
                   </div>
+                )}
 
-                  {/* Right Content - Images */}
-                  {/* {((project.casestudyImages && project.casestudyImages.length > 0) || (project.casestudyimages && project.casestudyimages.length > 0)) && (
-                    <div className="lg:w-80 flex-shrink-0">
-                      <h4 className="text-sm font-semibold text-purple-300 flex items-center gap-2 mb-4">
-                        <FaEye className="text-xs" />
-                        Project Gallery
-                      </h4>
-                      <div className="space-y-4">
-                        {(project.casestudyImages || project.casestudyimages || []).map((img, i) => (
-                          <motion.div
-                            key={i}
-                            whileHover={{ scale: 1.03 }}
-                            className="relative overflow-hidden rounded-2xl shadow-lg group"
-                          >
-                            <img
-                              src={getProjectImageUrl(img, { width: 800, quality: 70, format: "webp" })}
-                              alt={`${project.title}-gallery-${i}`}
-                              loading="lazy"
-                              decoding="async"
-                              onError={(e) => {
-                                const imgEl = e.currentTarget;
-                                if (!imgEl.dataset.fallback1) {
-                                  imgEl.dataset.fallback1 = "true";
-                                  imgEl.src = getProjectImageUrl(img);
-                                  return;
-                                }
-                                imgEl.onerror = null;
-                                imgEl.src = `/images/projects/${img}`;
-                              }}
-                              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  )} */}
+                <div className="flex items-center gap-2 text-blue-600 mb-6">
+                  <div className={`p-2 rounded-lg ${isPublished ? "bg-blue-600 text-white" : "bg-blue-50"}`}>
+                    <FaMicroscope className="text-sm" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest">{project.role}</span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+
+                <h3 className="text-xl font-bold leading-tight mb-4 text-gray-900">{project.title}</h3>
+
+                {/* Description Logic */}
+<div className="relative">
+  <motion.div
+    layout
+    initial={false}
+    animate={{ 
+      height: isExpanded ? "auto" : "4.5rem", // 4.5rem is roughly 3 lines
+    }}
+    transition={{ 
+      duration: 0.5, 
+      ease: [0.04, 0.62, 0.23, 0.98] // Professional "snappy" curve
+    }}
+    className="overflow-hidden relative"
+  >
+    <p className="text-gray-500 text-xs leading-relaxed text-justify">
+      {project.description}
+    </p>
+    
+    {/* Fades the text out when collapsed to look cleaner */}
+    {!isExpanded && (
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+    )}
+  </motion.div>
+  
+  <button 
+    onClick={() => toggleExpand(project.id)}
+    className="mt-2 text-blue-600 text-[11px] font-bold uppercase tracking-tighter flex items-center gap-1 hover:underline relative z-10"
+  >
+    {isExpanded ? (
+      <><FaChevronUp size={10} /> View Less</>
+    ) : (
+      <><FaChevronDown size={10} /> Read Full Abstract</>
+    )}
+  </button>
+</div>
+
+                <div className="flex flex-wrap gap-2 my-6">
+                  {project.technologies?.map((tech, i) => (
+                    <span key={i} className="px-2 py-1 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 uppercase rounded">{tech}</span>
+                  ))}
+                </div>
+
+                {project.link && (
+                  <motion.a
+                    layout
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center gap-3 w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all
+                      ${isPublished ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-900 text-white hover:bg-blue-600"}`}
+                  >
+                    <FaFileAlt /> {isPublished ? "Full Publication" : "Details"} <FaExternalLinkAlt className="text-[10px] opacity-40" />
+                  </motion.a>
+                )}
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

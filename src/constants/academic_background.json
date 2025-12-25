@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "MSc in Computer Science and Engineering",
+    "institution": "Military Institute of Science and Technology",
+    "type": "Education",
+    "text": "Focused on advanced machine learning, artificial intelligence, and data-driven solutions while gaining practical experience in research and applied computer science.",
+    "result": "On Going",
+    "order_sequence": 4,
+    "createdAt": "2025-10-19T17:51:46Z"
+  },
+  {
+    "id": 2,
+    "title": "BSc in Computer Science and Engineering",
+    "institution": "Shanto Mariam University of Creative Technology",
+    "type": "Education",
+    "text": "Gained a strong foundation in software development, algorithms, database systems, and programming across multiple languages.",
+    "result": "3.96 / 4.00",
+    "order_sequence": 3,
+    "createdAt": "2025-10-01T17:51:40Z"
+  },
+  {
+    "id": 3,
+    "title": "IELTS",
+    "institution": "IDP",
+    "type": "Standardized Exam",
+    "text": "Overall Band Score: 7.5/9",
+    "result": "7.5 / 9.0",
+    "order_sequence": 2,
+    "createdAt": "2025-09-01T17:51:40Z"
+  },
+  {
+    "id": 4,
+    "title": "GRE",
+    "institution": "ETS",
+    "type": "Standardized Exam",
+    "text": "Graduate Record Examination",
+    "result": "289 / 340",
+    "order_sequence": 1,
+    "createdAt": "2025-08-01T17:51:40Z"
+  }
+]

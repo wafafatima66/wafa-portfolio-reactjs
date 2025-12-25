@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "IBM DevOps and Software Engineering Professional Certificate",
+    "institution": "Coursera",
+    "year": "2025",
+    "description": "Learned continuous integration, deployment, monitoring, and cloud-based DevOps workflows to streamline development pipelines.",
+    "skills": ["Continuous Integration", "DevOps", "Cloud Architecture", "SDLC", "Git", "Agile", "TDD"],
+    "createdAt": "2025-10-01T17:51:40.498Z"
+  },
+  {
+    "id": 2,
+    "name": "Python for Everybody",
+    "institution": "Free Code Camp",
+    "year": "2023",
+    "description": "Mastered Python fundamentals, data handling, web scraping, and API interaction for real-world problem solving.",
+    "skills": ["Python", "Web Scraping", "APIs", "Data Handling"],
+    "createdAt": "2025-10-01T17:51:40.498Z"
+  },
+  {
+    "id": 3,
+    "name": "IBM Full Stack Software Developer",
+    "institution": "Coursera",
+    "year": "2025",
+    "description": "Build full stack cloud apps with modern front-end, back-end, and cloud-native tools, and showcase skills through projects.",
+    "skills": ["Kubernetes", "Django", "Node.JS", "Cloud Services", "App Design"],
+    "createdAt": "2025-10-01T17:51:40.498Z"
+  }
+]

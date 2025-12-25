@@ -1,0 +1,69 @@
+[
+{
+  "id": 1,
+  "role": "Researcher",
+  "title": "A Personalized Spatiotemporal Human Activity Recognition Framework in an Edge-Based Federated Learning Approach",
+  "description": "Federated Learning (FL) revolutionizes machine learning, emphasizing privacy preservation through local model training. However, centralized FL has limitations, steering research toward decentralized models.\n\nThis study explores a decentralized privacy-preserving deep federated learning with the integration of edge computing, our focus extends to Human Activity Recognition (HAR). Challenges in this integration include privacy-sensitive sensor data, diverse user behaviors, and the need for personalized models. Existing studies propose solutions, but incorporating spatiotemporal data remains a challenge due to heterogeneity and communication overhead. Our research introduces an edge-based federated learning approach for HAR, contributing to spatiotemporal data extraction and integration.\n\nLightweight, resource-efficient techniques like CNN, RNN, t-SNE, and dynamic scheduling are employed to address challenges, ensuring precise HAR while prioritizing privacy in a dynamic landscape.",
+  "link": "https://drive.google.com/file/d/1-xSyi64yaRUevhwZbprLymIFaaxtpahk/view?usp=sharing",
+  "technologies": ["Mendeley", "Google Scholar", "Microsoft Word", "Microsoft PowerPoint"],
+  "createdAt": "2025-10-01T17:51:40.498Z",
+  "status": "Active",
+  "Published": "false"
+},
+  {
+    "id": 2,
+    "role": "Researcher",
+    "title": "Salary Data Prediction and Analysis Using Machine Learning",
+    "description": "Developed a predictive model for tech employee salaries using four years of Stack Overflow data. Implemented and compared ML models (Linear Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost) using MAE, MSE, and R² metrics. Integrated the model into production for real-time predictions via Streamlit and visualized salary trends pre- and post-pandemic with Matplotlib, supported by detailed documentation.",
+    "link": "https://drive.google.com/file/d/174PNAmyI30p8654E_OyOdzqjeF-_5DzT/view?usp=sharing",
+    "technologies": ["Python", "Matplotlib", "Numpy", "Pandas", "Pickle", "Sklearn", "Streamlit", "Git", "Jupyter Notebook"],
+    "createdAt": "2025-10-01T17:51:40.498Z",
+    "status": "Active",
+    "Published": "false"
+  },
+  {
+    "id": 3,
+    "role": "Researcher",
+    "title": "Cognitive Science and Artificial Intelligence",
+    "description": "Authored an APA-format literature review on AI creativity, rationality, and theory of mind, synthesizing research, assessing methodologies, and identifying gaps in the field.",
+    "link": "https://drive.google.com/file/d/19KlEtyYUf4U8cRLIlLA5tLM4MMC9jQVb/view?usp=sharing",
+    "technologies": ["APA Style", "Google Scholar", "Microsoft Word"],
+    "createdAt": "2025-10-01T17:51:40.498Z",
+    "status": "Active",
+    "Published": "false"
+
+  },
+  {
+    "id": 4,
+    "role": "Researcher",
+    "title": " Optimizing XGBoost for Predicting Student Academic Success: A Unified Approach to Feature Engineering and Model Evaluation",
+    "description": "Accurate prediction of student academic performance is essential for early intervention, personalized learning, and enhancing educational strategies. This study explores the use of the XGBoost algorithm for predicting student performance based on behavioral and academic data. While prior studies have demonstrated XGBoost's efficiency, they often focus on isolated optimization techniques—such as specific feature selection methods or hyperparameter tuning—tested on disparate datasets. Consequently, there is a lack of a unified comparative framework to evaluate these diverse methodological strategies on a common baseline. This paper addresses this gap by conceptually replicating and adapting six distinct state-of-the-art XGBoost approaches found in literature for a regression-focused analysis on a single student performance dataset. Furthermore, we propose an enhanced modeling pipeline that integrates class-balancing for regression, Optuna-based hyperparameter optimization, and threshold-based feature selection. Experimental results demonstrate that the proposed unified approach outperforms the adapted baseline methods, achieving an score of 0.9685 and the lowest RMSE (3.6764).",
+    "link": "https://drive.google.com/file/d/1876LdY3IAJUi7am8IIFpkiUVTDTWCExE/view?usp=sharing",
+    "technologies": ["Python"],
+    "createdAt": "2025-11-04T07:37:44.870Z",
+    "status": "Active",
+    "Published": "false"
+  },
+    {
+    "id": 5,
+    "role": "Researcher",
+    "title": "Evaluating the Usability of Ride-Sharing Applications for Semi-Literate Users: A Study inBangladesh",
+    "description": "Ride-sharing applications have become integral in urban transport, yet their usability for semiliterate users remains underexplored. This study evaluates three popular platforms-Uber, Pathao, and Obhai—using Cognitive Walkthrough(CW) and the System Usability Scale(SUS) in the context of Bangladesh. Pathao achieved the highest usability with an average SUS score of 80.25 (grade B), followed by Uber at 79.5 (grade B), indicating good usability with minor issues in navigation and feedback. Obhai scored 59 (grade D), revealing challenges such as unclear instructions, confusing navigation, and inadequate feedback. Based on these findings, a redesigned prototype, Go Jatra, was developed with simplified language, clear ride confirmations, transparent payment flow, and post-ride summaries. SUS evaluation of Go Jatra showed an improved score of 81.2 (grade A), showing improved usability for semiliterate users. The study highlights the importance of intuitive design, clear guidance, and culturally sensitive interface elements in making ride-sharing applications more accessible. These results provide actionable insights for designers aiming to improve inclusivity and user satisfaction in transport applications.",
+    "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
+    "technologies": ["Cognitive Walkthrough", "System Usability Scale", "Figma", "Python"],
+    "createdAt": "2025-12-25T07:37:44.870Z",
+    "status": "Active",
+    "Published": "true"
+  },
+      {
+    "id": 6,
+    "role": "Researcher",
+    "title": "Exploring Disaster Type Co-Occurrences through Network Centrality, Feature Sensitivity, and XAI Analysis of FEMA Data",
+    "description": "Natural disasters are likely to occur in sophisticated patterns, and the occurrence of a disaster may trigger or enhance the occurrence of another one. Accurate prediction of co-occurrence of disasters can significantly aid in improved preparation  measures for mitigation, and optimal usage of resources. Here, this study work on the Federal Emergency Management Agency (FEMA) disaster dataset consisting of 5,098 records with heterogeneous categorical and numerical features. Despite a large amount of work focusing on machine learning based analysis for the FEMA dataset, emerging the feature with graph theory and sensitivity and interpretability measures is still to be explored in this domain. In this case, we apply a suite of network centrality analysis and machine learning interpretability techniques based on the centrality calculation to the FEMA dataset to find structural patterns and predictive insights. We constructed a bipartite network linking disaster identifiers to declaration types and built a variety of centrality measures—degree, closeness, betweenness, eigenvector, and Katz—as novel features to capture relational dependencies. We incorporated these centrality-based features into supervised machine learning models of disaster type classification, augmenting the feature space with network-based information. For interpretability, we used TreeInterpreter, Partial Dependence Plots (PDPs), and ELI5 permutation importance to break down predictions, approximate marginal effects, and rank important features. Our results indicate that centrality-based features improve model performance considerably while providing understandable explanations of predictive outcomes. Further, interpretability analysis revealed non-linear relationships between disaster characteristics and declaration outcomes, yielding insights into disaster mechanisms. The model demonstrates the potential of merging graph theory and explainable AI for data-driven decision-making in disaster management.",
+    "link": "https://drive.google.com/file/d/11zDBDpItm6gx4bcw3uzY50Klr2UiJtUo/view?usp=sharing",
+    "technologies": ["Explainable AI", "Graph Theory", "Python", "Machine Learning"],
+    "createdAt": "2025-12-25T07:37:44.870Z",
+    "status": "Active",
+    "Published": "false"
+  }
+]

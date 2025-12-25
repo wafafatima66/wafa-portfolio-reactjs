@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "title": "Open Source Contribution",
+    "description": "Contributing to open source projects, collaborating with developers worldwide to build impactful solutions.",
+    "category": "Development",
+    "status": "Active",
+    "icon": "github",
+    "color": "from-purple-500 to-pink-500",
+    "link": "https://github.com/wafafatima66",
+    "progress": 75,
+    "start_date": "2025-01-12T16:32:40",
+    "created_at": "2025-10-12T16:32:40"
+  },
+  {
+    "id": 2,
+    "title": "Machine Learning Research",
+    "description": "Exploring potential topics for machine learning research while currently working on three papers and reviewing previous studies to systematically align them under a unified research theme.",
+    "category": "AI/ML",
+    "status": "Active",
+    "icon": "openai",
+    "color": "from-blue-500 to-cyan-500",
+    "link": "#",
+    "progress": 60,
+    "start_date": "2025-02-12T16:32:40",
+    "created_at": "2025-10-12T16:32:40"
+  }
+]

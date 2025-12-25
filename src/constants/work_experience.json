@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "date": "Mar 2025 - Present",
+    "title": "Project Manager",
+    "location": "Loud Spectrum, CA, USA (Remote)",
+    "description": "Manage development, marketing, and design teams using ClickUp to coordinate tasks and ensure timely delivery. Communicate with clients to gather requirements, translate them into actionable plans, and oversee projects from planning to completion, ensuring quality outcomes and alignment with business goals.",
+    "link": "https://loudspectrum.com/en",
+    "sequence_order": 6
+  },
+  {
+    "id": 2,
+    "date": "Aug 2022 - Feb 2025",
+    "title": "WordPress Developer | Project Manager",
+    "location": "Medical Terpenes, CA, USA (Remote)",
+    "description": "Resolved 200+ WordPress issues through plugin and theme customization, boosting traffic by 60% and improving site performance on mobile and desktop. As Project Manager, led an 8-member team to design and develop a high-performing eCommerce website using the latest trends and strategies.",
+    "link": "http://medicalterpenes.com/",
+    "sequence_order": 5
+  },
+  {
+    "id": 3,
+    "date": "Feb 2022 - Jun 2022",
+    "title": "Software Developer",
+    "location": "Docua, Japan (Remote)",
+    "description": "Developed a note management system with Laravel and API testing via Postman, increasing efficiency by 60%. Also authored the user manual and conducted QA testing.",
+    "link": "#",
+    "sequence_order": 4
+  },
+  {
+    "id": 4,
+    "date": "Nov 2020 - Jan 2022",
+    "title": "PHP Developer",
+    "location": "Nitibdev IT Solutions, Philippines (Remote)",
+    "description": "Designed and deployed an HR Management System using LAMP stack, reducing manual input by 80% and boosting efficiency by 50%.",
+    "link": "#",
+    "sequence_order": 3
+  },
+  {
+    "id": 5,
+    "date": "Feb 2020 - Mar 2020",
+    "title": "Web Developer",
+    "location": "UMSTDL, Dhaka, Remote",
+    "description": "Solely responsible for designing, deploying, and ensuring the software quality for educational institutions, delivering a reliable and efficient solution tailored to their needs",
+    "link": null,
+    "sequence_order": 2
+  }
+]

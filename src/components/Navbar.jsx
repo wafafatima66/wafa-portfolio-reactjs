@@ -43,7 +43,7 @@ const Navbar = () => {
           Home
         </motion.a>
 
-        {["Academic", "Projects", "Contact"].map((item) => (
+        {[ "Projects", "Contact"].map((item) => (
           <motion.a
             key={item}
             href={`/${item.toLowerCase()}`}
@@ -53,6 +53,16 @@ const Navbar = () => {
             {item}
           </motion.a>
         ))}
+
+{/* Replace the "Academic" part of your map or add this separately */}
+<motion.a
+  href="/academic"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className="px-4 py-1.5 rounded-full border border-purple-500/50 text-purple-300 text-sm font-medium hover:bg-purple-500 hover:text-white transition-all duration-300"
+>
+  Academic Portfolio
+</motion.a>
 
         {/* Desktop Socials */}
         <div className="flex gap-3 lg:gap-5 text-xl lg:text-2xl text-gray-400 ml-4">

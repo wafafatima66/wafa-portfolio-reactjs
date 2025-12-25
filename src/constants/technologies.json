@@ -1,0 +1,13 @@
+[
+  {"id":1,"name":"Python","experience":90,"duration":4},
+  {"id":2,"name":"TensorFlow","experience":15,"duration":3},
+  {"id":3,"name":"JavaScript","experience":80,"duration":3},
+  {"id":4,"name":"Laravel","experience":75,"duration":2},
+  {"id":5,"name":"React","experience":50,"duration":2},
+  {"id":6,"name":"WordPress","experience":75,"duration":3},
+  {"id":7,"name":"PHP","experience":90,"duration":4},
+  {"id":8,"name":"Tailwind CSS","experience":80,"duration":2},
+  {"id":9,"name":"MySQL","experience":75,"duration":3},
+  {"id":10,"name":"Next.js","experience":45,"duration":5},
+  {"id":11,"name":"Firebase","experience":45,"duration":3}
+]
