@@ -134,7 +134,7 @@ const FeaturedProject = () => {
                         <div className="relative group overflow-hidden border border-white/10 aspect-video">
                           {selectedProject.image ? (
                             <img
-                              src={getProjectImageUrl(selectedProject.image)}
+                              src={`/projects/${selectedProject.image}`}
                               alt="Project Preview"
                               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                             />
