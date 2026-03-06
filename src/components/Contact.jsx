@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { usePortfolioData } from "../supabase/usePortfolioData";
-import { FaTerminal, FaPaperPlane, FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import {
+  FaTerminal,
+  FaPaperPlane,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+} from "react-icons/fa";
 
 const Contact = () => {
-  const { data } = usePortfolioData();
-
-  const CONTACT = data?.aboutMe?.contact || {
-    address: "Location Data Not Found",
-    phoneNo: "-- -- -- --",
-    email: "fatima.amir@example.com",
-  };
-
+  const { data, loading, error } = usePortfolioData();
   const [status, setStatus] = useState({ ok: false, error: null });
   const [sending, setSending] = useState(false);
+
+  if (loading) {
+    return (
+      <section className="relative h-screen w-full flex items-center justify-center bg-black text-white">
+        <div className="flex flex-col items-center gap-4">
+          <FaTerminal className="text-fuchsia-500 animate-pulse text-4xl" />
+          <p className="font-mono text-sm tracking-widest text-fuchsia-500">
+            INITIALIZING_UPLINK...
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  // Fallback contact info if data is missing or error occurs
+  const CONTACT = data?.aboutMe?.contact || {
+    address: "Location Data Not Found",
+    // phoneNo: "-- -- -- --",
+    email: "fatima.amir.dev@gmail.com",
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,27 +40,27 @@ const Contact = () => {
     setSending(true);
     const formEl = e.currentTarget;
     const formData = new FormData(formEl);
-    
+
     try {
-      const res = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           subject: formData.get("subject") || "New inquiry from portfolio",
           name: formData.get("name"),
           from: formData.get("email"),
-          message: formData.get("message")
-        })
+          message: formData.get("message"),
+        }),
       });
-      
+
       if (res.ok) {
         setStatus({ ok: true, error: null });
         formEl?.reset();
       } else {
-        setStatus({ ok: false, error: 'Transmission failed.' });
+        setStatus({ ok: false, error: "Transmission failed." });
       }
     } catch (err) {
-      setStatus({ ok: false, error: 'Uplink unstable.' });
+      setStatus({ ok: false, error: "Uplink unstable." });
     } finally {
       setSending(false);
     }
@@ -49,8 +68,10 @@ const Contact = () => {
 
   return (
     /* Changed to h-screen and added flex-col to center the content perfectly */
-    <section id="contact" className="relative h-screen w-full flex flex-col justify-center bg-black text-white overflow-hidden p-6 md:p-12">
-      
+    <section
+      id="contact"
+      className="relative h-screen w-full flex flex-col justify-center bg-black text-white overflow-hidden p-6 md:p-12"
+    >
       {/* HUD Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
 
@@ -63,7 +84,6 @@ const Contact = () => {
       </div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
         {/* Header Section */}
         <div className="mb-12 border-l-4 border-fuchsia-600 pl-6">
           <div className="flex items-center gap-3 mb-2">
@@ -73,29 +93,35 @@ const Contact = () => {
             </span>
           </div>
           <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase italic leading-none">
-            GET_IN_<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-white NOT-italic">TOUCH.</span>
+            GET_IN_
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-white NOT-italic">
+              TOUCH.
+            </span>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
           {/* Left Side: Contact Info */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
             <div className="group border border-white/10 bg-white/[0.02] p-10 relative">
               <div className="absolute -top-px -left-px w-4 h-4 border-t border-l border-fuchsia-500" />
-              
+
               <div className="space-y-8">
                 <div className="flex items-center gap-6">
                   <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-fuchsia-500/50 transition-colors">
                     <FaMapMarkerAlt className="text-fuchsia-500" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">Location_Point</p>
-                    <p className="font-mono text-sm tracking-tight text-gray-300 uppercase italic">{CONTACT.address}</p>
+                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">
+                      Location_Point
+                    </p>
+                    <p className="font-mono text-sm tracking-tight text-gray-300 uppercase italic">
+                      {CONTACT.address}
+                    </p>
                   </div>
                 </div>
 
@@ -104,8 +130,12 @@ const Contact = () => {
                     <FaPhoneAlt className="text-fuchsia-500" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">Voice_Line</p>
-                    <p className="font-mono text-sm tracking-tight text-gray-300 italic">{CONTACT.phoneNo}</p>
+                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">
+                      Voice_Line
+                    </p>
+                    <p className="font-mono text-sm tracking-tight text-gray-300 italic">
+                      {CONTACT.phoneNo}
+                    </p>
                   </div>
                 </div>
 
@@ -114,8 +144,13 @@ const Contact = () => {
                     <FaEnvelope className="text-fuchsia-500" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">Data_Email</p>
-                    <a href={`mailto:${CONTACT.email}`} className="font-mono text-sm text-fuchsia-400 hover:text-white transition-colors break-all underline decoration-fuchsia-500/30 underline-offset-4">
+                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">
+                      Data_Email
+                    </p>
+                    <a
+                      href={`mailto:${CONTACT.email}`}
+                      className="font-mono text-sm text-fuchsia-400 hover:text-white transition-colors break-all underline decoration-fuchsia-500/30 underline-offset-4"
+                    >
                       {CONTACT.email}
                     </a>
                   </div>
@@ -129,10 +164,15 @@ const Contact = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4 bg-white/[0.01] border border-white/5 p-8">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 bg-white/[0.01] border border-white/5 p-8"
+            >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[9px] font-mono text-gray-500 ml-1">USER_ID</label>
+                  <label className="text-[9px] font-mono text-gray-500 ml-1">
+                    USER_ID
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -142,7 +182,9 @@ const Contact = () => {
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[9px] font-mono text-gray-500 ml-1">RETURN_PATH</label>
+                  <label className="text-[9px] font-mono text-gray-500 ml-1">
+                    RETURN_PATH
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -153,7 +195,9 @@ const Contact = () => {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-[9px] font-mono text-gray-500 ml-1">PACKET_SUBJECT</label>
+                <label className="text-[9px] font-mono text-gray-500 ml-1">
+                  PACKET_SUBJECT
+                </label>
                 <input
                   type="text"
                   name="subject"
@@ -162,7 +206,9 @@ const Contact = () => {
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[9px] font-mono text-gray-500 ml-1">MESSAGE_PAYLOAD</label>
+                <label className="text-[9px] font-mono text-gray-500 ml-1">
+                  MESSAGE_PAYLOAD
+                </label>
                 <textarea
                   name="message"
                   required
@@ -178,19 +224,42 @@ const Contact = () => {
                   disabled={sending}
                   className="relative group bg-fuchsia-600 text-black px-10 py-4 font-black uppercase text-xs tracking-[0.2em] flex items-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                 >
-                  {sending ? 'UPLOADING...' : 'SEND_MESSAGE'}
-                  <FaPaperPlane className={sending ? 'animate-bounce' : 'group-hover:translate-x-1 transition-transform'} />
+                  {sending ? "UPLOADING..." : "SEND_MESSAGE"}
+                  <FaPaperPlane
+                    className={
+                      sending
+                        ? "animate-bounce"
+                        : "group-hover:translate-x-1 transition-transform"
+                    }
+                  />
                 </button>
               </div>
 
               {status.ok && (
-                <p className="text-green-400 font-mono text-[10px] animate-pulse">&gt; UPLINK_SUCCESSful. TERMINAL_CLEAR.</p>
+                <div className="mt-4 p-4 border border-green-500/50 bg-green-500/10 text-green-400 font-mono text-xs">
+                  <p className="font-bold flex items-center gap-2">
+                    <span className="animate-pulse">●</span>{" "}
+                    TRANSMISSION_COMPLETE
+                  </p>
+                  <p className="mt-1 opacity-80">
+                    Message successfully uplinked to the mainframe.
+                  </p>
+                </div>
+              )}
+
+              {status.error && (
+                <div className="mt-4 p-4 border border-red-500/50 bg-red-500/10 text-red-400 font-mono text-xs">
+                  <p className="font-bold flex items-center gap-2">
+                    <span className="animate-pulse">✖</span> UPLINK_FAILED
+                  </p>
+                  <p className="mt-1 opacity-80">{status.error}</p>
+                </div>
               )}
             </form>
           </motion.div>
         </div>
       </div>
-      
+
       {/* Bottom Scanning Line (Full Screen Detail) */}
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-fuchsia-500/20 shadow-[0_0_15px_#d946ef] animate-scan" />
     </section>
@@ -199,7 +268,7 @@ const Contact = () => {
 
 export default Contact;
 
- // import { CONTACT } from "../constants";
+// import { CONTACT } from "../constants";
 // import React, { useState } from "react";
 // import { motion } from "framer-motion";
 // import { usePortfolioData } from "../supabase/usePortfolioData";
