@@ -17,6 +17,7 @@ import FeaturedProject from "./components/FeaturedProject";
 import Footer from "./components/Footer";
 import Courses from "./components/Courses";
 import OngoingTasks from "./components/OngoingTasks";
+import WorkExperienceDetail from "./components/WorkExperienceDetail";
 import { useLocation } from "react-router-dom";
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/academic" element={<AcademicMain />} />
         <Route path="/casestudy/:id" element={<CaseStudy />} />
+        <Route path="/work/:id" element={<WorkExperienceDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
 

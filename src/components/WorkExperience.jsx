@@ -7,6 +7,7 @@ import {
   FaClockRotateLeft, 
   FaCodeBranch 
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import workExperienceData from "../constants/work_experience.json";
 
 const WorkExperience = () => {
@@ -99,16 +100,14 @@ const WorkExperience = () => {
                         {event.description}
                       </p>
 
-                      {event.link && event.link !== "#" && (
-                        <motion.a
-                          href={event.link}
-                          target="_blank"
-                          rel="noreferrer"
+                      <motion.div className="inline-flex">
+                        <Link
+                          to={`/work/${event.id}`}
                           className="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-white px-5 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-fuchsia-500 hover:text-black hover:border-fuchsia-500 transition-all duration-300"
                         >
-                          OPEN_FILE <FaArrowRight />
-                        </motion.a>
-                      )}
+                          Check_in_Depth <FaArrowRight />
+                        </Link>
+                      </motion.div>
                     </div>
 
                     {/* Industrial Index Reference */}

@@ -40,7 +40,7 @@ const OngoingTasks = () => {
               </span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase leading-none">
-              Current <span className="text-fuchsia-500 italic">Tasks.</span>
+              Current <span className="text-fuchsia-500 italic">Learning</span>
             </h2>
           </motion.div>
           <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest text-right">

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 // Fixed Fa6 Imports
-import { 
-  FaGithub, 
+import {
+  FaGithub,
   FaArrowUpRightFromSquare, // Fixed name for FaExternalLinkAlt
-  FaTerminal, 
-  FaCode, 
-  FaEye, 
+  FaTerminal,
+  FaCode,
+  FaEye,
   FaCodeBranch,
   FaCubes,
-  FaArrowRight
+  FaArrowRight,
 } from "react-icons/fa6";
 
 // Importing local JSON content
@@ -19,8 +19,12 @@ import { getProjectImageUrl } from "../utils/supabaseImages";
 
 const FeaturedProject = () => {
   // prioritize local JSON projects that are marked as featured
-  const featuredProjects = localProjects.filter(p => p.featured || p.isFeatured);
-  const [selectedProject, setSelectedProject] = useState(featuredProjects[0] || null);
+  const featuredProjects = localProjects.filter(
+    (p) => p.featured || p.isFeatured,
+  );
+  const [selectedProject, setSelectedProject] = useState(
+    featuredProjects[0] || null,
+  );
 
   // Fallback auto-select
   useEffect(() => {
@@ -35,7 +39,6 @@ const FeaturedProject = () => {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        
         {/* INDUSTRIAL HEADER */}
         <div className="flex flex-col mb-16">
           <div className="flex items-center gap-3 mb-4">
@@ -44,9 +47,10 @@ const FeaturedProject = () => {
               Archive_Access // Featured_Projects
             </span>
           </div>
-          
+
           <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-none uppercase">
-            PROJECT<br />
+            PROJECT
+            <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-white italic">
               SHOWCASE.
             </span>
@@ -55,7 +59,6 @@ const FeaturedProject = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
           {/* LEFT: PROJECT LIST */}
           <div className="lg:col-span-4 space-y-4">
             <div className="max-h-[550px] overflow-y-auto pr-2 custom-scrollbar space-y-3">
@@ -75,9 +78,13 @@ const FeaturedProject = () => {
                   )}
 
                   <div className="p-5 relative z-10">
-                    <h3 className={`text-lg font-black uppercase tracking-tight transition-colors ${
-                      selectedProject?.id === proj.id ? "text-fuchsia-400" : "text-white"
-                    }`}>
+                    <h3
+                      className={`text-lg font-black uppercase tracking-tight transition-colors ${
+                        selectedProject?.id === proj.id
+                          ? "text-fuchsia-400"
+                          : "text-white"
+                      }`}
+                    >
                       {proj.title || proj.company}
                     </h3>
                     <p className="text-[9px] font-mono text-gray-500 uppercase tracking-widest mt-1">
@@ -117,21 +124,27 @@ const FeaturedProject = () => {
                         </div>
                         <div className="flex gap-3">
                           {selectedProject.github && (
-                            <a href={selectedProject.github} target="_blank" rel="noreferrer" 
-                               className="p-2.5 border border-white/10 hover:border-fuchsia-500 hover:text-fuchsia-500 transition-all">
+                            <a
+                              href={selectedProject.github}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="p-2.5 border border-white/10 hover:border-fuchsia-500 hover:text-fuchsia-500 transition-all"
+                            >
                               <FaGithub size={18} />
                             </a>
                           )}
-                          <Link to={`/casestudy/${selectedProject.id}`}
-                             className="px-5 py-2.5 bg-fuchsia-600 text-black font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all">
+                          <Link
+                            to={`/casestudy/${selectedProject.id}`}
+                            className="px-5 py-2.5 bg-fuchsia-600 text-black font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all"
+                          >
                             Access_Files
                           </Link>
                         </div>
                       </div>
 
                       {/* Content Area */}
-                      <div className="grid md:grid-cols-2 gap-6 items-center">
-                        <div className="relative group overflow-hidden border border-white/10 aspect-video">
+                      <div className="flex flex-col gap-6">
+                        <div className="relative group overflow-hidden border border-white/10 w-full h-[220px] sm:h-[260px] md:h-[320px] lg:h-[360px]">
                           {selectedProject.image ? (
                             <img
                               src={`/projects/${selectedProject.image}`}
@@ -144,11 +157,14 @@ const FeaturedProject = () => {
                             </div>
                           )}
                         </div>
-                        
+
                         <div className="space-y-4">
                           <div className="flex flex-wrap gap-2">
                             {selectedProject.technologies?.map((tech, i) => (
-                              <span key={i} className="text-[9px] font-mono border border-fuchsia-500/30 px-2 py-0.5 bg-fuchsia-500/5 text-fuchsia-300">
+                              <span
+                                key={i}
+                                className="text-[9px] font-mono border border-fuchsia-500/30 px-2 py-0.5 bg-fuchsia-500/5 text-fuchsia-300"
+                              >
                                 {tech}
                               </span>
                             ))}
@@ -172,22 +188,35 @@ const FeaturedProject = () => {
 
         {/* BOTTOM CTA */}
         <div className="mt-16 flex justify-center">
-           <Link to="/projects" className="group relative px-10 py-4 overflow-hidden border border-fuchsia-500">
-              <div className="absolute inset-0 bg-fuchsia-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-300" />
-              <span className="relative z-10 font-black uppercase tracking-[0.3em] text-[10px] group-hover:text-black flex items-center gap-3">
-                Full_Project_Archive <FaArrowRight />
-              </span>
-           </Link>
+          <Link
+            to="/projects"
+            className="group relative px-10 py-4 overflow-hidden border border-fuchsia-500"
+          >
+            <div className="absolute inset-0 bg-fuchsia-500 translate-y-[101%] group-hover:translate-y-0 transition-transform duration-300" />
+            <span className="relative z-10 font-black uppercase tracking-[0.3em] text-[10px] group-hover:text-black flex items-center gap-3">
+              Full_Project_Archive <FaArrowRight />
+            </span>
+          </Link>
         </div>
       </div>
 
       <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar { width: 3px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d946ef; }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #d946ef;
+        }
         @keyframes scan {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(1000%); }
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(1000%);
+          }
         }
       `}</style>
     </section>
@@ -195,7 +224,6 @@ const FeaturedProject = () => {
 };
 
 export default FeaturedProject;
-
 
 // import React, { useState, useEffect } from "react";
 // import { motion } from "framer-motion";
@@ -298,7 +326,7 @@ export default FeaturedProject;
 //       {/* Floating Background Elements - matching About Me */}
 //       <div className="absolute inset-0 overflow-hidden pointer-events-none">
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             x: [0, 100, 0],
 //             y: [0, -50, 0],
 //             rotate: [0, 180, 360]
@@ -307,7 +335,7 @@ export default FeaturedProject;
 //           className="absolute top-20 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"
 //         />
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             x: [0, -80, 0],
 //             y: [0, 60, 0],
 //             rotate: [360, 180, 0]
@@ -316,7 +344,7 @@ export default FeaturedProject;
 //           className="absolute bottom-32 right-20 w-48 h-48 bg-pink-500/10 rounded-full blur-2xl"
 //         />
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             scale: [1, 1.2, 1],
 //             opacity: [0.3, 0.6, 0.3]
 //           }}
@@ -390,11 +418,11 @@ export default FeaturedProject;
 //                         key={proj.id}
 //                         variants={cardVariants}
 //                         onClick={() => setSelectedProject(proj)}
-//                         whileHover={{ 
-//                           y: -5, 
-//                           boxShadow: selectedProject?.id === proj.id 
-//                             ? "0 20px 40px rgba(139, 92, 246, 0.3)" 
-//                             : "0 15px 30px rgba(236, 72, 153, 0.3)" 
+//                         whileHover={{
+//                           y: -5,
+//                           boxShadow: selectedProject?.id === proj.id
+//                             ? "0 20px 40px rgba(139, 92, 246, 0.3)"
+//                             : "0 15px 30px rgba(236, 72, 153, 0.3)"
 //                         }}
 //                         className={`cursor-pointer p-6 rounded-3xl border transition-all duration-300 group relative overflow-hidden ${
 //                           selectedProject?.id === proj.id
@@ -409,7 +437,7 @@ export default FeaturedProject;
 //                           ? "bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-100"
 //                           : "bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100"
 //                       }`} />
-                      
+
 //                       {/* Selection Indicator - Enhanced */}
 //                       {selectedProject?.id === proj.id && (
 //                         <motion.div
@@ -516,7 +544,7 @@ export default FeaturedProject;
 //               <div className="relative p-8 bg-gray-900/40 backdrop-blur-md rounded-3xl border border-purple-500/20 shadow-2xl overflow-hidden min-h-[600px]">
 //                 {/* Preview Background Effect - matching About Me */}
 //                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5" />
-                
+
 //                 {selectedProject ? (
 //                   <motion.div
 //                     key={selectedProject.id}

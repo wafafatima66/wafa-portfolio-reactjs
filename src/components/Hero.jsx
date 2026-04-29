@@ -14,10 +14,10 @@ const containerVariants = {
 
 const childVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] } 
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] },
   },
 };
 
@@ -31,7 +31,6 @@ const Hero = () => {
       {/* <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
        */}
 
-    
       {/* HUD GRID LAYER */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-fuchsia-500/10 via-transparent to-transparent" />
@@ -50,7 +49,7 @@ const Hero = () => {
           animate="visible"
         >
           {/* Top Tagline */}
-          <motion.div 
+          <motion.div
             variants={childVariants}
             className="flex items-center gap-3 mb-6"
           >
@@ -63,30 +62,39 @@ const Hero = () => {
           {/* Main Heading */}
           <motion.h1
             variants={childVariants}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.9] italic text-white"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9] italic text-white"
           >
-            Hi, I'm <span className="text-stone-500">Fatima Amir.</span><br />
-            A <span className="text-fuchsia-500 NOT-italic">Researcher</span>, 
-            <span className="text-purple-600 NOT-italic"> Manager</span> & 
-            <span className="text-white NOT-italic"> Developer.</span>
+            Hi, I'm <span className="text-stone-500">Fatima Amir.</span>
+            <br />A{" "}
+            <span className="text-white NOT-italic">
+              Software Developer
+            </span>,{" "}
+            <span className="text-purple-600 NOT-italic">Project Manager</span>{" "}
+            and <span className="text-fuchsia-500 NOT-italic">Researcher</span>.
           </motion.h1>
 
           {/* Subheading */}
           <motion.p
             variants={childVariants}
-            className="mt-8 max-w-xl text-stone-400 font-mono text-sm sm:text-lg tracking-tight leading-relaxed border-l-2 border-fuchsia-500/30 pl-6"
+            className="mt-8 max-w-xl text-stone-400 font-mono tracking-tight leading-relaxed border-l-2 border-fuchsia-500/30 pl-6 text-xl"
           >
-            // Building the Future, One Line of Code at a Time. 
-            Designing intelligent systems and managing high-impact technical infrastructures.
+            Building the Future, One Line of Code at a Time. Designing
+            intelligent systems and managing high-impact technical
+            infrastructures.
           </motion.p>
 
           {/* Tactical Buttons */}
-          <motion.div 
+          <motion.div
             variants={childVariants}
             className="flex flex-wrap gap-4 mt-12"
           >
             {/* View Resume Button */}
-            <a href={cvHref} target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden">
+            <a
+              href={cvHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden"
+            >
               <button className="relative px-8 py-4 bg-white text-black font-black uppercase text-xs sm:text-sm tracking-widest flex items-center gap-3 transition-transform active:scale-95">
                 <FaFileDownload />
                 View_Resume
@@ -107,17 +115,25 @@ const Hero = () => {
           </motion.div>
 
           {/* Bottom HUD Detail */}
-          <motion.div 
+          <motion.div
             variants={childVariants}
             className="mt-16 flex gap-10 opacity-30"
           >
             <div className="flex flex-col">
-              <span className="font-mono text-[9px] uppercase tracking-widest">Lat_Long</span>
-              <span className="font-mono text-[10px] font-bold">33.6844° N, 73.0479° E</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest">
+                Lat_Long
+              </span>
+              <span className="font-mono text-[10px] font-bold">
+                33.6844° N, 73.0479° E
+              </span>
             </div>
             <div className="flex flex-col">
-              <span className="font-mono text-[9px] uppercase tracking-widest">Stack_Type</span>
-              <span className="font-mono text-[10px] font-bold">Hybrid_Neural</span>
+              <span className="font-mono text-[9px] uppercase tracking-widest">
+                Stack_Type
+              </span>
+              <span className="font-mono text-[10px] font-bold">
+                Hybrid_Neural
+              </span>
             </div>
           </motion.div>
         </motion.div>
@@ -130,7 +146,6 @@ export default Hero;
 
 // import { motion } from "framer-motion";
 // import { getPublicImageUrl } from "../utils/supabaseImages";
-
 
 // const containerVariants = {
 //   hidden: { opacity: 0, x: -100 },

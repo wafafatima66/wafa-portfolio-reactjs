@@ -1,11 +1,12 @@
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const env = globalThis.process?.env || {};
+const resend = new Resend(env.RESEND_API_KEY);
 
 // Initialize Supabase client
-const supabaseUrl = process.env.VITE_SUPABASE_URL;
-const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = env.VITE_SUPABASE_URL;
+const supabaseKey = env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req, res) {
@@ -45,10 +46,8 @@ export default async function handler(req, res) {
 
   // Check Email Result
   let emailSuccess = false;
-  let emailData = null;
   if (emailResult.status === "fulfilled" && !emailResult.value.error) {
     emailSuccess = true;
-    emailData = emailResult.value;
   } else {
     console.error(
       "Email Sending Failed:",

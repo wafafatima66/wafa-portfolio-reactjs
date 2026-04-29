@@ -5,7 +5,7 @@ import testimonials from "../constants/testimonials.json";
 
 export default function Testimonial() {
   return (
-    <section className="py-24 px-6 bg-black text-white relative overflow-hidden">
+    <section className="py-24 px-4 sm:px-6 bg-black text-white relative overflow-hidden">
       {/* Background HUD Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
       
@@ -19,20 +19,20 @@ export default function Testimonial() {
               Peer_Validation // Feedback_Stream
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black tracking-tighter uppercase italic leading-none">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter uppercase italic leading-none">
             CLIENT_<span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-white NOT-italic">PERSPECTIVES.</span>
           </h2>
         </div>
 
         {/* BENTO GRID (Tactical Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[350px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px] sm:auto-rows-[320px] md:auto-rows-[350px]">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className={`relative p-8 border border-white/10 bg-white/[0.02] flex flex-col justify-between group overflow-hidden transition-all duration-500 hover:border-fuchsia-500/50 ${
+              className={`relative p-6 sm:p-8 border border-white/10 bg-white/[0.02] flex flex-col justify-between group overflow-hidden transition-all duration-500 hover:border-fuchsia-500/50 ${
                 index === 0 ? "md:col-span-2" : "" 
                 } ${
                 index === 3 ? "md:col-span-2" : ""
@@ -49,7 +49,7 @@ export default function Testimonial() {
                 </div>
                 
                 <p className={`text-gray-400 group-hover:text-gray-200 transition-colors leading-relaxed font-medium italic ${
-                  index === 0 || index === 3 ? "text-xl md:text-2xl tracking-tight" : "text-base"
+                  index === 0 || index === 3 ? "text-lg sm:text-xl md:text-2xl tracking-tight" : "text-sm sm:text-base"
                 }`}>
                   "{testimonial.text}"
                 </p>
@@ -81,7 +81,7 @@ export default function Testimonial() {
         </div>
 
         {/* STATS ROW (Industrial Status Readout) */}
-        <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 divide-x divide-white/10 bg-white/[0.01]">
+        <div className="mt-32 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0 border border-white/10 divide-y divide-white/10 sm:divide-y-0 sm:divide-x bg-white/[0.01]">
           {[
             { label: "Happy Clients", value: "10+" },
             { label: "Project Reviews", value: "200+" },
@@ -93,10 +93,10 @@ export default function Testimonial() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 group hover:bg-fuchsia-500/[0.03] transition-colors relative overflow-hidden"
+              className="p-6 sm:p-8 group hover:bg-fuchsia-500/[0.03] transition-colors relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-1 h-0 bg-fuchsia-600 group-hover:h-full transition-all duration-500" />
-              <p className="text-4xl md:text-5xl font-black mb-2 tracking-tighter group-hover:text-fuchsia-500 transition-colors">
+              <p className="text-3xl sm:text-4xl md:text-5xl font-black mb-2 tracking-tighter group-hover:text-fuchsia-500 transition-colors">
                 {stat.value}
               </p>
               <p className="text-[10px] uppercase font-mono tracking-[0.3em] text-gray-500">

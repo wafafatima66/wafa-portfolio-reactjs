@@ -1,25 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
 import aboutData from "../constants/about_me.json";
-import { 
-  FaUser, 
-  FaServicestack, 
-  FaCode, 
-  FaFingerprint, 
+import {
+  FaUser,
+  FaServicestack,
+  FaCode,
+  FaFingerprint,
   FaArrowUpRightFromSquare,
   FaTerminal,
-  FaMicrochip
+  FaMicrochip,
 } from "react-icons/fa6";
 
 const AboutMe = () => {
   const { biography, contact, services, stats } = aboutData;
+  const bioPoints = String(biography || "")
+    .replace(/\s+/g, " ")
+    .split(". ")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => (s.endsWith(".") ? s : `${s}.`));
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
   const itemVariants = {
@@ -27,14 +33,13 @@ const AboutMe = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-    }
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   return (
     <section className="relative py-32 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        
         {/* Cyber Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6 border-b border-white/5 pb-10">
           <motion.div
@@ -49,20 +54,23 @@ const AboutMe = () => {
               </span>
             </div>
             <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-fuchsia-400 italic">Me.</span>
+              Why Hire{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-fuchsia-400 italic">
+                Me.
+              </span>
             </h2>
           </motion.div>
-          
-          <motion.div 
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             className="text-right font-mono"
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="text-right font-mono"
           >
             <div className="inline-block px-4 py-2 bg-fuchsia-500/5 border border-fuchsia-500/20 rounded-md">
-                <p className="text-fuchsia-400 text-[10px] uppercase tracking-widest leading-tight">
+              <p className="text-fuchsia-400 text-[10px] uppercase tracking-widest leading-tight">
                 LOC_DATA: {contact.location} <br />
                 NET_STATUS: ONLINE_ENCRYPTED
-                </p>
+              </p>
             </div>
           </motion.div>
         </div>
@@ -75,28 +83,34 @@ const AboutMe = () => {
           className="grid grid-cols-1 lg:grid-cols-12 gap-8"
         >
           {/* Main Biography Card - Industrial Style */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="lg:col-span-8 group relative overflow-hidden bg-white/[0.02] border border-white/10 p-8 md:p-12 hover:border-fuchsia-500/30 transition-all duration-500"
           >
             {/* Corner Brackets */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-fuchsia-500/50" />
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-fuchsia-500/50" />
-            
+
             <FaFingerprint className="absolute -right-8 -top-8 text-[15rem] text-fuchsia-500/[0.03] group-hover:text-fuchsia-500/[0.06] transition-colors duration-700" />
-            
+
             <div className="relative z-10">
               <div className="flex items-center gap-4 mb-10">
                 <div className="h-1 bg-fuchsia-500 w-12" />
                 <h3 className="text-sm font-black text-white uppercase tracking-[0.3em] flex items-center gap-3">
-                  <FaTerminal className="text-fuchsia-500" /> Executive_Summary.log
+                  <FaTerminal className="text-fuchsia-500" />{" "}
+                  Executive_Summary.log
                 </h3>
               </div>
-              
+
               <div className="space-y-6 max-w-3xl">
-                <p className="text-gray-300 text-xl md:text-2xl leading-relaxed font-light border-l-4 border-fuchsia-500/20 pl-6">
-                  {biography}
-                </p>
+                <ul className="text-gray-300 text-lg leading-relaxed font-light border-l-4 border-fuchsia-500/20 pl-6 space-y-3">
+                  {bioPoints.map((point, idx) => (
+                    <li key={idx} className="flex gap-3">
+                      <span className="text-fuchsia-400 mt-1">▸</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {/* Data Grid */}
@@ -104,10 +118,10 @@ const AboutMe = () => {
                 {stats.map((stat, i) => (
                   <div key={i} className="flex flex-col relative group/stat">
                     <span className="text-4xl font-black text-white tracking-tighter group-hover/stat:text-fuchsia-500 transition-colors">
-                        {stat.value}
+                      {stat.value}
                     </span>
                     <span className="text-[10px] uppercase tracking-tighter text-gray-500 font-bold font-mono">
-                        // {stat.heading}
+                      // {stat.heading}
                     </span>
                   </div>
                 ))}
@@ -117,9 +131,8 @@ const AboutMe = () => {
 
           {/* Sidebar Area */}
           <div className="lg:col-span-4 flex flex-col gap-8">
-            
             {/* Expertise Card - HUD Style */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex-1 p-8 bg-black/40 border border-purple-500/20 relative group overflow-hidden"
             >
@@ -129,22 +142,27 @@ const AboutMe = () => {
 
               <div className="relative z-10">
                 <h3 className="text-xs font-black text-fuchsia-500 uppercase tracking-[0.4em] mb-8 flex items-center gap-2">
-                   <FaServicestack /> Core_Expertise
+                  <FaServicestack /> Core_Expertise
                 </h3>
                 <div className="space-y-4">
                   {services.map((service, i) => (
-                    <div key={i} className="flex flex-col group/line cursor-default">
+                    <div
+                      key={i}
+                      className="flex flex-col group/line cursor-default"
+                    >
                       <div className="flex justify-between items-center mb-1">
-                         <span className="text-gray-400 group-hover/line:text-white transition-colors text-sm font-mono uppercase tracking-tighter">
-                            {service}
-                         </span>
-                         <span className="text-[10px] text-fuchsia-600 font-bold">READY</span>
+                        <span className="text-gray-400 group-hover/line:text-white transition-colors text-sm font-mono uppercase tracking-tighter">
+                          {service}
+                        </span>
+                        <span className="text-[10px] text-fuchsia-600 font-bold">
+                          READY
+                        </span>
                       </div>
                       <div className="h-[2px] w-full bg-white/5 group-hover/line:bg-fuchsia-500/50 transition-all duration-300 overflow-hidden">
-                        <motion.div 
-                            initial={{ x: "-100%" }}
-                            whileInView={{ x: "0%" }}
-                            className="h-full w-full bg-fuchsia-500" 
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          whileInView={{ x: "0%" }}
+                          className="h-full w-full bg-fuchsia-500"
                         />
                       </div>
                     </div>
@@ -154,15 +172,15 @@ const AboutMe = () => {
             </motion.div>
 
             {/* Direct Contact - Industrial CTA */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="p-8 bg-fuchsia-500/5 border border-fuchsia-500/20 group hover:bg-fuchsia-500/10 transition-all"
             >
               <p className="text-fuchsia-500 text-[10px] font-black uppercase tracking-[0.3em] mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 bg-fuchsia-500 animate-pulse rounded-full" /> 
+                <span className="w-2 h-2 bg-fuchsia-500 animate-pulse rounded-full" />
                 Secure_Contact_Line
               </p>
-              <a 
+              <a
                 href={`mailto:${contact.email}`}
                 className="flex items-center justify-between group/link"
               >
@@ -174,7 +192,6 @@ const AboutMe = () => {
                 </div>
               </a>
             </motion.div>
-
           </div>
         </motion.div>
       </div>
@@ -183,7 +200,6 @@ const AboutMe = () => {
 };
 
 export default AboutMe;
-
 
 // import React from "react";
 // import { motion } from "framer-motion";
@@ -194,12 +210,12 @@ export default AboutMe;
 
 // const AboutMe = () => {
 //   // Destructure from the imported JSON
-//   const { 
-//     biography, 
-//     contact: CONTACT, 
-//     services, 
-//     stats: STATS, 
-//     profile_image 
+//   const {
+//     biography,
+//     contact: CONTACT,
+//     services,
+//     stats: STATS,
+//     profile_image
 //   } = aboutData;
 
 //   const containerVariants = {
@@ -242,7 +258,7 @@ export default AboutMe;
 //       {/* Floating Background Elements */}
 //       <div className="absolute inset-0 overflow-hidden pointer-events-none">
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             x: [0, 100, 0],
 //             y: [0, -50, 0],
 //             rotate: [0, 180, 360]
@@ -251,7 +267,7 @@ export default AboutMe;
 //           className="absolute top-20 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"
 //         />
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             x: [0, -80, 0],
 //             y: [0, 60, 0],
 //             rotate: [360, 180, 0]
@@ -260,7 +276,7 @@ export default AboutMe;
 //           className="absolute bottom-32 right-20 w-48 h-48 bg-pink-500/10 rounded-full blur-2xl"
 //         />
 //         <motion.div
-//           animate={{ 
+//           animate={{
 //             scale: [1, 1.2, 1],
 //             opacity: [0.3, 0.6, 0.3]
 //           }}
@@ -277,7 +293,7 @@ export default AboutMe;
 //           transition={{ duration: 1 }}
 //           className="text-center mb-16"
 //         >
-//           <motion.h2 
+//           <motion.h2
 //             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
 //             initial={{ backgroundPosition: "0% 50%" }}
 //             animate={{ backgroundPosition: "100% 50%" }}
@@ -314,7 +330,7 @@ export default AboutMe;
 //           {/* Left Side - Profile & Bio */}
 //           <motion.div variants={itemVariants} className="space-y-8">
 //             {/* Profile Image */}
-//             <motion.div 
+//             <motion.div
 //               variants={cardVariants}
 //               className="relative flex justify-center lg:justify-start"
 //             >
@@ -324,7 +340,7 @@ export default AboutMe;
 //                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
 //                   className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full p-1 blur-sm"
 //                 />
-                
+
 //                 <div className="relative bg-gray-900/80 backdrop-blur-sm rounded-full p-2">
 //                   <img
 //                     src={profile_image}
@@ -347,13 +363,13 @@ export default AboutMe;
 //             </motion.div>
 
 //             {/* Biography Card */}
-//             <motion.div 
+//             <motion.div
 //               variants={cardVariants}
 //               whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(139, 92, 246, 0.3)" }}
 //               className="relative p-8 bg-gray-900/40 backdrop-blur-md rounded-3xl border border-purple-500/20 shadow-2xl group overflow-hidden"
 //             >
 //               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
 //               <div className="relative z-10">
 //                 <div className="flex items-center mb-6">
 //                   <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl mr-4">
@@ -371,13 +387,13 @@ export default AboutMe;
 //           {/* Right Side - Services & Info */}
 //           <motion.div variants={itemVariants} className="space-y-8">
 //             {/* Services Card */}
-//             <motion.div 
+//             <motion.div
 //               variants={cardVariants}
 //               whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(236, 72, 153, 0.3)" }}
 //               className="relative p-8 bg-gray-900/40 backdrop-blur-md rounded-3xl border border-pink-500/20 shadow-2xl group overflow-hidden"
 //             >
 //               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
 //               <div className="relative z-10">
 //                 <div className="flex items-center mb-6">
 //                   <div className="p-3 bg-gradient-to-r from-pink-500 to-orange-500 rounded-xl mr-4">
@@ -406,13 +422,13 @@ export default AboutMe;
 //             </motion.div>
 
 //             {/* Contact & Stats Combined Card */}
-//             <motion.div 
+//             <motion.div
 //               variants={cardVariants}
 //               whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(16, 185, 129, 0.3)" }}
 //               className="relative p-8 bg-gray-900/40 backdrop-blur-md rounded-3xl border border-green-500/20 shadow-2xl group overflow-hidden"
 //             >
 //               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
 //               <div className="relative z-10 space-y-8">
 //                 {/* Contact Section */}
 //                 <div>

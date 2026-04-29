@@ -168,11 +168,11 @@
     "long_description": "Responsibilities included implementing core pages, replacing GSAP with Framer Motion, and integrating contact API with Resend.",
     "basic_info": "*Role:* Frontend Developer (Next.js 15) *Animation:* Framer Motion",
     "link": "https://blue-berry-sky.vercel.app/",
-    "image": "blue-berry-it-sky.png",
+    "image": "bbsky.png",
     "technologies": ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Resend", "Next SEO"],
     "featured": true,
     "theme": "#00a6f4",
-    "casestudy_images": ["blue-berry-it-sky-full.png"],
+    "casestudy_images": ["bbsky.png"],
     "created_at": "2025-10-07 19:27:41"
   }
 ]

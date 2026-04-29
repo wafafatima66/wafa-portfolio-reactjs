@@ -7,7 +7,7 @@
   "link": "https://drive.google.com/file/d/1-xSyi64yaRUevhwZbprLymIFaaxtpahk/view?usp=sharing",
   "technologies": ["Mendeley", "Google Scholar", "Microsoft Word", "Microsoft PowerPoint"],
   "createdAt": "2025-10-01T17:51:40.498Z",
-  "status": "Active",
+  "status": "Archive",
   "Published": "false"
 },
   {
@@ -18,7 +18,7 @@
     "link": "https://drive.google.com/file/d/174PNAmyI30p8654E_OyOdzqjeF-_5DzT/view?usp=sharing",
     "technologies": ["Python", "Matplotlib", "Numpy", "Pandas", "Pickle", "Sklearn", "Streamlit", "Git", "Jupyter Notebook"],
     "createdAt": "2025-10-01T17:51:40.498Z",
-    "status": "Active",
+    "status": "Archive",
     "Published": "false"
   },
   {
@@ -29,41 +29,239 @@
     "link": "https://drive.google.com/file/d/19KlEtyYUf4U8cRLIlLA5tLM4MMC9jQVb/view?usp=sharing",
     "technologies": ["APA Style", "Google Scholar", "Microsoft Word"],
     "createdAt": "2025-10-01T17:51:40.498Z",
-    "status": "Active",
+    "status": "Archive",
     "Published": "false"
 
   },
+{
+  "id": 4,
+  "role": "Researcher",
+  "title": "Optimizing XGBoost for Predicting Student Academic Success: A Unified Approach to Feature Engineering and Model Evaluation",
+  
+  "description": "Accurate prediction of student academic performance is essential for early intervention, personalized learning, and enhancing educational strategies. This study explores the use of the XGBoost algorithm for predicting student performance based on behavioral and academic data. While prior studies have demonstrated XGBoost's efficiency, they often focus on isolated optimization techniques—such as feature selection or hyperparameter tuning—tested on different datasets, lacking a unified evaluation framework. This paper addresses this gap by replicating and adapting six state-of-the-art XGBoost approaches into a regression-focused analysis on a single student performance dataset. Additionally, an enhanced modeling pipeline is proposed, integrating regression-based class balancing, Optuna-driven hyperparameter optimization, and threshold-based feature selection. Experimental results demonstrate that the proposed unified approach outperforms baseline methods, achieving an R² score of 0.9685 and the lowest RMSE of 3.6764.",
+
+  "publication": {
+    "type": "Conference Paper",
+    "publisher": "IEEE",
+    "conference": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
+    "year": 2026,
+    "paperId": "2388",
+    "status": "Accepted"
+  },
+
+  "authors": [
+    "Fatima Amir",
+    "Nawar Anzara",
+    "Jahanara Suchi",
+    "Mst. Shadia Sajneen",
+    "T M Shahriar Sazzad"
+  ],
+
+  "location": "Bangladesh",
+
+  "link": "https://drive.google.com/file/d/1876LdY3IAJUi7am8IIFpkiUVTDTWCExE/view?usp=sharing",
+
+  "technologies": [
+    "Python",
+    "XGBoost",
+    "Optuna",
+    "Machine Learning",
+    "Feature Engineering"
+  ],
+
+  "keywords": [
+    "Student Performance Prediction",
+    "XGBoost Optimization",
+    "Regression Analysis",
+    "Hyperparameter Tuning",
+    "Educational Data Mining"
+  ],
+
+  "metrics": {
+    "r2Score": 0.9685,
+    "rmse": 3.6764
+  },
+
+  "createdAt": "2025-11-04T07:37:44.870Z",
+  "status": "Active",
+  "published": true
+},
+{
+  "id": 5,
+  "role": "Researcher",
+  "title": "Evaluating the Usability of Ride-Sharing Applications for Semi-Literate Users: A Study in Bangladesh",
+  "description": "Ride-sharing applications have become integral in urban transport, yet their usability for semiliterate users remains underexplored. This study evaluates three popular platforms—Uber, Pathao, and Obhai—using Cognitive Walkthrough (CW) and the System Usability Scale (SUS) in the context of Bangladesh. Pathao achieved the highest usability with an average SUS score of 80.25 (grade B), followed by Uber at 79.5 (grade B), indicating good usability with minor issues in navigation and feedback. Obhai scored 59 (grade D), revealing challenges such as unclear instructions, confusing navigation, and inadequate feedback. Based on these findings, a redesigned prototype, Go Jatra, was developed with simplified language, clear ride confirmations, transparent payment flow, and post-ride summaries. SUS evaluation of Go Jatra showed an improved score of 81.2 (grade A), demonstrating enhanced usability for semiliterate users. The study highlights the importance of intuitive design, clear guidance, and culturally sensitive interface elements in making ride-sharing applications more accessible.",
+  
+  "publication": {
+    "type": "Conference Paper",
+    "publisher": "IEEE",
+    "conference": "2025 28th International Conference on Computer and Information Technology (ICCIT)",
+    "year": 2025,
+    "paperId": "ICCITconf2025-1615",
+    "status": "Accepted"
+  },
+
+  "authors": [
+    "Alisha Kabir",
+    "Shohana Chowdhury",
+    "Snaholota Mondal",
+    "Fatima Amir",
+    "Muhammad Nazrul Islam"
+  ],
+
+  "location": "Bangladesh",
+
+  "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
+
+  "technologies": [
+    "Cognitive Walkthrough",
+    "System Usability Scale",
+    "Figma",
+    "Python"
+  ],
+
+  "keywords": [
+    "Usability Analysis",
+    "Human-Computer Interaction",
+    "Ride-Sharing",
+    "Semi-Literate Users",
+    "UX Design"
+  ],
+
+  "createdAt": "2025-12-25T07:37:44.870Z",
+  "status": "Active",
+  "published": true
+},
+{
+  "id": 7,
+  "role": "Researcher",
+  "title": "Enhancing Disaster Prediction Using Graph-Based Centrality Features and Explainable Machine Learning on FEMA Data",
+
+  "description": "Natural disasters often occur in complex, interdependent patterns, where the occurrence of one disaster may trigger or amplify another. Accurate prediction of such co-occurrence patterns can significantly improve preparedness, mitigation strategies, and resource allocation. This study utilizes the Federal Emergency Management Agency (FEMA) disaster dataset, comprising 5,098 records with heterogeneous categorical and numerical features. To capture structural relationships, a bipartite network is constructed linking disaster identifiers to declaration types. Multiple centrality measures—degree, closeness, betweenness, eigenvector, and Katz—are computed and used as novel features to represent relational dependencies. These graph-based features are integrated into supervised machine learning models for disaster classification, enhancing predictive performance. To ensure interpretability, explainable AI techniques including TreeInterpreter, Partial Dependence Plots (PDPs), and ELI5 permutation importance are applied to decompose predictions, analyze feature effects, and rank feature importance. Results demonstrate that centrality-based features significantly improve model performance while revealing non-linear relationships between disaster characteristics and declaration outcomes. The study highlights the effectiveness of combining graph theory and explainable AI for data-driven disaster management and decision-making.",
+
+  "publication": {
+    "type": "Research Paper",
+    "publisher": "N/A",
+    "conference": "N/A",
+    "year": 2026,
+    "status": "Unpublished"
+  },
+
+  "authors": [
+    "Fatima Amir"
+  ],
+
+  "dataset": [
+    "FEMA Disaster Dataset"
+  ],
+
+  "dataDetails": {
+    "records": 5098,
+    "type": "Mixed (Categorical + Numerical)"
+  },
+
+  "technologies": [
+    "Python",
+    "Machine Learning",
+    "Network Analysis",
+    "Graph Theory",
+    "Explainable AI"
+  ],
+
+  "methods": [
+    "Bipartite Graph Construction",
+    "Degree Centrality",
+    "Closeness Centrality",
+    "Betweenness Centrality",
+    "Eigenvector Centrality",
+    "Katz Centrality",
+    "TreeInterpreter",
+    "Partial Dependence Plots (PDP)",
+    "ELI5 Permutation Importance"
+  ],
+
+  "keywords": [
+    "Disaster Prediction",
+    "Co-occurrence Modeling",
+    "Graph-Based Features",
+    "Centrality Analysis",
+    "Explainable AI",
+    "FEMA Dataset"
+  ],
+
+  "contributions": [
+    "Introduced centrality-based features for disaster prediction",
+    "Constructed bipartite disaster-declaration network",
+    "Improved classification performance using graph features",
+    "Applied XAI techniques for model interpretability",
+    "Revealed non-linear relationships in disaster patterns"
+  ],
+
+  "status": "In Progress",
+  "published": false,
+  "link": "https://drive.google.com/file/d/11zDBDpItm6gx4bcw3uzY50Klr2UiJtUo/view?usp=drive_link"
+},
   {
-    "id": 4,
-    "role": "Researcher",
-    "title": " Optimizing XGBoost for Predicting Student Academic Success: A Unified Approach to Feature Engineering and Model Evaluation",
-    "description": "Accurate prediction of student academic performance is essential for early intervention, personalized learning, and enhancing educational strategies. This study explores the use of the XGBoost algorithm for predicting student performance based on behavioral and academic data. While prior studies have demonstrated XGBoost's efficiency, they often focus on isolated optimization techniques—such as specific feature selection methods or hyperparameter tuning—tested on disparate datasets. Consequently, there is a lack of a unified comparative framework to evaluate these diverse methodological strategies on a common baseline. This paper addresses this gap by conceptually replicating and adapting six distinct state-of-the-art XGBoost approaches found in literature for a regression-focused analysis on a single student performance dataset. Furthermore, we propose an enhanced modeling pipeline that integrates class-balancing for regression, Optuna-based hyperparameter optimization, and threshold-based feature selection. Experimental results demonstrate that the proposed unified approach outperforms the adapted baseline methods, achieving an score of 0.9685 and the lowest RMSE (3.6764).",
-    "link": "https://drive.google.com/file/d/1876LdY3IAJUi7am8IIFpkiUVTDTWCExE/view?usp=sharing",
-    "technologies": ["Python"],
-    "createdAt": "2025-11-04T07:37:44.870Z",
-    "status": "Active",
-    "Published": "false"
+  "id": 7,
+  "role": "Researcher",
+  "title": "A Deep Learning and Federated Learning-Based Intrusion Detection System with Data Balancing and Explainability",
+
+  "description": "The continued expansion of network infrastructures has increased their vulnerability to cyber intrusions, necessitating robust intrusion detection systems (IDS). However, real-world network traffic is often highly imbalanced, leading to underrepresentation of critical attack classes during model training. This study proposes a deep neural network (DNN)-based IDS using the CICIDS2017 dataset and evaluates three advanced data balancing techniques: SMOTified-GAN, GANified-SMOTE, and SMOTE-Tomek. Among these, GANified-SMOTE achieved the best balance with an F1-Macro score of 0.967. To ensure privacy preservation, the system integrates federated learning and evaluates four optimization algorithms: FedAvg, FedProx, FedAvgM, and FedNova. Experimental results demonstrate that FedProx performs best under non-IID data conditions, achieving an F1-Macro score of 0.9668. Additionally, explainable AI (XAI) techniques, including SHAP, LIME, and Morris Sensitivity Analysis, are employed to enhance interpretability and provide insights into model decision-making. The study highlights the effectiveness of combining data balancing, federated learning, and explainability for building reliable and secure IDS systems.",
+
+  "publication": {
+    "type": "Research Paper",
+    "publisher": "N/A",
+    "conference": "N/A",
+    "year": 2026,
+    "status": "Unpublished"
   },
-    {
-    "id": 5,
-    "role": "Researcher",
-    "title": "Evaluating the Usability of Ride-Sharing Applications for Semi-Literate Users: A Study inBangladesh",
-    "description": "Ride-sharing applications have become integral in urban transport, yet their usability for semiliterate users remains underexplored. This study evaluates three popular platforms-Uber, Pathao, and Obhai—using Cognitive Walkthrough(CW) and the System Usability Scale(SUS) in the context of Bangladesh. Pathao achieved the highest usability with an average SUS score of 80.25 (grade B), followed by Uber at 79.5 (grade B), indicating good usability with minor issues in navigation and feedback. Obhai scored 59 (grade D), revealing challenges such as unclear instructions, confusing navigation, and inadequate feedback. Based on these findings, a redesigned prototype, Go Jatra, was developed with simplified language, clear ride confirmations, transparent payment flow, and post-ride summaries. SUS evaluation of Go Jatra showed an improved score of 81.2 (grade A), showing improved usability for semiliterate users. The study highlights the importance of intuitive design, clear guidance, and culturally sensitive interface elements in making ride-sharing applications more accessible. These results provide actionable insights for designers aiming to improve inclusivity and user satisfaction in transport applications.",
-    "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
-    "technologies": ["Cognitive Walkthrough", "System Usability Scale", "Figma", "Python"],
-    "createdAt": "2025-12-25T07:37:44.870Z",
-    "status": "Active",
-    "Published": "true"
+
+  "authors": [
+    "Fatima Amir"
+  ],
+
+  "dataset": [
+    "CICIDS2017"
+  ],
+
+  "technologies": [
+    "Python",
+    "Deep Neural Networks",
+    "Federated Learning",
+    "XGBoost",
+    "SMOTE",
+    "GAN",
+    "SHAP",
+    "LIME"
+  ],
+
+  "methods": [
+    "SMOTified-GAN",
+    "GANified-SMOTE",
+    "SMOTE-Tomek",
+    "FedAvg",
+    "FedProx",
+    "FedAvgM",
+    "FedNova",
+    "Morris Sensitivity Analysis"
+  ],
+
+  "keywords": [
+    "Intrusion Detection System",
+    "Imbalanced Data",
+    "Federated Learning",
+    "Explainable AI",
+    "Cybersecurity",
+    "Non-IID Data"
+  ],
+
+  "metrics": {
+    "bestF1MacroBalancing": 0.967,
+    "bestF1MacroFederated": 0.9668
   },
-      {
-    "id": 6,
-    "role": "Researcher",
-    "title": "Exploring Disaster Type Co-Occurrences through Network Centrality, Feature Sensitivity, and XAI Analysis of FEMA Data",
-    "description": "Natural disasters are likely to occur in sophisticated patterns, and the occurrence of a disaster may trigger or enhance the occurrence of another one. Accurate prediction of co-occurrence of disasters can significantly aid in improved preparation  measures for mitigation, and optimal usage of resources. Here, this study work on the Federal Emergency Management Agency (FEMA) disaster dataset consisting of 5,098 records with heterogeneous categorical and numerical features. Despite a large amount of work focusing on machine learning based analysis for the FEMA dataset, emerging the feature with graph theory and sensitivity and interpretability measures is still to be explored in this domain. In this case, we apply a suite of network centrality analysis and machine learning interpretability techniques based on the centrality calculation to the FEMA dataset to find structural patterns and predictive insights. We constructed a bipartite network linking disaster identifiers to declaration types and built a variety of centrality measures—degree, closeness, betweenness, eigenvector, and Katz—as novel features to capture relational dependencies. We incorporated these centrality-based features into supervised machine learning models of disaster type classification, augmenting the feature space with network-based information. For interpretability, we used TreeInterpreter, Partial Dependence Plots (PDPs), and ELI5 permutation importance to break down predictions, approximate marginal effects, and rank important features. Our results indicate that centrality-based features improve model performance considerably while providing understandable explanations of predictive outcomes. Further, interpretability analysis revealed non-linear relationships between disaster characteristics and declaration outcomes, yielding insights into disaster mechanisms. The model demonstrates the potential of merging graph theory and explainable AI for data-driven decision-making in disaster management.",
-    "link": "https://drive.google.com/file/d/11zDBDpItm6gx4bcw3uzY50Klr2UiJtUo/view?usp=sharing",
-    "technologies": ["Explainable AI", "Graph Theory", "Python", "Machine Learning"],
-    "createdAt": "2025-12-25T07:37:44.870Z",
-    "status": "Active",
-    "Published": "false"
-  }
+
+  "status": "In Progress",
+  "published": false,
+  "link": "https://drive.google.com/file/d/1Ew0AaNwIJaLyBoXSYM1Gkqoobx0v47Bz/view?usp=sharing"
+}
 ]
