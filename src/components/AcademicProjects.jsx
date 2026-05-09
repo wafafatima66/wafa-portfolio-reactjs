@@ -53,6 +53,8 @@ const AcademicProjects = () => {
             const status = (project.status || "").toLowerCase();
             const isInProgress =
               status === "in progress" || status === "in-progress";
+            const link = String(project.link || "").trim();
+            const showLink = status === "active" && !isInProgress && !!link;
             const publication = project.publication || null;
             const authors = Array.isArray(project.authors)
               ? project.authors
@@ -214,10 +216,10 @@ const AcademicProjects = () => {
                   </div>
                 </div>
 
-                {project.link && (
+                {showLink && (
                   <motion.a
                     layout
-                    href={project.link}
+                    href={link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center justify-center gap-3 w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all
@@ -252,17 +254,6 @@ const AcademicProjects = () => {
                         {project.role}
                       </p>
                     </div>
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 text-blue-600 text-xs font-bold uppercase tracking-widest hover:underline"
-                      >
-                        View{" "}
-                        <FaExternalLinkAlt className="inline-block ml-1 text-[10px] opacity-60" />
-                      </a>
-                    )}
                   </li>
                 ))}
               </ul>

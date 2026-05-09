@@ -4,7 +4,7 @@
   "role": "Researcher",
   "title": "A Personalized Spatiotemporal Human Activity Recognition Framework in an Edge-Based Federated Learning Approach",
   "description": "Federated Learning (FL) revolutionizes machine learning, emphasizing privacy preservation through local model training. However, centralized FL has limitations, steering research toward decentralized models.\n\nThis study explores a decentralized privacy-preserving deep federated learning with the integration of edge computing, our focus extends to Human Activity Recognition (HAR). Challenges in this integration include privacy-sensitive sensor data, diverse user behaviors, and the need for personalized models. Existing studies propose solutions, but incorporating spatiotemporal data remains a challenge due to heterogeneity and communication overhead. Our research introduces an edge-based federated learning approach for HAR, contributing to spatiotemporal data extraction and integration.\n\nLightweight, resource-efficient techniques like CNN, RNN, t-SNE, and dynamic scheduling are employed to address challenges, ensuring precise HAR while prioritizing privacy in a dynamic landscape.",
-  "link": "https://drive.google.com/file/d/1-xSyi64yaRUevhwZbprLymIFaaxtpahk/view?usp=sharing",
+  "link": "https://ieeexplore.ieee.org/document/11491371",
   "technologies": ["Mendeley", "Google Scholar", "Microsoft Word", "Microsoft PowerPoint"],
   "createdAt": "2025-10-01T17:51:40.498Z",
   "status": "Archive",
@@ -59,7 +59,7 @@
 
   "location": "Bangladesh",
 
-  "link": "https://drive.google.com/file/d/1876LdY3IAJUi7am8IIFpkiUVTDTWCExE/view?usp=sharing",
+  "link": "https://drive.google.com/file/d/1zNEw_PkwNOsGyqQ9DnSYNexPVdAo2pam/view?usp=sharing",
 
   "technologies": [
     "Python",

@@ -89,7 +89,7 @@ const Hero = () => {
             className="flex flex-wrap gap-4 mt-12"
           >
             {/* View Resume Button */}
-            <a
+            {/* <a
               href={cvHref}
               target="_blank"
               rel="noopener noreferrer"
@@ -98,10 +98,10 @@ const Hero = () => {
               <button className="relative px-8 py-4 bg-white text-black font-black uppercase text-xs sm:text-sm tracking-widest flex items-center gap-3 transition-transform active:scale-95">
                 <FaFileDownload />
                 View_Resume
-                {/* Tactical Corner Overlays */}
+              
                 <div className="absolute top-0 right-0 w-2 h-2 bg-black/10 group-hover:bg-fuchsia-500 transition-colors" />
               </button>
-            </a>
+            </a> */}
 
             {/* Hire Me Button */}
             <a href="/contact" className="group relative overflow-hidden">

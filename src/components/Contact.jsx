@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { usePortfolioData } from "../supabase/usePortfolioData";
 import {
   FaTerminal,
   FaPaperPlane,
@@ -10,29 +9,15 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
-  const { data, loading, error } = usePortfolioData();
   const [status, setStatus] = useState({ ok: false, error: null });
   const [sending, setSending] = useState(false);
 
-  if (loading) {
-    return (
-      <section className="relative h-screen w-full flex items-center justify-center bg-black text-white">
-        <div className="flex flex-col items-center gap-4">
-          <FaTerminal className="text-fuchsia-500 animate-pulse text-4xl" />
-          <p className="font-mono text-sm tracking-widest text-fuchsia-500">
-            INITIALIZING_UPLINK...
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  // Fallback contact info if data is missing or error occurs
-  const CONTACT = data?.aboutMe?.contact || {
-    address: "Location Data Not Found",
-    // phoneNo: "-- -- -- --",
+  const CONTACT = {
+    // address: "Location Data Not Found",
     email: "fatima.amir.dev@gmail.com",
   };
+  const phone = String(CONTACT.phoneNo || "").trim();
+  const address = String(CONTACT.address || "").trim();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,11 +38,21 @@ const Contact = () => {
         }),
       });
 
+      let json = null;
+      try {
+        json = await res.json();
+      } catch {
+        json = null;
+      }
+
       if (res.ok) {
         setStatus({ ok: true, error: null });
         formEl?.reset();
       } else {
-        setStatus({ ok: false, error: "Transmission failed." });
+        setStatus({
+          ok: false,
+          error: json?.error || json?.message || "Transmission failed.",
+        });
       }
     } catch (err) {
       setStatus({ ok: false, error: "Uplink unstable." });
@@ -111,7 +106,7 @@ const Contact = () => {
               <div className="absolute -top-px -left-px w-4 h-4 border-t border-l border-fuchsia-500" />
 
               <div className="space-y-8">
-                <div className="flex items-center gap-6">
+                {/* <div className="flex items-center gap-6">
                   <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-fuchsia-500/50 transition-colors">
                     <FaMapMarkerAlt className="text-fuchsia-500" />
                   </div>
@@ -120,24 +115,26 @@ const Contact = () => {
                       Location_Point
                     </p>
                     <p className="font-mono text-sm tracking-tight text-gray-300 uppercase italic">
-                      {CONTACT.address}
+                      {address}
                     </p>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="flex items-center gap-6">
-                  <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-fuchsia-500/50 transition-colors">
-                    <FaPhoneAlt className="text-fuchsia-500" />
+                {phone && (
+                  <div className="flex items-center gap-6">
+                    <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-fuchsia-500/50 transition-colors">
+                      <FaPhoneAlt className="text-fuchsia-500" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">
+                        Voice_Line
+                      </p>
+                      <p className="font-mono text-sm tracking-tight text-gray-300 italic">
+                        {phone}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[10px] font-mono text-fuchsia-500 uppercase tracking-widest mb-1">
-                      Voice_Line
-                    </p>
-                    <p className="font-mono text-sm tracking-tight text-gray-300 italic">
-                      {CONTACT.phoneNo}
-                    </p>
-                  </div>
-                </div>
+                )}
 
                 <div className="flex items-center gap-6 pt-6 border-t border-white/5">
                   <div className="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-fuchsia-500/50 transition-colors">

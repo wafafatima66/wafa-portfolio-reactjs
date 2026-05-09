@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { FaReact } from "react-icons/fa"; // you can choose any FA icon
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 
@@ -76,6 +76,24 @@ const Navbar = () => {
           </motion.a>
 
           <motion.a
+            href="https://www.instagram.com/fatima_amir_dev/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.2, color: accent }}
+          >
+            <FaInstagram />
+          </motion.a>
+
+          <motion.a
+            href="https://x.com/FatimaCraftSpac"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.2, color: accent }}
+          >
+            <FaSquareXTwitter />
+          </motion.a>
+
+          <motion.a
             href="https://github.com/wafafatima66/"
             target="_blank"
             rel="noopener noreferrer"
@@ -130,7 +148,7 @@ const Navbar = () => {
             {/* Mobile Socials */}
             <div className="flex gap-6 text-2xl text-gray-400 pt-4">
               <motion.a
-                href="https://www.linkedin.com/in/your-linkedin-profile"
+                href="https://www.linkedin.com/in/fatimaamir99/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, color: accent }}
@@ -139,7 +157,25 @@ const Navbar = () => {
               </motion.a>
 
               <motion.a
-                href="https://github.com/your-github-profile"
+                href="https://www.instagram.com/fatima_amir_dev/?hl=en"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, color: accent }}
+              >
+                <FaInstagram />
+              </motion.a>
+
+              <motion.a
+                href="https://x.com/FatimaCraftSpac"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.2, color: accent }}
+              >
+                <FaSquareXTwitter />
+              </motion.a>
+
+              <motion.a
+                href="https://github.com/wafafatima66/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, color: accent }}
