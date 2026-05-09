@@ -263,5 +263,111 @@
   "status": "In Progress",
   "published": false,
   "link": "https://drive.google.com/file/d/1Ew0AaNwIJaLyBoXSYM1Gkqoobx0v47Bz/view?usp=sharing"
+},
+{
+  "id": 5,
+  "role": "Researcher",
+  "title": "Evaluating the Usability of Ride-Sharing Applications for Semi-Literate Users: A Study in Bangladesh",
+  "description": "Ride-sharing applications have become integral in urban transport, yet their usability for semiliterate users remains underexplored. This study evaluates three popular platforms—Uber, Pathao, and Obhai—using Cognitive Walkthrough (CW) and the System Usability Scale (SUS) in the context of Bangladesh. Pathao achieved the highest usability with an average SUS score of 80.25 (grade B), followed by Uber at 79.5 (grade B), indicating good usability with minor issues in navigation and feedback. Obhai scored 59 (grade D), revealing challenges such as unclear instructions, confusing navigation, and inadequate feedback. Based on these findings, a redesigned prototype, Go Jatra, was developed with simplified language, clear ride confirmations, transparent payment flow, and post-ride summaries. SUS evaluation of Go Jatra showed an improved score of 81.2 (grade A), demonstrating enhanced usability for semiliterate users. The study highlights the importance of intuitive design, clear guidance, and culturally sensitive interface elements in making ride-sharing applications more accessible.",
+  
+  "publication": {
+    "type": "Conference Paper",
+    "publisher": "IEEE",
+    "conference": "2025 28th International Conference on Computer and Information Technology (ICCIT)",
+    "year": 2025,
+    "paperId": "ICCITconf2025-1615",
+    "status": "Accepted"
+  },
+
+  "authors": [
+    "Alisha Kabir",
+    "Shohana Chowdhury",
+    "Snaholota Mondal",
+    "Fatima Amir",
+    "Muhammad Nazrul Islam"
+  ],
+
+  "location": "Bangladesh",
+
+  "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
+
+  "technologies": [
+    "Cognitive Walkthrough",
+    "System Usability Scale",
+    "Figma",
+    "Python"
+  ],
+
+  "keywords": [
+    "Usability Analysis",
+    "Human-Computer Interaction",
+    "Ride-Sharing",
+    "Semi-Literate Users",
+    "UX Design"
+  ],
+
+  "createdAt": "2025-12-25T07:37:44.870Z",
+  "status": "Active",
+  "published": true
+},
+{
+  "id": 8,
+  "role": "Researcher",
+  "title": "Clustered Federated Learning for Disaster Prediction under Non-IID Data Distributions",
+
+  "description": "Accurate disaster prediction is essential for effective emergency management; however, the decentralized and heterogeneous nature of disaster data poses significant challenges for conventional machine learning approaches. Centralized models fail to capture regional variability in disaster patterns, while standard Federated Learning (FL) suffers from performance degradation under non-independent and identically distributed (Non-IID) data conditions due to client drift . This study proposes a Clustered Federated Learning (CFL) framework for  disaster prediction using the FEMA Disaster Declarations dataset. The approach incorporates graph-based feature engineering derived from disaster co-occurrence networks and employs multi-output XGBoost classifiers within both FL and CFL settings. Clients are clustered using K-Means based on learned feature importance representations , with the optimal number of clusters selected via silhouette analysis , enabling region-specific model aggregation. Experimental results demonstrate that CFL significantly outperforms standard FedAvg, achieving an accuracy of 0.7747, Micro-F1 of 0.7169, Macro-F1 of 0.2587, and Hamming Loss of 0.0128, compared to 0.6752, 0.2551, 0.0235, and 0.0238, respectively. These findings indicate that CFL effectively mitigates data heterogeneity and improves predictive performance in  disaster classification while preserving data decentralization.",
+
+  "publication": {
+    "type": "Research Paper",
+    "publisher": "N/A",
+    "conference": "N/A",
+    "year": 2026,
+    "status": "Unpublished"
+  },
+
+  "authors": [
+    "Fatima Amir"
+  ],
+
+  "dataset": [
+    "FEMA Disaster Dataset"
+  ],
+
+  "dataDetails": {
+    "records": 5098,
+    "type": "Mixed (Categorical + Numerical)"
+  },
+
+  "technologies": [
+    "Python",
+    "Machine Learning",
+    "Network Analysis",
+    "Graph Theory",
+    "Federated Learning"
+  
+  ],
+
+  "methods": [
+
+  ],
+
+  "keywords": [
+    "Clustered Federated Learning",
+    "Disaster Declaration Prediction",
+    "XGBoost",
+    "Non-IID Data",
+    "FEMA",
+    "Class Imbalance",
+    "Classification",
+    "Graph-Based Feature Engineering"
+  ],
+
+  "contributions": [
+ 
+  ],
+
+  "status": "In Progress",
+  "published": false,
+  "link": ""
 }
 ]
