@@ -86,52 +86,7 @@
   "status": "Active",
   "published": true
 },
-{
-  "id": 5,
-  "role": "Researcher",
-  "title": "Evaluating the Usability of Ride-Sharing Applications for Semi-Literate Users: A Study in Bangladesh",
-  "description": "Ride-sharing applications have become integral in urban transport, yet their usability for semiliterate users remains underexplored. This study evaluates three popular platforms—Uber, Pathao, and Obhai—using Cognitive Walkthrough (CW) and the System Usability Scale (SUS) in the context of Bangladesh. Pathao achieved the highest usability with an average SUS score of 80.25 (grade B), followed by Uber at 79.5 (grade B), indicating good usability with minor issues in navigation and feedback. Obhai scored 59 (grade D), revealing challenges such as unclear instructions, confusing navigation, and inadequate feedback. Based on these findings, a redesigned prototype, Go Jatra, was developed with simplified language, clear ride confirmations, transparent payment flow, and post-ride summaries. SUS evaluation of Go Jatra showed an improved score of 81.2 (grade A), demonstrating enhanced usability for semiliterate users. The study highlights the importance of intuitive design, clear guidance, and culturally sensitive interface elements in making ride-sharing applications more accessible.",
-  
-  "publication": {
-    "type": "Conference Paper",
-    "publisher": "IEEE",
-    "conference": "2025 28th International Conference on Computer and Information Technology (ICCIT)",
-    "year": 2025,
-    "paperId": "ICCITconf2025-1615",
-    "status": "Accepted"
-  },
 
-  "authors": [
-    "Alisha Kabir",
-    "Shohana Chowdhury",
-    "Snaholota Mondal",
-    "Fatima Amir",
-    "Muhammad Nazrul Islam"
-  ],
-
-  "location": "Bangladesh",
-
-  "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
-
-  "technologies": [
-    "Cognitive Walkthrough",
-    "System Usability Scale",
-    "Figma",
-    "Python"
-  ],
-
-  "keywords": [
-    "Usability Analysis",
-    "Human-Computer Interaction",
-    "Ride-Sharing",
-    "Semi-Literate Users",
-    "UX Design"
-  ],
-
-  "createdAt": "2025-12-25T07:37:44.870Z",
-  "status": "Active",
-  "published": true
-},
 {
   "id": 7,
   "role": "Researcher",
@@ -289,7 +244,7 @@
 
   "location": "Bangladesh",
 
-  "link": "https://drive.google.com/file/d/17GSRAWkxYsLwuBbC-IdSsU3tMYEfIVG4/view?usp=sharing",
+  "link": "https://ieeexplore.ieee.org/document/11491371",
 
   "technologies": [
     "Cognitive Walkthrough",
