@@ -6,10 +6,11 @@ import {
   FaMicroscope,
   FaCheckCircle,
   FaHourglassHalf,
+  FaCode,
 } from "react-icons/fa";
 
 const AcademicProjects = () => {
-  const projects = academicProjectsData
+  const activeProjects = academicProjectsData
     .filter((p) => {
       const status = (p.status || "").toLowerCase();
       return (
@@ -21,242 +22,215 @@ const AcademicProjects = () => {
     .sort((a, b) => {
       const aPub = String(a.published ?? a.Published).toLowerCase() === "true";
       const bPub = String(b.published ?? b.Published).toLowerCase() === "true";
-      if (aPub === bPub) return new Date(b.createdAt) - new Date(a.createdAt);
+      if (aPub === bPub) return b.id - a.id;
       return aPub ? -1 : 1;
     });
+
+  const conferenceProjects = activeProjects.filter((p) =>
+    (p.publication?.type || "").toLowerCase().includes("conference"),
+  );
+
+  const journalProjects = activeProjects.filter((p) => {
+    const type = (p.publication?.type || "").toLowerCase();
+    return type.includes("journal") || !!p.publication?.journal;
+  });
 
   const archiveProjects = academicProjectsData
     .filter((p) => {
       const s = (p.status || "").toLowerCase();
       return s === "archive" || s === "archieve" || s === "archived";
     })
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    .sort((a, b) => b.id - a.id);
 
-  return (
-    <section className="relative py-24 px-6 bg-white overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="mb-20">
-          <h2 className="text-sm font-black tracking-[0.25em] text-blue-600 uppercase mb-3">
-            Research & Publications
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-light text-gray-900">
-            Academic <span className="italic font-serif">Contributions</span>
-          </h3>
-          <div className="h-px w-24 bg-blue-600 mt-6" />
-        </div>
+  const truncateAbstract = (text, limit = 200) => {
+    if (!text) return "";
+    if (text.length <= limit) return text;
+    return text.substring(0, limit).trim() + "...";
+  };
 
-        <div className="grid grid-cols-1  gap-8 items-start">
-          {projects.map((project) => {
-            const isPublished =
-              String(project.published ?? project.Published).toLowerCase() ===
-              "true";
-            const status = (project.status || "").toLowerCase();
-            const isInProgress =
-              status === "in progress" || status === "in-progress";
-            const link = String(project.link || "").trim();
-            const showLink = status === "active" && !isInProgress && !!link;
-            const publication = project.publication || null;
-            const authors = Array.isArray(project.authors)
-              ? project.authors
-              : [];
-            const keywords = Array.isArray(project.keywords)
-              ? project.keywords
-              : [];
+  const ProjectItem = ({ project }) => {
+    const status = (project.status || "").toLowerCase();
+    const pubStatus = (project.publication?.status || "").toLowerCase();
+    const authors = Array.isArray(project.authors) ? project.authors : [];
+    const venue =
+      project.publication?.journal ||
+      project.publication?.conference ||
+      project.publication?.publisher ||
+      "";
+    const year = project.publication?.year
+      ? ` (${project.publication.year})`
+      : "";
 
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="group relative"
+      >
+        <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug">
+          {project.title}
+        </h3>
+
+        <div className="text-sm mb-2 leading-relaxed">
+          {authors.map((author, idx) => {
+            const isMainAuthor = author.includes("Fatima Amir");
             return (
-              <motion.div
-                key={project.id}
-                layout
-                className={`group relative flex flex-col rounded-2xl p-8 transition-all duration-500 
-                  ${
-                    isPublished
-                      ? "bg-gradient-to-br from-white to-blue-50/40 border-2 border-blue-400 shadow-[0_20px_50px_rgba(37,99,235,0.15)]"
-                      : "bg-white border border-gray-100 shadow-sm"
-                  }`}
-              >
-                {isPublished && (
-                  <div className="absolute -top-3 left-6 px-3 py-1 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
-                    <FaCheckCircle /> Published Research
-                  </div>
-                )}
-                {isInProgress && (
-                  <div className="absolute -top-3 right-6 px-3 py-1 bg-amber-500 text-black text-[9px] font-bold uppercase tracking-widest rounded-full flex items-center gap-2">
-                    <FaHourglassHalf /> In Progress
-                  </div>
-                )}
-
-                <div className="flex items-center gap-2 text-blue-600 mb-6">
-                  <div
-                    className={`p-2 rounded-lg ${isPublished ? "bg-blue-600 text-white" : "bg-blue-50"}`}
-                  >
-                    <FaMicroscope className="text-sm" />
-                  </div>
-                  <span className="text-[10px] font-black uppercase tracking-widest">
-                    {project.role}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold leading-tight mb-4 text-gray-900">
-                  {project.title}
-                </h3>
-
-                <div className="space-y-4">
-                  {publication && (
-                    <div className="rounded-xl border border-gray-100 bg-white/70 p-4">
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
-                        Publication
-                      </p>
-                      <div className="space-y-1 text-xs text-gray-600">
-                        {publication.type && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Type:
-                            </span>{" "}
-                            {publication.type}
-                          </p>
-                        )}
-                        {publication.publisher && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Publisher:
-                            </span>{" "}
-                            {publication.publisher}
-                          </p>
-                        )}
-                        {publication.conference && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Conference:
-                            </span>{" "}
-                            {publication.conference}
-                          </p>
-                        )}
-                        {publication.year && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Year:
-                            </span>{" "}
-                            {publication.year}
-                          </p>
-                        )}
-                        {publication.paperId && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Paper ID:
-                            </span>{" "}
-                            {publication.paperId}
-                          </p>
-                        )}
-                        {publication.status && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Status:
-                            </span>{" "}
-                            {publication.status}
-                          </p>
-                        )}
-                        {project.location && (
-                          <p>
-                            <span className="font-bold text-gray-700">
-                              Location:
-                            </span>{" "}
-                            {project.location}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {authors.length > 0 && (
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
-                        Authors
-                      </p>
-                      <p className="text-xs text-gray-600 leading-relaxed">
-                        {authors.slice(0, 4).join(", ")}
-                        {authors.length > 4
-                          ? ` +${authors.length - 4} more`
-                          : ""}
-                      </p>
-                    </div>
-                  )}
-
-                  {keywords.length > 0 && (
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
-                        Keywords
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {keywords.map((k, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 bg-blue-50 border border-blue-100 text-[9px] font-bold text-blue-600 uppercase rounded"
-                          >
-                            {k}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="gap-2 my-6">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
-                    Technologies
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies?.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 bg-gray-50 border border-gray-100 text-[9px] font-bold text-gray-400 uppercase rounded"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {showLink && (
-                  <motion.a
-                    layout
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-3 w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all
-                      ${isPublished ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-900 text-white hover:bg-blue-600"}`}
-                  >
-                    <FaFileAlt /> {isPublished ? "Full Publication" : "Details"}{" "}
-                    <FaExternalLinkAlt className="text-[10px] opacity-40" />
-                  </motion.a>
-                )}
-              </motion.div>
+              <span key={idx}>
+                <span
+                  className={
+                    isMainAuthor ? "text-blue-600 font-bold" : "text-gray-600"
+                  }
+                >
+                  {author}
+                </span>
+                {idx < authors.length - 1 ? ", " : ""}
+              </span>
             );
           })}
         </div>
 
+        <div className="text-sm text-gray-500 italic mb-3">
+          {venue}
+          {year}
+        </div>
+
+        <div className="text-sm text-gray-600 leading-relaxed mb-4 max-w-3xl">
+          {truncateAbstract(project.description)}
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {pubStatus === "under review" && (
+              <span className="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-widest rounded-sm">
+                Under Review
+              </span>
+            )}
+            {status === "in progress" && (
+              <span className="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-widest rounded-sm">
+                In Progress
+              </span>
+            )}
+            {project.published && (
+              <span className="px-3 py-1 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest rounded-sm">
+                Published
+              </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-4 ml-auto">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-600 transition-colors flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"
+              >
+                <FaFileAlt className="text-xs" /> Publication
+              </a>
+            )}
+            {project.code_link && (
+              <a
+                href={project.code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-600 transition-colors flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"
+              >
+                <FaCode className="text-xs" /> Code
+              </a>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
+  return (
+    <section className="relative py-24 px-6 bg-white overflow-hidden">
+      <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Header Section */}
+        <div className="mb-16">
+          <h1 className="text-5xl font-serif text-gray-900 mb-6">
+            Publications
+          </h1>
+          <p className="text-gray-500 text-lg font-light">
+            Conference proceedings, journal articles, and works under review.
+          </p>
+        </div>
+
+        {/* Conference Proceedings Section */}
+        {conferenceProjects.length > 0 && (
+          <div className="mb-20">
+            <div className="border-b border-gray-100 pb-2 mb-10 relative">
+              <h2 className="text-2xl font-serif text-gray-800 inline-block">
+                Conference Proceedings
+              </h2>
+              <div className="absolute bottom-0 left-0 h-[2px] w-24 bg-blue-600" />
+            </div>
+
+            <div className="space-y-12">
+              {conferenceProjects.map((project) => (
+                <ProjectItem key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Journal Proceedings Section */}
+        {journalProjects.length > 0 && (
+          <div className="mb-20">
+            <div className="border-b border-gray-100 pb-2 mb-10 relative">
+              <h2 className="text-2xl font-serif text-gray-800 inline-block">
+                Journal Proceedings
+              </h2>
+              <div className="absolute bottom-0 left-0 h-[2px] w-24 bg-blue-600" />
+            </div>
+
+            <div className="space-y-12">
+              {journalProjects.map((project) => (
+                <ProjectItem key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
+        )}
+
         {archiveProjects.length > 0 && (
           <div className="mt-20">
-            <h4 className="text-xs font-black tracking-[0.25em] text-gray-500 uppercase mb-6">
-              Archive
-            </h4>
-            <div className="border border-gray-100 rounded-2xl bg-white p-6">
-              <ul className="space-y-4">
-                {archiveProjects.map((project) => (
-                  <li
-                    key={project.id}
-                    className="flex items-start justify-between gap-6"
-                  >
-                    <div className="min-w-0">
-                      <p className="text-gray-900 font-semibold leading-snug">
-                        {project.title}
-                      </p>
-                      <p className="text-gray-500 text-xs mt-1">
-                        {project.role}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            <div className="border-b border-gray-100 pb-2 mb-8 relative">
+              <h2 className="text-xl font-serif text-gray-500 inline-block">
+                Archive
+              </h2>
+            </div>
+            <div className="space-y-8">
+              {archiveProjects.map((project) => (
+                <div key={project.id} className="text-sm">
+                  <p className="text-gray-800 font-medium leading-snug mb-2">
+                    {project.title}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-blue-600 transition-colors flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"
+                      >
+                        <FaFileAlt className="text-xs" /> Publication
+                      </a>
+                    )}
+                    {project.code_link && (
+                      <a
+                        href={project.code_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-blue-600 transition-colors flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest"
+                      >
+                        <FaCode className="text-xs" /> Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

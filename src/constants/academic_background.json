@@ -5,6 +5,14 @@
     "institution": "Military Institute of Science and Technology",
     "type": "Education",
     "text": "Focused on advanced machine learning, artificial intelligence, and data-driven solutions while gaining practical experience in research and applied computer science.",
+    "modules": [
+      "HCI",
+      "Data Mining",
+      "Advanced Machine Learning",
+      "Graph Theory",
+      "Metaheuristic",
+      "Big Data"
+    ],
     "result": "On Going",
     "order_sequence": 4,
     "createdAt": "2025-10-19T17:51:46Z"
@@ -14,7 +22,7 @@
     "title": "BSc in Computer Science and Engineering",
     "institution": "Shanto Mariam University of Creative Technology",
     "type": "Education",
-    "text": "Gained a strong foundation in software development, algorithms, database systems, and programming across multiple languages.",
+    "text": "Gained a strong foundation in software development, algorithms, database systems, and programming across multiple languages. Awarded Summa Cum Laude award.",
     "result": "3.96 / 4.00",
     "order_sequence": 3,
     "createdAt": "2025-10-01T17:51:40Z"
