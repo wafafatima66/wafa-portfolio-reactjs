@@ -146,7 +146,7 @@ const AcademicProjects = () => {
   };
 
   return (
-    <section className="relative py-24 px-6 bg-white overflow-hidden">
+    <section className="relative  px-6 bg-white overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header Section */}
         <div className="mb-16">
