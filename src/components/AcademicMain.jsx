@@ -2,19 +2,28 @@ import React from "react";
 import AcademicBackground from "./AcademicBackground";
 import AcademicProjects from "./AcademicProjects";
 import { Link } from "react-router-dom";
+import { FaDownload } from "react-icons/fa";
 
 const AcademicMain = () => {
   return (
     // Clean white background, no distractions
     <div className="bg-white min-h-screen">
       {/* Minimalist "Back" Navigation */}
-      <nav className="max-w-7xl mx-auto px-8 pt-8">
+      <nav className="max-w-7xl mx-auto px-8 pt-8 flex items-center justify-between gap-6">
         <Link
           to="/"
           className="text-gray-400 hover:text-blue-600 text-sm font-medium transition-colors"
         >
           ← Back to Portfolio
         </Link>
+        <a
+          href="https://drive.google.com/file/d/1Pm0uiBxnlSiJoUoiRKeppKnxCVqYYgos/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 text-white text-sm font-bold uppercase tracking-widest hover:bg-blue-700 transition-colors"
+        >
+          <FaDownload className="text-sm" /> Download CV
+        </a>
       </nav>
 
       <main>
