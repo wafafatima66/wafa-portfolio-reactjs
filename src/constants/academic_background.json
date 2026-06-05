@@ -46,5 +46,155 @@
     "result": "289 / 340",
     "order_sequence": 1,
     "createdAt": "2025-08-01T17:51:40Z"
+  },
+  {
+    "id": 5,
+    "title": "SUMMA CUM LAUDE",
+    "institution": "Shanto Mariam University of Creative Technology",
+    "type": "Award",
+    "text": "Awarded for exceptional academic performance, graduating as the top student of my batch.",
+    "result": "2023",
+    "order_sequence": 0,
+    "createdAt": "2023-01-01T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "title": "MEMORIAL EDUCATION EXCELLENCE AWARD",
+    "type": "Award",
+    "text": "Awarded for achieving a perfect CGPA of 10/10 in the academic year 2014-2015.",
+    "result": "2015",
+    "order_sequence": 0,
+    "createdAt": "2015-01-01T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "title": "INTERNATIONAL OLYMPIAD OF MATHEMATICS",
+    "type": "Award",
+    "text": "Awarded the 3rd position in the batch.",
+    "result": "2015",
+    "order_sequence": 0,
+    "createdAt": "2015-01-01T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "title": "Salary Prediction & Analysis",
+    "type": "Project",
+    "stack": [
+      "Python",
+      "XGBoost",
+      "Streamlit"
+    ],
+    "text": "Built a predictive model on 4-year Stack Overflow salary data; compared 5 ML models (MAE, MSE, R²); deployed via Streamlit with pre/post-pandemic trend visualizations.",
+    "code_link": "https://github.com/wafafatima66/salary_prediction_visualization-python",
+    "createdAt": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "title": "Predicting Tags Using Multiclass Classification",
+    "type": "Project",
+    "stack": [
+      "Python",
+      "Scikit-learn",
+      "NLP"
+    ],
+    "text": "Built a multiclass text classification model to predict tags from textual data using NLP preprocessing, feature engineering, and machine learning algorithms for automated label prediction.",
+    "code_link": "https://github.com/wafafatima66/Predicting-tags-using-multiclass-classification",
+    "createdAt": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": 10,
+    "title": "Astronomical Tabular Data Visualization",
+    "type": "Project",
+    "stack": [
+      "Python",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn"
+    ],
+    "text": "Performed exploratory data analysis and visualization on astronomical tabular datasets, uncovering trends and patterns through statistical plots and visual analytics.",
+    "code_link": "https://github.com/wafafatima66/Astronomical-Tabular-Data-Visualization",
+    "createdAt": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": 11,
+    "title": "RNN-LSTM (TensorFlow)",
+    "type": "Project",
+    "stack": [
+      "Python",
+      "TensorFlow",
+      "LSTM"
+    ],
+    "text": "Developed a recurrent neural network using TensorFlow LSTM architecture for sequential data prediction, demonstrating time-series modeling and deep learning-based forecasting.",
+    "code_link": "https://github.com/wafafatima66/RNN-LSTM-TensorFlow",
+    "createdAt": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": 12,
+    "title": "Feedforward Neural Network for Diabetes Prediction",
+    "type": "Project",
+    "stack": [
+      "Python",
+      "TensorFlow",
+      "Neural Networks"
+    ],
+    "text": "Designed and trained a feedforward neural network for diabetes prediction using clinical data, applying supervised learning techniques for binary healthcare classification.",
+    "code_link": "https://github.com/wafafatima66/Feedforward-Neural-network-TensorFlow-Diabetes-Data",
+    "createdAt": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": 13,
+    "title": "Technical Skills",
+    "type": "Skills",
+    "skills": {
+      "Languages": [
+        "Python",
+        "PHP",
+        "JavaScript",
+        "SQL",
+        "HTML/CSS",
+        "C",
+        "C++"
+      ],
+      "ML / AI": [
+        "Scikit-learn",
+        "XGBoost",
+        "TensorFlow",
+        "Federated Learning",
+        "Explainable AI (SHAP, LIME)",
+        "Optuna",
+        "Pandas",
+        "NumPy"
+      ],
+      "Web Development": [
+        "Laravel",
+        "React.js",
+        "Next.js",
+        "WordPress",
+        "WooCommerce",
+        "Tailwind CSS",
+        "Figma"
+      ],
+      "Databases": [
+        "MySQL",
+        "MongoDB"
+      ],
+      "Tools & DevOps": [
+        "Git",
+        "GitHub",
+        "Streamlit",
+        "Postman",
+        "ClickUp",
+        "Jupyter Notebook",
+        "Google Search Console"
+      ],
+      "Research": [
+        "Federated Learning",
+        "Explainable AI",
+        "Graph Theory",
+        "HCI",
+        "UX Evaluation (SUS, Cognitive Walkthrough)"
+      ]
+    },
+    "createdAt": "2025-01-01T00:00:00Z"
   }
 ]
