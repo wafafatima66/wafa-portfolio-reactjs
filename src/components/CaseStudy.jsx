@@ -117,14 +117,15 @@ const CaseStudy = () => {
               </div>
             </div>
 
-            {project.link && (
+            {(project.live_url || project.link) && (
               <a
-                href={project.link}
+                href={project.live_url || project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 w-full py-4 bg-white text-black rounded-2xl font-bold text-sm hover:bg-purple-500 hover:text-white transition-all duration-300"
               >
-                <FaGithub /> View Source Code
+                {project.live_url ? <FaRocket /> : <FaGithub />}
+                {project.live_url ? "View Live Demo" : "View Source Code"}
               </a>
             )}
           </motion.div>

@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-// Fixed Fa6 Imports
 import {
   FaGithub,
-  FaArrowUpRightFromSquare, // Fixed name for FaExternalLinkAlt
+  FaArrowUpRightFromSquare,
   FaTerminal,
-  FaCode,
-  FaEye,
-  FaCodeBranch,
-  FaCubes,
   FaArrowRight,
 } from "react-icons/fa6";
 
-// Importing local JSON content
 import localProjects from "../constants/work_projects.json";
-import { getProjectImageUrl } from "../utils/supabaseImages";
 
 const FeaturedProject = () => {
-  // prioritize local JSON projects that are marked as featured
-  const featuredProjects = localProjects.filter(
-    (p) => p.featured || p.isFeatured,
+  const featuredProjects = useMemo(
+    () =>
+      [...localProjects]
+        .filter((p) => p.featured || p.isFeatured)
+        .sort((a, b) => {
+          const aTime = new Date(a.created_at || a.date || 0).getTime();
+          const bTime = new Date(b.created_at || b.date || 0).getTime();
+          return bTime - aTime;
+        }),
+    [],
   );
   const [selectedProject, setSelectedProject] = useState(
     featuredProjects[0] || null,
@@ -133,6 +133,17 @@ const FeaturedProject = () => {
                               <FaGithub size={18} />
                             </a>
                           )}
+                          {selectedProject.live_url && (
+                            <a
+                              href={selectedProject.live_url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="p-2.5 border border-white/10 hover:border-fuchsia-500 hover:text-fuchsia-500 transition-all"
+                              aria-label="Open live demo"
+                            >
+                              <FaArrowUpRightFromSquare size={16} />
+                            </a>
+                          )}
                           <Link
                             to={`/casestudy/${selectedProject.id}`}
                             className="px-5 py-2.5 bg-fuchsia-600 text-black font-black uppercase text-[10px] tracking-widest hover:bg-white transition-all"
@@ -149,11 +160,53 @@ const FeaturedProject = () => {
                             <img
                               src={`/projects/${selectedProject.image}`}
                               alt="Project Preview"
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                              className="w-full h-full object-cover transition-all duration-500"
                             />
                           ) : (
-                            <div className="w-full h-full bg-white/5 flex items-center justify-center font-mono text-[10px] text-gray-600">
-                              NO_VISUAL_DATA
+                            <div
+                              className="relative w-full h-full overflow-hidden"
+                              style={{
+                                background: `linear-gradient(135deg, ${selectedProject.theme || "#d946ef"}22 0%, #050505 55%, #000 100%)`,
+                              }}
+                            >
+                              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:34px_34px]" />
+                              <div
+                                className="absolute -top-12 -right-8 w-44 h-44 rounded-full blur-3xl opacity-60"
+                                style={{
+                                  backgroundColor:
+                                    selectedProject.theme || "#d946ef",
+                                }}
+                              />
+                              <div className="relative z-10 h-full flex flex-col justify-between p-6">
+                                <div className="flex items-center justify-between gap-4">
+                                  <span className="border border-white/15 bg-black/30 px-3 py-1 text-[9px] font-mono uppercase tracking-[0.25em] text-fuchsia-300">
+                                    Creative_Lab
+                                  </span>
+                                  {selectedProject.live_url && (
+                                    <a
+                                      href={selectedProject.live_url}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="inline-flex items-center gap-2 border border-white/15 bg-black/30 px-3 py-1 text-[9px] font-mono uppercase tracking-[0.2em] text-white transition-colors hover:border-fuchsia-500 hover:text-fuchsia-300"
+                                    >
+                                      Live_Site{" "}
+                                      <FaArrowUpRightFromSquare size={10} />
+                                    </a>
+                                  )}
+                                </div>
+                                <div>
+                                  <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-gray-400 mb-3">
+                                    Rapid Concept Build
+                                  </p>
+                                  <h4 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white max-w-lg">
+                                    {selectedProject.title ||
+                                      selectedProject.company}
+                                  </h4>
+                                  <p className="mt-4 max-w-xl text-sm text-gray-300 leading-relaxed">
+                                    {selectedProject.description}
+                                  </p>
+                                </div>
+                              </div>
                             </div>
                           )}
                         </div>
