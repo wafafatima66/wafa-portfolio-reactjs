@@ -85,14 +85,58 @@
     "company": "Tech Employee Salary Prediction",
     "date": "GitHub",
     "description": "Predictive modeling project that estimates tech employee salaries using Stack Overflow survey data. Leverages multiple machine learning models.",
-    "long_description": null,
-    "basic_info": null,
+    "long_description": "A predictive analytics project that estimates the annual salary of IT professionals using four consecutive years of Stack Overflow Developer Survey data. Five regression algorithms — Linear Regression, Decision Tree, Random Forest, Gradient Boosting, and XGBoost — were trained and compared, with hyperparameter tuning via Grid Search Cross-Validation and evaluation on MAE, MSE, and R² Score. The best-performing model was serialized and deployed behind a Streamlit app with two experiences: a real-time salary predictor that takes inputs like country, education level, developer type, tech stack, and years of experience, and a data visualization dashboard with yearly and year-over-year comparison reports covering pandemic-era salary trends.",
+    "basic_info": "*Project Type:* Personal ML Project  \n*Role:* ML Developer  \n*Dataset:* 4 years of Stack Overflow Developer Survey data  \n*Models Compared:* Linear Regression, Decision Tree, Random Forest, Gradient Boosting, XGBoost",
+    "story_sections": [
+      {
+        "heading": "The Problem With One-Size Salary Numbers",
+        "text": "Pay depends on a tangled mix of country, education, role, tech stack, company size, and experience — yet most public salary tools give one generic global average or a black-box number with no reasoning behind it. The goal: let a real developer, recruiter, or hiring manager enter an honest profile and get a data-backed estimate in seconds.",
+        "image": "salary-app-predict-form.png"
+      },
+      {
+        "heading": "Comparing Five Models Instead of Guessing One",
+        "text": "Four years of raw Stack Overflow Developer Survey exports were cleaned and merged into one modeling-ready dataset, then used to train and benchmark five regression algorithms — Linear Regression, Decision Tree, Random Forest, Gradient Boosting, and XGBoost — scored on MAE, MSE, and R² instead of picking a favorite upfront.",
+        "image": "salary-app-predict-result.png"
+      },
+      {
+        "heading": "Tuned, Packaged, and Made Usable by Anyone",
+        "text": "The strongest candidates were refined with Grid Search Cross-Validation, then packaged into a single serialized pipeline so the app only loads one file to serve a prediction. On top of it sits a Streamlit interface with 12 input fields, so a non-technical user gets an estimate without touching a line of code.",
+        "image": "salary-app-comparison-country.png"
+      },
+      {
+        "heading": "Beyond a Single Number: Trend Visibility",
+        "text": "A separate Data Visualization page breaks the same dataset down by country, developer type, education, and company size, with before/after views across the pandemic era — turning a one-shot prediction tool into something people can also use to understand the market, not just query it.",
+        "image": "salary-app-comparison-devtype.png"
+      },
+      {
+        "heading": "Built Like a Real ML Product, Not a Notebook",
+        "text": "The end-to-end scope — data cleaning, feature engineering, model comparison, hyperparameter tuning, and deployment — mirrors a real ML product lifecycle. Benchmarking five algorithms side by side, rather than defaulting to one, is the same model-selection discipline production ML teams use to justify a choice with evidence instead of intuition.",
+        "image": "salary-app-yearly-country-company.png"
+      },
+      {
+        "heading": "Why It Matters",
+        "text": "Because the pipeline is built on structured survey data with clear categorical and numerical features, the same approach is directly reusable for a client who wants a similar estimator built on their own compensation, performance, or pricing data — the hard part (cleaning, comparing, tuning, deploying) is already solved.",
+        "image": "salary-app-yearly-education-devtype.png"
+      },
+      {
+        "heading": "Under the Hood: Shared Cleaning, Thin Router",
+        "text": "app.py is a thin router — a sidebar selectbox switches between the Prediction page and the Visualization page, and a second radio switches Visualization between Yearly Report and Comparison Report. Every cleaning rule (normalizing country names, bucketing rare categories as \"Other\", converting experience ranges to numbers, mapping company size and education) lives once in my_function.py and is imported by both report.py and analysis.py, so the two visualization views can never drift out of sync with each other. predict.py doesn't retrain anything at request time — it loads one serialized joblib bundle containing the trained regressor plus a dedicated LabelEncoder for every categorical input, which is what keeps a prediction request down to a single fast lookup instead of a full pipeline run.",
+        "code": "salary-python/\n├── app.py                   # thin router: Prediction ↔ Visualization (Yearly / Comparison)\n├── predict.py               # loads saved_steps.joblib (model + 12 LabelEncoders), renders the form\n├── report.py                # Yearly Report — loads + cleans one year's CSV, @st.cache_data\n├── analysis.py              # Comparison Report — merges multiple years into Before/After views\n├── my_function.py           # shared cleaning helpers imported by report.py & analysis.py\n├── salary_prediction.ipynb  # model training & comparison notebook (5 regressors + GridSearchCV)\n├── saved_steps.joblib       # serialized {model, label encoders} — the one deployment artifact\n└── data/                    # per-year Stack Overflow survey CSVs (2018-2021)"
+      }
+    ],
     "link": "https://github.com/wafafatima66/salary_prediction_visualization-python",
     "image": "salary-prediction-ml.png",
     "technologies": ["Python", "Matplotlib", "Numpy", "Pandas", "Scikit-learn", "Streamlit"],
     "featured": false,
-    "theme": null,
-    "casestudy_images": [],
+    "theme": "#10b981",
+    "casestudy_images": [
+      "salary-app-predict-form.png",
+      "salary-app-predict-result.png",
+      "salary-app-comparison-country.png",
+      "salary-app-comparison-devtype.png",
+      "salary-app-yearly-country-company.png",
+      "salary-app-yearly-education-devtype.png"
+    ],
     "created_at": "2025-10-01 17:51:40"
   },
   {
@@ -101,14 +145,58 @@
     "company": "Notes Management System",
     "date": "GitHub",
     "description": "A full-featured Notes Management System (CMS) built with Laravel allowing administrators to manage content from a responsive dashboard.",
-    "long_description": "The Notes Management System (CMS) is a comprehensive application built with Laravel, designed to streamline content management. It provides a centralized dashboard where users can efficiently manage pages, posts, and roles.",
-    "basic_info": "*Project Duration:* 3 Months *Role:* Frontend Developer *Project Type:* Client Project",
+    "long_description": "DOCUA is a notes management system built with Laravel, designed to streamline content organization for admin teams. Notes live inside a nested folder structure (categories and sub-categories), each one authored in a full rich-text editor with formatting, tables, links, images, and video embeds, and every note is tagged with the folder path it belongs to for fast scanning at a glance.",
+    "basic_info": "*Project Duration:* 3 Months  \n*Role:* Frontend Developer  \n*Project Type:* Client Project  \n*Core Model:* Nested folders (Category → Sub-Category) with rich-text notes",
+    "story_sections": [
+      {
+        "heading": "A Clear Home for Every Note",
+        "text": "Instead of one flat list, notes live inside folders — Category 1, Category 2, Category 3 — with an \"All Notes\" view and folder/note search up top, so a team can organize content the way they actually think about it instead of scrolling a single long feed.",
+        "image": "docua-folders-overview.png"
+      },
+      {
+        "heading": "Folders Within Folders",
+        "text": "Categories expand into sub-categories (Category 1 → Sub Category 1), and the breadcrumb-style header always shows exactly where you are in the tree. This nested structure is what lets the system scale from a handful of notes to a real knowledge base without becoming unmanageable.",
+        "image": "docua-subcategory-nav.png"
+      },
+      {
+        "heading": "A Real Rich-Text Editor, Not a Textarea",
+        "text": "Every note gets a full WYSIWYG toolbar — bold, underline, font and color, ordered/unordered lists, alignment, tables, links, images, video embeds, a distraction-free fullscreen mode, and raw HTML view — plus metadata on who created it and when it was last modified.",
+        "image": "docua-note-editor.png"
+      },
+      {
+        "heading": "Every Note Tagged by Where It Lives",
+        "text": "The notes list shows each entry as a card with its date, a content preview, and tags for its exact Category / Sub-Category path, so switching folders never means losing context. Folder actions (add sub-folder, edit, delete) are one right-click away, and the header carries settings, notifications, and the signed-in admin.",
+        "image": "docua-notes-list-tags.png"
+      },
+      {
+        "heading": "Managing Structure on the Fly",
+        "text": "New sub-folders can be created in-place through a lightweight modal — pick the parent folder, name the child, done — without leaving the note you're working on or reloading the page.",
+        "image": "docua-add-subfolder-modal.png"
+      },
+      {
+        "heading": "Built to Feel Instant",
+        "text": "Every action — creating a note, adding a folder, updating content — confirms itself immediately with inline toast feedback, and the notes list updates in place. For an admin managing dozens of notes a day, that immediate confirmation is what makes the tool feel trustworthy rather than uncertain.",
+        "image": "docua-note-created-success.png"
+      },
+      {
+        "heading": "Under the Hood: Clean Laravel MVC",
+        "text": "The nested folder tree isn't hardcoded — the Folder model is self-referencing (main_folder_id + a layer field), so a folder can point to a parent folder of the same type. That one relationship is what lets Category 1 → Sub Category 1 exist without a separate database table or a different code path. Notes, Comments, and Notifications all hang off that same Folder/Note backbone through standard Eloquent relationships, and every feature — folders, sub-folders, notes, comments, users — gets its own controller and its own resource-style routes rather than one giant catch-all controller.",
+        "code": "app/\n├── Models/\n│   ├── Folder.php        # self-referencing via main_folder_id — powers nested categories\n│   ├── Note.php          # belongsTo Folder, hasMany Comment\n│   ├── Comment.php\n│   └── User.php\n├── Http/Controllers/\n│   ├── FolderController.php\n│   ├── SubFolderController.php\n│   ├── NotesController.php\n│   ├── CommentsController.php\n│   └── UserController.php\n└── Notifications/\n    └── CommentNotification.php   # powers the notification bell\n\nresources/views/\n├── folder/        (index, add, edit, delete, search)\n├── sub-folder/    (index, add, edit, delete)\n├── notes/         (index, show, delete, top-rightnav)\n├── users/         (index, create, edit, delete, show)\n└── layouts/       (app, nav-aside, header, footer, flash)\n\nroutes/web.php     # one RESTful-style route group per resource, auth-guarded"
+      }
+    ],
     "link": "https://github.com/wafafatima66/notes-management-system-laravel",
     "image": "notes-management.png",
     "technologies": ["Laravel", "Mysql", "JavaScript", "Bootstrap"],
     "featured": true,
     "theme": "#4f6597",
-    "casestudy_images": [],
+    "casestudy_images": [
+      "docua-folders-overview.png",
+      "docua-subcategory-nav.png",
+      "docua-note-editor.png",
+      "docua-notes-list-tags.png",
+      "docua-add-subfolder-modal.png",
+      "docua-note-created-success.png"
+    ],
     "created_at": "2025-10-01 17:51:40"
   },
   {
@@ -117,14 +205,56 @@
     "company": "HR Management System",
     "date": "GitHub",
     "description": "Full-featured Human Resource Management System built using raw PHP and MySQL. Supports multiple user roles and comprehensive modules.",
-    "long_description": "I developed a full-featured HRMS spanning three years, handling frontend, backend, and database as a solo developer. It includes modules for leave tracking, performance, and hiring.",
-    "basic_info": "*Project Duration:* 3 Years *Role:* Full-Stack Developer *Project Type:* Solo Client Project",
+    "long_description": "A full-featured Human Resource Management System built solo over three years for a regional hospital, in raw PHP and MySQL with no framework underneath. It covers the employee 201-file, government Personal Data Sheet (PDS) records, hour-level leave-credit accrual, performance evaluation, recruitment and hiring, and Learning & Development — all backed by a 42-table MySQL schema and four role levels (Super Administrator, Agency Head, Division Head, Employee).",
+    "basic_info": "*Project Duration:* 3 Years  \n*Role:* Full-Stack Developer  \n*Project Type:* Solo Client Project  \n*Scale:* 42-table schema, 8 major modules, 4 user roles",
+    "story_sections": [
+      {
+        "heading": "A Digital 201 File for Every Employee",
+        "text": "Every employee gets a profile page modeled directly on a real government 201 file — photo, position, employee ID, an active/inactive toggle, and tabs for Agency Profile, PDS, Leave Ledger, and File 201, with folders for PDS, IPCR, SALN, and Certificates that admins can add to on the fly.",
+        "image": "hr-employee-201file.png"
+      },
+      {
+        "heading": "A Live Headcount, Not a Spreadsheet",
+        "text": "The employee list is backed by search, date filters, and pagination over hundreds of records — the hospital this was built for has 475 employees across 47 pages — with a dashboard breaking headcount down by employment type (Permanent, MOA/Residency, Job Order) and gender at a glance.",
+        "image": "hr-employee-dashboard-list.png"
+      },
+      {
+        "heading": "Leave, Tracked Down to the Hour",
+        "text": "The leave form you see is the front end of a dedicated accrual engine underneath: vacation and sick balances are computed to the hour and minute, carried forward year to year, and summarized month-by-month per leave type (vacation, sick, special privilege, mandatory, without pay) — none of which shows up in a single static screenshot, but all of which lives in code.",
+        "image": "hr-leave-credits.png"
+      },
+      {
+        "heading": "Training & Development, Tracked End to End",
+        "text": "Learning & Development runs as its own pipeline: post a training with its dates, hours, venue, and sponsors, invite employees to it, and the system rolls that up into per-employee training summaries and monthly L&D reports — not just a form, but a record of who was trained on what, and when.",
+        "image": "hr-training-invitation.png"
+      },
+      {
+        "heading": "Org Structure You Can Actually Manage",
+        "text": "Departments and offices aren't seeded once and forgotten — admins can add departments, add offices under them, and assign a division head or office/unit supervisor directly from the UI, so the org chart stays current as the hospital's structure changes.",
+        "image": "hr-departments-offices.png"
+      },
+      {
+        "heading": "What the Screenshots Don't Show",
+        "text": "Behind Hiring & Appointment sits a full pipeline — create a position (hiring_item), publish it (hiring_publication) with applicant tracking, convert the successful candidate to a permanent or contractual appointment, and later process a resignation or termination (hiring_resignation) — none of which is a single screen, but a chain of linked ones. Reports Management is backed by roughly twenty dedicated Excel export scripts: leave ledger, leave credits, performance summary, service record, PDS report, publication, daily accomplishment report, and more — the kind of paperwork a government HR office is actually audited on."
+      },
+      {
+        "heading": "Under the Hood: No Framework, One Schema Holding It Together",
+        "text": "There's no MVC framework here — every module is its own folder with an index.php entry point plus small AJAX/modal partner files, and every query runs through a single raw mysqli connection in includes/conn.php. What keeps 8 modules coherent is the database: 42 tables, where the emp_* tables map directly onto the sections of a real government Personal Data Sheet (education, civil service eligibility, work experience, voluntary work, training, family background), and a separate leave_credits / leave_credits_year / leave_credits_result trio drives the hour-level accrual and year-to-year balance carryover.",
+        "code": "hr-system/\n├── includes/\n│   ├── conn.php                 # single raw mysqli connection — no ORM, no framework\n│   ├── header.php, nav-aside.php, nav-top.php   # shared layout partials\n│   └── pagination_ul.php, delete_modal.php, export_excel.php\n├── emp_mang/                    # employee 201-file: profile, file folders, PDS\n│   ├── emp_profile_parts/       # personal, family, education, civil_service,\n│   │                            #   work_experience, voluntary_work, references...\n│   └── leave/                   # credits.php, insert_hour.php, insert_minute.php,\n│                                 #   forward_balance.php, year_credits_config.php\n├── hiring_item/  hiring_publication/  hiring_resignation/\n│                                # position → publication → applicant → appointment → termination\n├── learning/  learning_post/  learning_summary/  ld_summary/\n│                                # training posts, per-employee summaries, monthly reports\n├── performance_mang/            # daily accomplishment + performance file per employee\n├── user_mang/                   # users, departments, offices, role assignment\n└── export_excel_parts/           # ~20 Excel report generators (leave ledger, PDS,\n                                  #   service record, performance review...)\n\nhrsystem.sql   — 42 tables, no migrations; schema mirrors the government\n                 Personal Data Sheet (emp_education, emp_civil_service,\n                 emp_work_experience, emp_voluntary_work, emp_training...)"
+      }
+    ],
     "link": "https://github.com/wafafatima66/Human-resourse-management-system-php-mysql",
     "image": "hr-system-php.png",
     "technologies": ["PHP", "Bootstrap", "JavaScript", "Jquery", "Ajax", "Mysql"],
     "featured": true,
     "theme": "#FC7E43",
-    "casestudy_images": ["hr2.png", "hr3.png", "hr4.png", "hr5.png", "hr6.png", "hr7.png"],
+    "casestudy_images": [
+      "hr-employee-201file.png",
+      "hr-employee-dashboard-list.png",
+      "hr-leave-credits.png",
+      "hr-training-invitation.png",
+      "hr-departments-offices.png"
+    ],
     "created_at": "2025-10-01 17:51:40"
   },
   {
