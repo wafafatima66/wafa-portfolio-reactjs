@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -5,26 +6,22 @@ import {
   FaLocationDot,
   FaClockRotateLeft,
   FaArrowUpRightFromSquare,
+  FaFolderOpen,
+  FaPlay,
 } from "react-icons/fa6";
 import workExperienceData from "../constants/work_experience.json";
 
 const WorkExperienceDetail = () => {
   const { id } = useParams();
   const experience = workExperienceData.find((e) => e.id === Number(id));
-  const details = experience?.details || {};
-  const responsibilities = Array.isArray(details.responsibilities)
-    ? details.responsibilities
+  const storySections = Array.isArray(experience?.story_sections)
+    ? experience.story_sections
     : [];
-  const technicalContributions = Array.isArray(details.technical_contributions)
-    ? details.technical_contributions
-    : [];
-  const toolsAndTechnologies = Array.isArray(details.tools_and_technologies)
-    ? details.tools_and_technologies
-    : [];
-  const impact = Array.isArray(details.impact) ? details.impact : [];
-  const keyStrengths = Array.isArray(details.key_strengths)
-    ? details.key_strengths
-    : [];
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  useEffect(() => {
+    setIsVideoPlaying(false);
+  }, [id]);
 
   if (!experience) {
     return (
@@ -113,101 +110,6 @@ const WorkExperienceDetail = () => {
                 >
                   {experience.description}
                 </motion.p>
-
-                {(responsibilities.length > 0 ||
-                  technicalContributions.length > 0 ||
-                  toolsAndTechnologies.length > 0 ||
-                  impact.length > 0 ||
-                  keyStrengths.length > 0) && (
-                  <div className="mt-10 grid grid-cols-1 gap-6">
-                    {responsibilities.length > 0 && (
-                      <div className="relative border border-white/10 bg-white/[0.02] p-6 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500/30" />
-                        <p className="text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                          Responsibilities
-                        </p>
-                        <ul className="space-y-2 text-gray-300 text-lg">
-                          {responsibilities.map((item, idx) => (
-                            <li key={idx} className="flex gap-3">
-                              <span className="text-fuchsia-400 mt-1">▸</span>
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {technicalContributions.length > 0 && (
-                      <div className="relative border border-white/10 bg-white/[0.02] p-6 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500/30" />
-                        <p className="text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                          Technical_Contributions
-                        </p>
-                        <ul className="space-y-2 text-lg text-gray-300">
-                          {technicalContributions.map((item, idx) => (
-                            <li key={idx} className="flex gap-3">
-                              <span className="text-fuchsia-400 mt-1">▸</span>
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {toolsAndTechnologies.length > 0 && (
-                      <div className="relative border border-white/10 bg-white/[0.02] p-6 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500/30" />
-                        <p className="text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                          Tools_And_Technologies
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {toolsAndTechnologies.map((tool, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-black/60 border border-white/10 text-white font-mono text-[11px] uppercase hover:border-fuchsia-500/50 transition-colors"
-                            >
-                              {tool}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {impact.length > 0 && (
-                      <div className="relative border border-white/10 bg-white/[0.02] p-6 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500/30" />
-                        <p className="text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                          Impact
-                        </p>
-                        <ul className="space-y-2 text-lg text-gray-300">
-                          {impact.map((item, idx) => (
-                            <li key={idx} className="flex gap-3">
-                              <span className="text-fuchsia-400 mt-1">▸</span>
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {keyStrengths.length > 0 && (
-                      <div className="relative border border-white/10 bg-white/[0.02] p-6 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-[1px] bg-fuchsia-500/30" />
-                        <p className="text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em] mb-4">
-                          Key_Strengths
-                        </p>
-                        <ul className="space-y-2 text-lg text-gray-300">
-                          {keyStrengths.map((item, idx) => (
-                            <li key={idx} className="flex gap-3">
-                              <span className="text-fuchsia-400 mt-1">▸</span>
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -235,9 +137,116 @@ const WorkExperienceDetail = () => {
                   Open_Company_Link <FaArrowUpRightFromSquare />
                 </a>
               )}
+
+              {experience.related_case_study && (
+                <Link
+                  to={`/casestudy/${experience.related_case_study}`}
+                  className="w-full inline-flex items-center justify-center gap-3 border border-fuchsia-500/50 text-fuchsia-300 px-6 py-4 font-black uppercase text-[10px] tracking-[0.3em] hover:bg-fuchsia-500 hover:text-black hover:border-fuchsia-500 transition-all"
+                >
+                  <FaFolderOpen /> View_The_Platform
+                </Link>
+              )}
             </div>
           </div>
         </div>
+
+        {/* Video walkthrough — click-to-play */}
+        {experience.video && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 max-w-4xl mx-auto"
+          >
+            <div
+              className="relative w-full aspect-video border border-white/10 shadow-2xl overflow-hidden bg-black group cursor-pointer"
+              onClick={() => !isVideoPlaying && setIsVideoPlaying(true)}
+            >
+              {isVideoPlaying ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${experience.video}?autoplay=1`}
+                  title={`${experience.title} — video walkthrough`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <img
+                    src={`https://img.youtube.com/vi/${experience.video}/maxresdefault.jpg`}
+                    alt={`${experience.title} — video walkthrough`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-fuchsia-600 flex items-center justify-center shadow-[0_0_30px_#d946ef] group-hover:scale-110 transition-transform duration-300">
+                      <FaPlay className="text-black text-2xl ml-1" />
+                    </div>
+                  </div>
+                  <span className="absolute bottom-4 left-4 text-fuchsia-400 font-mono text-[10px] font-black uppercase tracking-[0.3em]">
+                    Watch_The_Walkthrough
+                  </span>
+                </>
+              )}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Story: alternating short text + full image, mirroring the project case studies */}
+        {storySections.length > 0 && (
+          <div className="mt-24 space-y-24 max-w-6xl mx-auto">
+            {storySections.map((section, i) => (
+              <div key={i}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                  className="max-w-2xl mx-auto text-center mb-10"
+                >
+                  {section.heading && (
+                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-5">
+                      {section.heading}
+                    </h3>
+                  )}
+                  {section.text && (
+                    <p className="text-gray-400 text-lg leading-relaxed">
+                      {section.text}
+                    </p>
+                  )}
+                  {section.tags && section.tags.length > 0 && (
+                    <div className="flex flex-wrap justify-center gap-2 mt-2">
+                      {section.tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-white/[0.03] border border-white/10 text-gray-300 font-mono text-[11px] uppercase tracking-wide"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+
+                {section.image && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="border border-white/10 shadow-2xl overflow-hidden"
+                  >
+                    <img
+                      src={`/projects/${section.image}`}
+                      alt={section.heading || experience.title}
+                      className="w-full h-auto"
+                    />
+                  </motion.div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

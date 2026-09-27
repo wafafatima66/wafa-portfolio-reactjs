@@ -2,47 +2,55 @@
 {
   "id": 1,
   "date": "Mar 2025 - Present",
-  "title": "Project Manager",
+  "title": "Technical Project Manager",
   "location": "Loud Spectrum, CA, USA (Remote)",
   "description": "Technical Project Manager leading end-to-end delivery of an e-commerce platform, combining strategy, execution, and hands-on technical expertise.",
-   "details": {
-    "responsibilities": [
-      "Lead end-to-end project delivery for a complex e-commerce platform",
-      "Manage and coordinate a cross-functional team of 6–7 developers, designers, and marketers",
-      "Translate business requirements into actionable technical and operational plans",
-      "Define project timelines, assign tasks, and track progress using ClickUp",
-      "Facilitate team meetings and ensure alignment across stakeholders",
-      "Act as the primary point of contact for client communication and reporting",
-      "Manage risks proactively and resolve blockers to maintain delivery timelines"
-    ],
-    "technical_contributions": [
-      "Lead technical SEO strategy and implementation",
-      "Contribute directly to code when needed as a developer",
-      "Oversee and optimize UX decisions based on user behavior and performance",
-      "Conduct QA testing to ensure high-quality releases",
-      "Bridge communication between technical and non-technical teams"
-    ],
-    "tools_and_technologies": [
-      "ClickUp",
-      "GitHub",
-      "Figma",
-      "Google Search Console",
-      "NextJs",
-      "MongoDB"
-    ],
-    "impact": [
-      "Reduced project delivery time through improved planning and coordination",
-      "Accelerated bug resolution by streamlining communication and QA processes",
-      "Improved website performance and visibility through technical SEO initiatives",
-      "Enhanced internal workflows by identifying and resolving process inefficiencies"
-    ],
-    "key_strengths": [
-      "Strong technical background as a developer",
-      "Ability to combine strategy with execution",
-      "Cross-functional leadership and communication",
-      "Problem-solving and process optimization"
-    ]
-  },
+  "video": "cmcyyW1-htQ",
+  "story_sections": [
+    {
+      "heading": "The Stack",
+      "tags": ["ClickUp", "GitHub", "Figma", "Google Search Console", "NextJs", "MongoDB", "Brevo"]
+    },
+    {
+      "heading": "Keeping the Platform Live Through a Full Rebrand",
+      "text": "This role started right around when the company repositioned itself from Medical Terpenes to Loud Spectrum — new identity, new catalog structure, new domain. Keeping the storefront stable and SEO intact through that transition (old links still redirect cleanly to the new domain today) was as much my responsibility as any new feature work.",
+      "image": "loudspectrum-product-lines.png"
+    },
+    {
+      "heading": "Client & Requirements Management",
+      "text": "I serve as the primary liaison between the client and the dev team for loudspectrum.com, translating business requests into clear, buildable tasks. When a requirement comes in underspecified, I flag it for discussion before it gets assigned — not after — so the team never ends up building against ambiguous scope.",
+      "image": "loudspectrum-hero.png"
+    },
+    {
+      "heading": "Sprint & Task Management (ClickUp)",
+      "text": "I own the ClickUp workspace end to end, structured by monthly sprint folders and workstream — site maintenance, the Brevo CRM integration, and the Wholesale App. I prioritize and assign tasks across the dev team and track every one of them from To Do through QA Ready to Production Deployed."
+    },
+    {
+      "heading": "Release Management & QA",
+      "text": "I maintain a full release log for every production deployment — branch, changes, PR link, deploy type, and outcome. And I own the bug tracker from report to resolution: assigning severity (P1/P2), tracking status, and linking each bug to its fixing PR."
+    },
+    {
+      "heading": "Meeting Cadence & Follow-Through",
+      "text": "I run and log the recurring syncs with the dev team and client stakeholders, documenting agenda, attendees, and duration for each one. Every decision that comes out of a meeting gets converted into a tracked ClickUp task, so nothing agreed on in a call quietly disappears."
+    },
+    {
+      "heading": "Technical SEO Oversight",
+      "text": "I direct technical SEO fixes — schema corrections, sitemap and canonical cleanup, meta title fixes, redirects — through the sprint roadmap, and validate their impact in Google Search Console. That ownership has driven a sustained upward trend in organic search clicks.",
+      "image": "loudspectrum-quality-lab.png"
+    },
+    {
+      "heading": "Cross-Functional Coordination",
+      "text": "Site maintenance, the Brevo CRM integration, and a new wholesale ordering feature all run concurrently, and I manage developer bandwidth against client priorities so no workstream stalls while another one is getting attention."
+    },
+    {
+      "heading": "What Changed Because I Was There",
+      "text": "Delivery timelines got shorter once planning and coordination tightened up, and bugs get resolved faster because communication between technical and non-technical people doesn't have to go through three rounds of clarification anymore."
+    },
+    {
+      "heading": "Where I'm Strongest",
+      "text": "What makes this role work is having a real technical background underneath the project-management title — I'm not translating secondhand. That lets me combine strategy with execution instead of choosing one, lead across disciplines without losing anyone in translation, and treat problem-solving and process optimization as part of the job, not an occasional escalation."
+    }
+  ],
   "link": "https://loudspectrum.com/en",
   "sequence_order": 6
 },
@@ -52,44 +60,76 @@
   "title": "WordPress Developer | eCommerce Developer",
   "location": "Medical Terpenes, CA, USA (Remote)",
   "description": "WordPress and eCommerce developer responsible for full-site development, performance optimization, and backend ownership of a high-traffic WooCommerce-based platform.",
-  "details": {
-    "responsibilities": [
-      "Resolved 200+ WordPress issues including bugs, UI fixes, plugin conflicts, and checkout-related problems",
-      "Developed custom code snippets and theme-level modifications to extend WordPress functionality",
-      "Worked extensively with WooCommerce and Elementor to build and maintain eCommerce features",
-      "Owned backend development responsibilities, ensuring system stability and functionality",
-      "Implemented performance optimizations to improve site speed and user experience",
-      "Maintained and enhanced core website features across both desktop and mobile platforms"
-    ],
-    "technical_contributions": [
-      "Built custom WordPress functionality using PHP-based theme modifications and code snippets",
-      "Handled WooCommerce eCommerce flows including product pages and checkout experience",
-      "Improved website performance through optimization of assets, structure, and rendering efficiency",
-      "Resolved plugin conflicts and ensured compatibility across multiple WordPress extensions",
-      "Worked directly on backend systems and logic to support business requirements"
-    ],
-    "tools_and_technologies": [
-      "WordPress",
-      "WooCommerce",
-      "Elementor",
-      "Custom PHP Snippets",
-      "Theme Customization",
-      "Plugin Management"
-    ],
-    "impact": [
-      "Resolved 200+ critical website issues improving overall platform stability",
-      "Improved site performance and responsiveness across devices through optimization work",
-      "Enhanced eCommerce user experience by fixing checkout flow and functional issues",
-      "Ensured continuous platform reliability through proactive bug fixing and maintenance"
-    ],
-    "key_strengths": [
-      "Strong hands-on WordPress development expertise",
-      "Backend ownership and problem-solving capability",
-      "eCommerce system understanding (WooCommerce)",
-      "Performance optimization and debugging skills",
-      "Ability to work independently on complex production systems"
-    ]
-  },
+  "video": "JUW50gOA88A",
+  "story_sections": [
+    {
+      "heading": "The Stack",
+      "tags": ["WordPress", "WooCommerce", "Elementor", "Custom PHP Snippets", "Theme Customization", "Plugin Management"]
+    },
+    {
+      "heading": "200+ Fixes on a Live WooCommerce Storefront",
+      "text": "This was hands-on backend ownership: resolving 200-plus WordPress issues over the role, from plugin conflicts to checkout-flow bugs, on a live store that couldn't afford extended downtime. Note: the company has since rebranded from Medical Terpenes to Loud Spectrum, so the storefront shown here reflects the site's current look, not how it appeared during this role.",
+      "image": "loudspectrum-hero.png"
+    },
+    {
+      "heading": "Full-Stack WooCommerce Store Ownership",
+      "text": "I built and maintained the entire WooCommerce backend for medicalterpenes.com — product catalog, order management, tax and shipping configuration — on the Astra theme with Elementor and Elementor Pro as the page-building layer.",
+      "image": "loudspectrum-product-lines.png"
+    },
+    {
+      "heading": "Plugin Architecture & Third-Party Integrations",
+      "text": "I selected, configured, and maintained a 62-plugin stack spanning payments (WooPayments, WooCommerce Square, a direct credit card gateway, and Zelle bank-to-bank checkout), shipping (ShipStation), order tooling (Custom Order Numbers, Advanced Order Export), and wholesale pricing (Whols Pro for tiered pricing)."
+    },
+    {
+      "heading": "Marketing & CRM Integrations",
+      "text": "I connected and maintained the store's marketing stack — Brevo, Mailchimp, and HubSpot for email marketing, Convertful and Poptin for on-site conversion pop-ups, and a suite of coupon and discount plugins for promotional logic."
+    },
+    {
+      "heading": "Technical SEO & Structured Data",
+      "text": "I implemented technical SEO through Yoast SEO Premium and structured data markup through Schema."
+    },
+    {
+      "heading": "Performance & Caching",
+      "text": "I implemented LiteSpeed Cache for page-level performance optimization on the LiteSpeed/SiteGround hosting stack."
+    },
+    {
+      "heading": "Security",
+      "text": "I deployed Wordfence Security — firewall, malware scanning, brute-force protection — alongside SiteGround's Security Optimizer."
+    },
+    {
+      "heading": "Backups & Migration",
+      "text": "I managed backups and environment migrations using All-in-One WP Migration and Backup."
+    },
+    {
+      "heading": "Custom Functionality & Code-Level Work",
+      "text": "I implemented custom PHP functionality and tracking scripts through Code Snippets and Header Footer Code Manager."
+    },
+    {
+      "heading": "Internationalization",
+      "text": "I set up GTranslate to make the storefront multilingual, extending the site's reach beyond a single-language audience."
+    },
+    {
+      "heading": "Ongoing Site Maintenance & Update Management",
+      "text": "I owned the plugin and theme update lifecycle, checking compatibility before every major upgrade rather than updating blind on a live store."
+    },
+    {
+      "heading": "Transactional Email Reliability",
+      "text": "I configured WP Mail SMTP so order confirmations, password resets, and other transactional emails delivered reliably, instead of relying on default PHP mail."
+    },
+    {
+      "heading": "The Site That Became Loud Spectrum",
+      "text": "By early 2025, this same platform relaunched as Loud Spectrum with a new identity and structure — and I moved into the Technical Project Manager role for that next chapter, rather than starting over somewhere new. The continuity mattered: nobody had to onboard a new person mid-rebrand.",
+      "image": "loudspectrum-quality-lab.png"
+    },
+    {
+      "heading": "Impact",
+      "text": "Resolving 200-plus issues over the role meant the platform got measurably more stable, not just patched. Performance and responsiveness improved across both desktop and mobile, checkout-flow fixes directly improved the buying experience, and proactive maintenance kept the site reliable rather than reactive — fewer fires, because fewer things were left to catch fire."
+    },
+    {
+      "heading": "Where I'm Strongest",
+      "text": "This role built real backend ownership — not just following tickets, but understanding WooCommerce well enough to debug it, optimize it, and trust my own judgment on a live production system without someone checking my work first."
+    }
+  ],
   "link": "http://medicalterpenes.com/",
   "sequence_order": 5
 },
@@ -99,88 +139,108 @@
   "title": "Software Developer",
   "location": "Docua, Japan (Remote)",
   "description": "Full-stack developer contributing to a multi-user SaaS note management system, focusing on frontend-backend integration, API testing, and quality assurance in a small development team.",
-  "details": {
-    "responsibilities": [
-      "Worked on a multi-user SaaS note management system for end users",
-      "Implemented frontend-backend integration using Laravel-based architecture",
-      "Developed and tested internal APIs to ensure system functionality",
-      "Performed manual QA testing and reported bugs for production stability",
-      "Collaborated with a small development team and executed assigned tasks",
-      "Contributed to improving system reliability through continuous testing and fixes"
-    ],
-    "technical_contributions": [
-      "Worked with Laravel-based backend systems for API integration",
-      "Tested and validated internal APIs using Postman",
-      "Supported frontend-backend data flow integration",
-      "Identified and reported bugs during QA testing cycles",
-      "Ensured correct data handling between client-side and server-side systems"
-    ],
-    "tools_and_technologies": [
-      "Laravel",
-      "Postman",
-      "REST APIs",
-      "Manual Testing",
-      "Bug Reporting Systems"
-    ],
-    "impact": [
-      "Improved system reliability through consistent API testing and bug reporting",
-      "Ensured stable frontend-backend integration for a multi-user SaaS platform",
-      "Contributed to smoother end-user experience through QA-driven improvements",
-      "Supported development cycle efficiency in a small agile team environment"
-    ],
-    "key_strengths": [
-      "Full-stack integration understanding (frontend + backend)",
-      "API testing and validation skills",
-      "Attention to detail in QA and bug reporting",
-      "Ability to work in small agile teams",
-      "Experience with SaaS-based multi-user systems"
-    ]
-  },
+  "related_case_study": 7,
+  "story_sections": [
+    {
+      "heading": "The Stack",
+      "tags": ["Laravel", "Postman", "REST APIs", "Manual Testing", "Bug Reporting Systems"]
+    },
+    {
+      "heading": "Wiring Frontend to a Laravel Backend",
+      "text": "This is where DOCUA — the nested-folder notes system in my project case studies — actually got built. My part was the frontend-backend integration: making sure the folder tree, the note editor, and the data underneath it stayed in sync as the Laravel side evolved.",
+      "image": "docua-folders-overview.png"
+    },
+    {
+      "heading": "Testing the API Before Users Ever Would",
+      "text": "A lot of this role was Postman, not a keyboard shortcut away from the editor — validating internal APIs, checking edge cases in the request/response cycle, and reporting bugs before they reached a real user's screen. Small team, so QA wasn't a separate department; it was part of shipping.",
+      "image": "docua-note-editor.png"
+    },
+    {
+      "heading": "Impact",
+      "text": "Consistent API testing and bug reporting made the platform measurably more reliable, and the frontend-backend integration stayed stable as the Laravel side kept evolving underneath it. QA-driven fixes translated into a smoother experience for the people actually using DOCUA day to day, and in a small team, catching issues early kept the whole development cycle moving instead of stalling on rework."
+    },
+    {
+      "heading": "Where I'm Strongest",
+      "text": "What I took from this role was real full-stack fluency — understanding both sides of the frontend-backend boundary well enough to test it properly, not just build one half and hope. That, plus the attention to detail QA demands and comfort working in a small, fast-moving team, is exactly what a SaaS multi-user product needs from its developers."
+    },
+    {
+      "heading": "See the Platform in Depth",
+      "text": "The full breakdown of how DOCUA's nested folders, rich-text editor, and notification system actually work under the hood is in the case study below."
+    }
+  ],
   "link": "#",
   "sequence_order": 4
 },
  {
   "id": 4,
   "date": "Nov 2020 - Jan 2022",
-  "title": "PHP Developer",
+  "title": "Full Stack Developer",
   "location": "Nitibdev IT Solutions, Philippines (Remote)",
-  "description": "PHP Developer working on enterprise internal systems, building an HR Management System using the LAMP stack to automate workflows and improve operational efficiency.",
-  "details": {
-    "responsibilities": [
-      "Designed and developed an HR Management System for internal organizational use",
-      "Built backend functionality using PHP within a LAMP stack environment",
-      "Implemented core HR workflows including employee data management and record handling",
-      "Deployed and maintained system features to support business operations",
-      "Worked on system improvements to reduce manual processes and improve usability"
-    ],
-    "technical_contributions": [
-      "Developed backend modules using PHP and MySQL within a LAMP stack architecture",
-      "Designed and implemented database structures for HR-related data management",
-      "Built and deployed server-side application logic for internal enterprise workflows",
-      "Improved system automation to reduce manual HR data processing",
-      "Supported system stability through bug fixes and iterative enhancements"
-    ],
-    "tools_and_technologies": [
-      "PHP",
-      "MySQL",
-      "LAMP Stack",
-      "Apache",
-      "Linux Server Environment"
-    ],
-    "impact": [
-      "Automated HR workflows, reducing manual data entry significantly",
-      "Improved operational efficiency through centralized HR system implementation",
-      "Enhanced data accuracy and consistency across HR processes",
-      "Delivered a scalable internal system supporting organizational operations"
-    ],
-    "key_strengths": [
-      "Strong foundation in backend development with PHP",
-      "Experience building enterprise internal systems",
-      "Database design and system architecture understanding",
-      "Ability to optimize manual workflows through automation",
-      "Experience working in structured remote development environments"
-    ]
-  },
+  "description": "Full Stack Developer who designed and built a modular Human Resource Information System (HRIS) from scratch for a regional hospital, owning everything from database schema to UI across seven independent functional modules.",
+  "related_case_study": 8,
+  "story_sections": [
+    {
+      "heading": "The Stack",
+      "tags": ["PHP", "MySQL", "LAMP Stack", "Apache", "Linux Server Environment", "Laravel Herd"]
+    },
+    {
+      "heading": "System Architecture & Module Design",
+      "text": "I designed and built this HRIS from scratch as a set of independent functional modules — Employee Management, Leave Management, Performance Management, Learning & Development, Hiring & Appointment, Reports Management, and User Management — each with its own routed directory (/emp_mang/, /leave_mang/, /performance_mang/, and so on) and its own PHP/MySQL logic, all unified under one dashboard shell.",
+      "image": "hr-employee-201file.png"
+    },
+    {
+      "heading": "Employee Master Data & Lifecycle Management",
+      "text": "The Employee Management module covers the full employee record lifecycle: employee IDs, demographic data, position, office/division assignment, and employment classification — Permanent, MOA/Residency, Job Order — with live dashboard tiles breaking headcount down by employment type and gender.",
+      "image": "hr-employee-dashboard-list.png"
+    },
+    {
+      "heading": "Leave Management (Civil-Service-Compliant Leave Crediting)",
+      "text": "I built a leave filing and crediting system matching real Civil Service leave-card logic: applications capture employee, office, leave type, working days, and leave-without-pay days, and the system auto-calculates a Vacation/Sick balance table — Last Balance, Less This Leave, Balance — per employee.",
+      "image": "hr-leave-credits.png"
+    },
+    {
+      "heading": "Performance Management (IPCR-style Review & Rating)",
+      "text": "The Performance Management module generates Division and Consolidated Performance Review & Evaluation forms plus a Summary List of Performance Ratings, filterable by division, office, and rating period — matching the individual/office performance commitment review (IPCR/OPCR) structure used in government performance appraisal."
+    },
+    {
+      "heading": "Learning & Development Tracking",
+      "text": "Learning & Development tracks trainings and seminars end to end — posted trainings, per-employee training history, and an L&D summary report capturing training title, classification, duration, hours, budgetary requirement, and attendance broken down by gender — giving HR a budget-aware view of staff development, not just an attendance log.",
+      "image": "hr-training-invitation.png"
+    },
+    {
+      "heading": "Hiring & Appointment Lifecycle",
+      "text": "Hiring & Appointment covers the full staffing lifecycle across three stages: Item Management for plantilla/position-item tracking, Publication Management for vacancy posting, and Termination Management for offboarding — budgeted position through separation, in one module."
+    },
+    {
+      "heading": "Document & Reports Management",
+      "text": "Reports Management is a per-employee document repository supporting file uploads — PDF, DOCX, and other formats — tied to an employee ID, with search across uploaded records: the digital 201-file equivalent for a paperless HR office."
+    },
+    {
+      "heading": "Role-Based Access Control (RBAC)",
+      "text": "User Management supports distinct roles — Super Administrator, Agency Head, Division Head, Employee — scoped by division and office, with full CRUD on user accounts, so visibility and edit rights match the role instead of everyone sharing one flat admin account for the whole hospital.",
+      "image": "hr-departments-offices.png"
+    },
+    {
+      "heading": "Database Design & Query Debugging",
+      "text": "I owned the MySQL schema and query layer directly — writing joins and aggregate queries across the employee, leave, performance, and training tables, and debugging real production-grade issues like SQL strict-mode (ONLY_FULL_GROUP_BY) violations and schema drift between the code and the database columns. That's the kind of hands-on database debugging a framework ORM usually hides — a from-scratch PHP build makes you actually understand it."
+    },
+    {
+      "heading": "Local Development Environment Management",
+      "text": "I ran and maintained the project inside a local PHP environment (Laravel Herd) on Windows, managing the full dev-to-test workflow for a multi-module system without a framework's built-in tooling to lean on."
+    },
+    {
+      "heading": "Automating What Used to Be Manual",
+      "text": "Across every module, the throughline was the same: replace a manual, spreadsheet-driven process with a centralized system — employee records, leave balances, performance ratings, training history, hiring status — so there was one source of truth instead of scattered files."
+    },
+    {
+      "heading": "Where I'm Strongest",
+      "text": "This is where I built a real foundation in backend PHP and database design — not toy projects, but an enterprise internal system with real workflows depending on it. Understanding how to turn a manual, spreadsheet-driven process into an automated one, and doing it inside a structured remote team, shaped how I still approach backend architecture today."
+    },
+    {
+      "heading": "See the Platform in Depth",
+      "text": "The case study below walks through the full 42-table schema and module structure this eventually grew into."
+    }
+  ],
   "link": "#",
   "sequence_order": 3
 },
@@ -190,42 +250,24 @@
   "title": "Web Developer",
   "location": "UMSTDL, Dhaka, Remote",
   "description": "Web Developer responsible for end-to-end development, deployment, and quality assurance of web solutions for educational institutions.",
-  "details": {
-    "responsibilities": [
-      "Independently designed and developed web solutions for educational institutions",
-      "Managed full software lifecycle including development, deployment, and maintenance",
-      "Ensured software quality through manual testing and validation",
-      "Delivered tailored solutions based on client requirements in the education sector",
-      "Handled end-to-end responsibility for project execution"
-    ],
-    "technical_contributions": [
-      "Built and deployed web applications for institutional use",
-      "Implemented functional features based on client requirements",
-      "Performed software testing and quality assurance before deployment",
-      "Managed hosting and deployment setup for delivered solutions",
-      "Ensured system reliability and usability for end users"
-    ],
-    "tools_and_technologies": [
-      "Web Development (General Stack)",
-      "Frontend Development",
-      "Backend Integration",
-      "Deployment & Hosting",
-      "Manual Testing"
-    ],
-    "impact": [
-      "Delivered functional web solutions for educational institutions",
-      "Improved operational efficiency through digitized workflows",
-      "Ensured reliable system performance through testing and validation",
-      "Provided end-to-end delivery without dependency on external developers"
-    ],
-    "key_strengths": [
-      "Full project ownership from development to deployment",
-      "Strong problem-solving and independent working ability",
-      "Understanding of client requirements and solution delivery",
-      "Foundational experience in real-world web development",
-      "Quality assurance and reliability focus"
-    ]
-  },
+  "story_sections": [
+    {
+      "heading": "The Stack",
+      "tags": ["Web Development (General Stack)", "Frontend Development", "Backend Integration", "Deployment & Hosting", "Manual Testing"]
+    },
+    {
+      "heading": "Full Ownership, No Handoffs",
+      "text": "An early, short engagement, but a formative one: designing, building, deploying, and testing web solutions for educational institutions solo, with no separate ops or QA team to hand off to. Every step of the lifecycle — requirements, build, hosting, testing — ran through one person."
+    },
+    {
+      "heading": "Impact",
+      "text": "The institutions I worked with got functional, reliable web solutions without needing to bring in outside developers to fill gaps — digitizing workflows that used to run on paper or spreadsheets, and testing and validating each one before it went live rather than after something broke."
+    },
+    {
+      "heading": "What It Taught Me",
+      "text": "Working end-to-end this early meant learning deployment and reliability concerns alongside frontend and backend ones, rather than years later. That full-ownership habit — caring about whether something actually works in production, not just whether it works locally — carried into every role since."
+    }
+  ],
   "link": null,
   "sequence_order": 2
 }
